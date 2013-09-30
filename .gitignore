@@ -2,3 +2,5 @@
 .buildpath
 *~
 *.gem
+*tmp
+*tmp

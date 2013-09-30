@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+  [ '--version', '-v', GetoptLong::NO_ARGUMENT]
+)
+
+def usage
+  puts "Использование: #{$0.split("/").last} [ options ] <файл> <каталог>
+  Разбирает <файл> конфигурации 1С в <каталог> mds.
+  Использует метод класса: `Ones_mdscontainer#disassemble'
+  Options:
+  -v | --version - версия
+  -h | --help    - покажет это сообщение"
+  abort
+end
+
+def version
+  puts "Версия: #{Version::VERSION}"
+  abort
+end
+
+shift = false
+path=nil
+opts.each do |opt, arg|
+  case opt
+    when '--help'
+      usage
+    when '--version'
+      version
+  end
+end
+
+if ARGV.length != 2
+  puts "Не все аргументы\n"
+  usage
+end
+
+file_path=ARGV[0]
+dir_path=ARGV[1]
+
+abort "#{$0.split("/").last}: #{file_path} - Not a file" unless File.exists?(file_path) and File.file?(file_path)
+abort "#{$0.split("/").last}: #{dir_path} - Not a dir" unless File.exists?(dir_path) and File.directory?(dir_path)
+
+Ones_mdscontaiter.disassemble(file_path,dir_path)

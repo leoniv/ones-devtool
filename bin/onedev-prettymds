@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+  [ '--version', '-v', GetoptLong::NO_ARGUMENT],
+  [ '--shift','-s', GetoptLong::NO_ARGUMENT ]
+)
+
+def usage
+  puts "Использование: #{$0.split("/").last} [ options ] файл
+  Форматирует поток. Использует метод класса: `Ones_mdstream#pretty_stream'
+  Options:
+  -s | --shift   - добавляет ведущие пробелы см. Ones_mdstream#pretty_stream
+  -v | --version - версия
+  -h | --help    - покажет это сообщение"
+  abort
+end
+
+def version
+  puts "Версия: #{Version::VERSION}"
+  abort
+end
+
+shift = false
+path=nil
+opts.each do |opt, arg|
+  case opt
+    when '--help'
+      usage
+    when '--version'
+      version
+    when '--shift'
+      shift=true
+  end
+end
+
+if ARGV.length != 1
+  puts "Не указан <файл> \n"
+  usage
+end
+
+path=ARGV.shift
+
+abort "#{$0.split("/").last}: #{path} - Not a file" unless File.exists?(path) and File.file?(path)
+  
+puts "#{Ones_mdstream.pretty_stream(Ones_mdstream.read_mdsfile(path),shift)}"
