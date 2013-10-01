@@ -5,8 +5,13 @@
 # - nil - пустое значение
 # - "[^$.]*" - строка символов
 # - [1-9]*   -  целое число
-# - [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12} - GUID 
+# - [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12} - GUID
+# - @@SIZELIMIT - ограничение на чтение файла потока большого размера (на 30M падает regex)
+#   скорее всего это BASE64 объект и хрен на него
 class Ones_mdstream
+  @@SIZELIMIT=2**22
+  @@BOM="\xEF\xBB\xBF"
+  @@ZERRO="\x00\x00\x00\x00"
   public
   #Принимает аргумент <stream> - текст в формате 1С metadata-stream (1C mds)
   #Возвращает форматированный для человеческого восприятия и
@@ -37,17 +42,21 @@ class Ones_mdstream
   protected
  
   def self.read_mdsfile(path)
+    stream = "" 
+    if text_file?(path)
       File.open(path, "r:bom|utf-8"){|file|
-      stream = file.read
-      stream = "" if not is_mdstream?(stream)
-      stream
-    }
+         stream = file.read
+        stream = "" if not is_mdstream?(stream)
+        stream
+      } if File.size(path)<=@@SIZELIMIT
+    end 
+    stream
   end
 
   def self.write_mdsfile(path,stream)
     result=0
     File.open(path, "w"){|file|
-      result = file.write("\xEF\xBB\xBF")
+      result = file.write(@@BOM)
       result += file.write(stream)
     } if is_mdstream?(stream)
     result
@@ -116,11 +125,16 @@ class Ones_mdstream
   #Возвращает истину если первый значащий символ "{"
   #=end
   def self.is_mdstream?(stream)
-    begin
-      stream.strip =~ /^[{]+/
-    rescue
-      false
+    result=false
+    if stream[0..3].dump != @@ZERRO.dump then
+      result = (stream.strip =~ /^[{]+/) !=nil
     end
   end
-
+  def self.text_file?(path)
+    bufer=nil
+    File.open(path){|f|
+      bufer = f.read(4)
+    }
+    bufer.dump != @@ZERRO.dump
+  end  
 end

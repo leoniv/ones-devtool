@@ -15,7 +15,7 @@ class Ones_mdstreamTest < Test::Unit::TestCase
      assert_equal true,Ones_mdstream.write_mdsfile(@@tmpfile,Ones_mdstream.read_mdsfile(@@mdsfile)) > 0
     assert_equal Digest::MD5.hexdigest(File.read(@@mdsfile)),Digest::MD5.hexdigest(File.read(@@tmpfile))   
     assert_equal true,File.open(@@not_mdsfile,"r:bom|utf-8"){|f| Ones_mdstream.write_mdsfile(@@tmpfile,f.read)} == 0
-    File.delete(@@tmpfile)
+   # File.delete(@@tmpfile)
   end
   
   def testC_pretty_stream()
