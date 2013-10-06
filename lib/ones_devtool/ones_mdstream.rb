@@ -86,7 +86,8 @@ class Ones_mdstream
       end
      stream.gsub!(/#{@@EOL},/){|s|
         ","
-        }  
+        }
+     stream
   end  
   
   def self.pretty(stream,shift,n)
