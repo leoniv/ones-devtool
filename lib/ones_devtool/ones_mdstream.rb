@@ -3,10 +3,12 @@
 # По сути 1C mds - это сериализованный массив где элементы массива отделены
 # запятыми. Каждый массив завёрнут в скобки { и }. Типы данных:
 # - nil - пустое значение
-# - "[^$.]*" - строка символов
-# - [1-9]*   -  целое число
-# - [a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12} - GUID
-# - @@SIZELIMIT - ограничение на чтение файла потока большого размера (на 30M падает regex)
+# - /(?<=^|{|,)\s*(?<=[^"])"(?=[^"]).*?(?<=[^"])"(?=[^"])/mi - строка символов заключена в "" в нутри строки символ " = ""
+# - /(?<=^|{|,)[-]?[0-9]+(?=,|}|$)/m  -  целое число
+# - 00010101000000 - похоже на флаги (14 разрядов ???)
+# - /((?<={|,)\s*[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}(?=,|}|$)/m - GUID
+# - /(?<=^|{|,)\s*#base64:[a-zA-Z0-9+\/=\s]*/mi - двоичные данные base64
+#@@SIZELIMIT - ограничение на чтение файла потока большого размера (на 30M падает regex)
 #   скорее всего это BASE64 объект и хрен на него
 class Ones_mdstream
   @@SIZELIMIT=2**22
@@ -21,7 +23,11 @@ class Ones_mdstream
   #   вместе со своей ведущей запятой перевод строки.
   # - если shift=true форматировать отступами: кажда открывающая скобка - 
   #   увеличивает отступ на n пробелов каждая закрывающая фигурная скобка -
-  #   уменьшает отступ на n пробела
+  #   уменьшает отступ на n пробела работает очень криво т.к в тексте
+  #   потока может быть текст модуля ня ЯП 1С в комметариях котрого
+  #   вполне может быть любое количество симвлов { или }
+  #   это обстоятельство сильно осложняет разбор потока на
+  #   уровни вложенности с тспользованием regex.
   def self.pretty_stream(stream,shift=false,n=1)
     if is_mdstream?(stream)
       pretty(stream,shift,n)
@@ -30,9 +36,13 @@ class Ones_mdstream
     end
   end
   
-  def self.unpretty_stream(stream)
+  #Принимает аргумент <stream> - текст в формате 1С metadata-stream (1C mds)
+  #форматированный функцией pretty_stream и удаляет форматирование
+  #приводя поток к первоначальному сосьоянию
+  #un_shift - работает так-же криво как и в pretty_stream 
+  def self.unpretty_stream(stream,un_shift=false,n=1)
     if is_mdstream?(stream)
-      unpretty(stream)
+      unpretty(stream,un_shift,n)
     else
       stream
     end
@@ -64,17 +74,23 @@ class Ones_mdstream
 
   private
     @@EOL="\r\n"
-    def self.unpretty(stream)
-      stream.gsub!(/^[\s]+/){|s|
-        ""
-        }  
-      stream.gsub!(/#{@@EOL},/){|s|
+  def self.unpretty(stream,un_shift,n)
+      sh_cnt=0 
+      if un_shift  
+        stream.gsub!(/^(.)*$/){|s|
+          sn = s[0,n*sh_cnt].strip+s[n*sh_cnt,s.length]
+          raise "Unsifted not empty: #{s[0,n*sh_cnt].strip} sn=#{sn}" if s[0,n*sh_cnt].strip.length>0
+          sh_cnt+=(s.scan(/{/).length - s.scan(/}/).length)
+          sn
+      }
+      end
+     stream.gsub!(/#{@@EOL},/){|s|
         ","
         }  
-    end  
-
+  end  
+  
   def self.pretty(stream,shift,n)
-    stream.gsub!(/,[^,^$.]*/){|s|
+    stream.gsub!(/,/){|s|
       @@EOL+s
       }
     #Отступы
@@ -89,52 +105,19 @@ class Ones_mdstream
     stream      
   end
     
-  def self.pretty_old(stream,shift)
-    #Удаляем начальные пробелы
-    stream.gsub!(/^\s*/){|c|
-      ""
-    }
-    #Удаляем концы строк
-    stream.delete!("\r\n")
-    #Рааставляем переносы
-    stream.gsub!(/[{}]/){|c|
-      if c[0]=="{"
-        "\r\n{"
-      else
-        "\r\n}"
-      end
-    }
-    #Отступы
-    if shift
-      count = -1;
-      stream.gsub!(/^\S/){|c|
-        if c[0]=="{"
-          count+=1
-          " "*count+"{"
-        elsif c[0]=="}"
-          count-=1
-          " "*(count+1)+"}"
-        else
-          " "*(count>0 ? count : 0)+c[0].to_s
-        end
-      }
-    end
-    stream
-  end
   #=begin
   #Возвращает истину если первый значащий символ "{"
   #=end
   def self.is_mdstream?(stream)
     result=false
-    if stream[0..3].dump != @@ZERRO.dump then
-      result = (stream.strip =~ /^[{]+/) !=nil
-    end
+     result = ((stream.lstrip.lines.to_a[0] =~ /^[{]+/) != nil)
+    result
   end
   def self.text_file?(path)
     bufer=nil
     File.open(path){|f|
-      bufer = f.read(4)
+      bufer = f.read(3)
     }
-    bufer.dump != @@ZERRO.dump
+    not (bufer.dump != @@BOM.dump)
   end  
 end

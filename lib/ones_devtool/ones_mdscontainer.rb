@@ -28,7 +28,7 @@ class Ones_mdscontaiter
       findfiles(dir_path){|f|
         counter+=1
         closure.call("Форматирую: #{f}")
-        Ones_mdstream.write_mdsfile(f,(Ones_mdstream.pretty_stream((Ones_mdstream.read_mdsfile(f)),true)))
+        Ones_mdstream.write_mdsfile(f,(Ones_mdstream.pretty_stream((Ones_mdstream.read_mdsfile(f)))))
       }
       closure.call("Обработано: #{counter} фалов")
     else
@@ -43,7 +43,7 @@ class Ones_mdscontaiter
     test_binary
     tmp_path="./assemble.tmp"
     Dir.mkdir(tmp_path) if not Dir.exist?(tmp_path)
-    closure.call("Копирую файлы из: #{dir_path} в #{dir_path}")
+    closure.call("Копирую файлы из: #{dir_path} в #{tmp_path}")
     FileUtils.copy_entry(dir_path,tmp_path)
     counter=0
     findfiles(tmp_path){|f|

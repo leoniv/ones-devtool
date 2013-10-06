@@ -4,7 +4,7 @@ require 'ones_devtool/ones_mdscontainer'
 class Onedev_assembleTest < Test::Unit::TestCase
   @@mdsc="./test/ones_mdscontainer.res/test.epf"
   @@not_mdsc="./test/ones_mdscontainer.res/not_container"
-  @@mdc_out = "./tmp/ones_mdsc.out#{Time.now.strftime '%m%S'}"
+  @@mdc_out = "./tmp/ones_mdsc.out#{Time.now.strftime '%m%S%L'}"
   @@mdc_dir = "./tmp/ones_mdsc.dir"
   
   def test_onedev_assemble_cf

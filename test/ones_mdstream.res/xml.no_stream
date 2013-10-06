@@ -1,0 +1,193 @@
+﻿<package xmlns="http://v8.1c.ru/8.1/xdto" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" targetNamespace="PTORG12">
+	<property xmlns:d2p1="PTORG12" name="Файл" type="d2p1:Файл"/>
+	<valueType name="CCРФТип" base="xs:string" variety="Atomic" length="2">
+		<pattern>[0-9]{2}</pattern>
+	</valueType>
+	<valueType name="ВремяТип" base="xs:string" variety="Atomic" length="8">
+		<pattern>([0-1]{1}[0-9]{1}|2[0-3]{1})\.([0-5]{1}[0-9]{1})\.([0-5]{1}[0-9]{1})</pattern>
+	</valueType>
+	<valueType name="ДатаТип" base="xs:string" variety="Atomic" length="10">
+		<pattern>(((0[1-9]{1}|[1-2]{1}[0-9]{1})\.(0[1-9]{1}|1[0-2]{1}))|((30)\.(01|0[3-9]{1}|1[0-2]{1}))|((31)\.(01|03|05|07|08|10|12)))\.(18[0-9]{2}|19[0-9]{2}|20[0-9]{2})</pattern>
+	</valueType>
+	<valueType name="ИННФЛТип" base="xs:string" variety="Atomic" length="12">
+		<pattern>([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{10}</pattern>
+	</valueType>
+	<valueType name="ИННЮЛТип" base="xs:string" variety="Atomic" length="10">
+		<pattern>([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})[0-9]{8}</pattern>
+	</valueType>
+	<valueType name="КНДТип" base="xs:string" variety="Atomic" length="7">
+		<pattern>[0-9]{7}</pattern>
+	</valueType>
+	<valueType name="КППТип" base="xs:string" variety="Atomic" length="9">
+		<pattern>([0-9]{1}[1-9]{1}|[1-9]{1}[0-9]{1})([0-9]{2})([0-9A-F]{2})([0-9]{3})</pattern>
+	</valueType>
+	<valueType name="ОКОПФТип" base="xs:string" variety="Atomic" length="2">
+		<pattern>[0-9]{2}</pattern>
+	</valueType>
+	<valueType name="ОКСМТип" base="xs:string" variety="Atomic" length="3">
+		<pattern>[0-9]{3}</pattern>
+	</valueType>
+	<valueType name="СПДУЛТип" base="xs:string" variety="Atomic" length="2">
+		<pattern>[0-9]{2}</pattern>
+	</valueType>
+	<objectType name="ДоверенностьТип">
+		<property name="НомДоверен" lowerBound="0" form="Attribute">
+			<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="255"/>
+		</property>
+		<property xmlns:d3p1="PTORG12" name="ДатаДоверен" type="d3p1:ДатаТип" lowerBound="0" form="Attribute"/>
+		<property name="ВыданаКем" lowerBound="0">
+			<typeDef xsi:type="ObjectType">
+				<property name="НаимОргКем" lowerBound="0" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="1000"/>
+				</property>
+				<property name="ДолжнКем" lowerBound="0" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="128"/>
+				</property>
+				<property name="ДопСведКем" lowerBound="0" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="1000"/>
+				</property>
+				<property xmlns:d5p1="PTORG12" name="ФИО" type="d5p1:ФИОТип" lowerBound="0"/>
+			</typeDef>
+		</property>
+		<property name="ВыданаКому" lowerBound="0">
+			<typeDef xsi:type="ObjectType">
+				<property name="Должн" lowerBound="0" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="128"/>
+				</property>
+				<property name="ДопСведКому" lowerBound="0" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="1000"/>
+				</property>
+				<property xmlns:d5p1="PTORG12" name="ФИО" type="d5p1:ФИОТип" lowerBound="0"/>
+			</typeDef>
+		</property>
+	</objectType>
+	<objectType name="ДолжЛицоТип">
+		<property name="Должность" lowerBound="0" form="Attribute">
+			<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="128"/>
+		</property>
+		<property xmlns:d3p1="PTORG12" name="ФИО" type="d3p1:ФИОТип"/>
+	</objectType>
+	<objectType name="ФИОТип">
+		<property name="Фамилия" lowerBound="1" form="Attribute">
+			<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="60"/>
+		</property>
+		<property name="Имя" lowerBound="1" form="Attribute">
+			<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="60"/>
+		</property>
+		<property name="Отчество" lowerBound="0" form="Attribute">
+			<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="60"/>
+		</property>
+	</objectType>
+	<objectType name="Файл">
+		<property name="ИдФайл" type="xs:string" lowerBound="1" form="Attribute"/>
+		<property name="ВерсПрог" type="xs:string" lowerBound="0" form="Attribute"/>
+		<property name="ВерсФорм" type="xs:string" lowerBound="1" form="Attribute"/>
+		<property name="СвУчДокОбор">
+			<typeDef xsi:type="ObjectType">
+				<property name="ИдОтпр" lowerBound="1" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="4" maxLength="46"/>
+				</property>
+				<property name="ИдПок" lowerBound="1" form="Attribute">
+					<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="4" maxLength="46"/>
+				</property>
+				<property name="СвОЭДОтпр" lowerBound="0">
+					<typeDef xsi:type="ObjectType">
+						<property name="НаимОрг" lowerBound="1" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="1000"/>
+						</property>
+						<property xmlns:d7p1="PTORG12" name="ИННЮЛ" type="d7p1:ИННЮЛТип" lowerBound="1" form="Attribute"/>
+						<property name="ИдЭДО" lowerBound="1" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" length="3"/>
+						</property>
+					</typeDef>
+				</property>
+			</typeDef>
+		</property>
+		<property name="Документ">
+			<typeDef xsi:type="ObjectType">
+				<property name="КНД" lowerBound="1" form="Attribute">
+					<typeDef xmlns:d6p1="PTORG12" xsi:type="ValueType" base="d6p1:КНДТип" variety="Atomic">
+						<enumeration>1175005</enumeration>
+					</typeDef>
+				</property>
+				<property xmlns:d5p1="PTORG12" name="ДатаДок" type="d5p1:ДатаТип" lowerBound="1" form="Attribute"/>
+				<property xmlns:d5p1="PTORG12" name="ВремДок" type="d5p1:ВремяТип" lowerBound="1" form="Attribute"/>
+				<property name="ИдТНО">
+					<typeDef xsi:type="ObjectType">
+						<property name="ИдФайлТН" lowerBound="1" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="200"/>
+						</property>
+						<property xmlns:d7p1="PTORG12" name="ДатаДокТН" type="d7p1:ДатаТип" lowerBound="1" form="Attribute"/>
+						<property xmlns:d7p1="PTORG12" name="ВремДокТН" type="d7p1:ВремяТип" lowerBound="1" form="Attribute"/>
+						<property name="ЭЦППолФайл" lowerBound="0" upperBound="-1">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1"/>
+						</property>
+					</typeDef>
+				</property>
+				<property name="СвТНП">
+					<typeDef xsi:type="ObjectType">
+						<property name="НаимПервДок" lowerBound="1" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="100">
+								<enumeration>Товарная накладная</enumeration>
+							</typeDef>
+						</property>
+						<property name="ОКУДПервДок" lowerBound="1" form="Attribute">
+							<typeDef xmlns:d8p1="PTORG12" xsi:type="ValueType" base="d8p1:КНДТип" variety="Atomic">
+								<enumeration>0330212</enumeration>
+							</typeDef>
+						</property>
+						<property name="НомФорм" lowerBound="1" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="100">
+								<enumeration>ТОРГ-12</enumeration>
+							</typeDef>
+						</property>
+						<property name="НомТН" lowerBound="0" form="Attribute">
+							<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="1" maxLength="256"/>
+						</property>
+						<property xmlns:d7p1="PTORG12" name="ДатаТН" type="d7p1:ДатаТип" lowerBound="1" form="Attribute"/>
+						<property name="ПолучилГруз" lowerBound="0">
+							<typeDef xsi:type="ObjectType">
+								<property xmlns:d9p1="PTORG12" name="ДатаПолуч" type="d9p1:ДатаТип" lowerBound="1" form="Attribute"/>
+								<property xmlns:d9p1="PTORG12" name="Доверенность" type="d9p1:ДоверенностьТип" lowerBound="0"/>
+								<property xmlns:d9p1="PTORG12" name="ГрузПринял" type="d9p1:ДолжЛицоТип" lowerBound="0"/>
+								<property xmlns:d9p1="PTORG12" name="ГрузПолучил" type="d9p1:ДолжЛицоТип" lowerBound="0"/>
+							</typeDef>
+						</property>
+						<property name="ИнфПол" lowerBound="0">
+							<typeDef xsi:type="ObjectType">
+								<property name="ТекстИнф" lowerBound="0" form="Attribute">
+									<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="2000"/>
+								</property>
+								<property name="ИдФайлИнфПол" lowerBound="0" form="Attribute">
+									<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" length="36"/>
+								</property>
+							</typeDef>
+						</property>
+					</typeDef>
+				</property>
+				<property name="Подписант">
+					<typeDef xsi:type="ObjectType" ordered="false" sequenced="true">
+						<property name="ИП" lowerBound="0">
+							<typeDef xsi:type="ObjectType">
+								<property xmlns:d9p1="PTORG12" name="ИННФЛ" type="d9p1:ИННФЛТип" lowerBound="1" form="Attribute"/>
+								<property name="СвГосРегИП" lowerBound="0" form="Attribute">
+									<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" maxLength="100"/>
+								</property>
+								<property xmlns:d9p1="PTORG12" name="ФИО" type="d9p1:ФИОТип"/>
+							</typeDef>
+						</property>
+						<property name="ЮЛ" lowerBound="0">
+							<typeDef xsi:type="ObjectType">
+								<property xmlns:d9p1="PTORG12" name="ИННЮЛ" type="d9p1:ИННЮЛТип" lowerBound="1" form="Attribute"/>
+								<property name="Должн" lowerBound="1" form="Attribute">
+									<typeDef xsi:type="ValueType" base="xs:string" variety="Atomic" minLength="0" maxLength="128"/>
+								</property>
+								<property xmlns:d9p1="PTORG12" name="ФИО" type="d9p1:ФИОТип"/>
+							</typeDef>
+						</property>
+					</typeDef>
+				</property>
+			</typeDef>
+		</property>
+	</objectType>
+</package>
