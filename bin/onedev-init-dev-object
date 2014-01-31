@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+  [ '--version', '-V', GetoptLong::NO_ARGUMENT],
+  [ '--verbose', '-v', GetoptLong::NO_ARGUMENT]
+)
+
+def usage
+  $stderr.puts "Использование: #{$0.split("/").last} комманда  [ опции комманды ] путь
+  Собирает <файл> конфигурации 1С из <каталог> mds.
+  Использует метод класса: `Ones_mdscontainer#assemble'
+  Options:
+  -V | --version - версия
+  -h | --help    - покажет это сообщение
+  -v | --verbose - сделает  болтливым
+  Комманды:"
+  Onedev_init_object::usage
+  abort
+end
+
+
+def version
+  puts "Версия: #{Version::VERSION}"
+  abort
+end
+
+opts.each do |opt, arg|
+  case opt
+    when '--help'
+      usage
+    when '--version'
+      version
+    when '--verbose'
+    verbose=true
+  end
+end
+
+if ARGV.length != 2
+  $stderr.puts "Не все аргументы\n\n"
+  usage
+end
+
+command=ARGV.shift().to_sym
+path=ARGV.pop()
+
+args = {:path=>path,:argv=>ARGV}
+
+puts Onedev_init_object::init_object(command,args)

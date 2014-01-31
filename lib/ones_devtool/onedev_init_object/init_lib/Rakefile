@@ -1,0 +1,25 @@
+#encoding: utf-8
+#Сборка - разборка 1С объектов для помещения под управление git
+
+task :dissass do
+  Files =  Dir.glob('./*.epf').each{|entry|
+    puts "#{entry}"
+     abort "ууупс #{entry} это каталог ????" if File.directory?(entry)
+  }
+  Files.each{|f|
+    d=f+".src"
+    FileUtils.mkdir_p(d)
+    system("onedev-dissass-cf -v #{f} #{d}")    
+  }
+end
+
+task :assemble do
+  Dirs =  Dir.glob('./*.epf.src').each{|entry|
+    abort "ууупс #{entry} это файл ????" if File.file?(entry)
+  }
+  Dirs.each{|d|
+    f=d.sub(/[.]src$/){|s|}
+    abort "ууупс #{f} файл существует!!!" if File.exist?(f)
+    system("onedev-assemble-cf -v #{d} #{f}")    
+  }
+end

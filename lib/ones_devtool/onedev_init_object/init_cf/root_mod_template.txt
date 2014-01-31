@@ -1,0 +1,480 @@
+﻿//
+//Корневой модуль доработки(модификации) конфигурации.
+//Модуль должен реализовывать стандартный интерфейс поддержки модификации
+//	- идентификация модификаци
+//  - контроль целостности модификации
+//  - настройка ИБ при установке модификации или обновлени версии
+//  - подключение внешних библиотек
+//  - искдючения возможные в коде модификации
+//!!!!! ВНМАНИЕ !!!!!
+//Должны установленны флаги и свойсва модуля:
+// Для управляемого приложения
+// - Сервер 
+// - Внешнеее соединение
+// - Вызов сервера
+// - Повторное использование - на время сеанса
+// Для обычного приложения
+// - Сервер 
+// - Внешнеее соединение
+// - Клиент(обычное приложение)
+// - повторное использование - на время сеанса
+//Модуль не должен содержать прикладной логики модификации
+//
+
+//
+//Стандартный интерфес не трогаем
+//////////////////////////////////////////////////////////
+
+// -------------Идетификация--------------->
+//Имя пакета - контура
+function Package() export
+	return
+	//{PACKAGE
+	"package_sub"
+	//PACKAGE}
+endfunction	
+//Имя в рамках пакета
+function Name() export
+	//{NAME
+	return "name_sub"
+	//NAME}
+endfunction	
+//Старший и младший номера версии
+function Version() export
+	return 
+	//{VERSION
+	"version_sub"
+	//VERSION}
+endfunction	
+//Номер релиза
+function Rel() export
+	return
+	//{REL
+	"src"
+	//REL}
+endfunction	
+//Тест только целостности и окружения модификации
+//т.е проверяет наличие объектов метаданных
+//и их свойства
+//и может быть, пока не ясно как
+//правок в коде модулей
+function Test() export
+	result="
+	|Начало тестирования <"+ClientServer()+" "+ИмяКомпьютера()+">  модификация """+Name()+""" "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'")+"
+	|";
+	_test_complitenes();
+	_test_environment();
+    result = result+"
+	|Окончание тестирования <"+ClientServer()+" "+ИмяКомпьютера()+"> модификация """+Name()+""" "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'");
+	 return result
+endfunction	
+//Настройка ИБ при установке модификации или обновлени версии
+//Перед запуском процедуры обновления запускает тестирование
+//В arg - структура праметров извесных установщику
+//Перед установкой будут запущены тесты
+function Update(arg) export
+	result="Начало обновления модификации: """+Name()+""" "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'")+"
+	|";
+	result = result+Test()+_update(arg);
+	result=result+"
+	|Окончание обновления модификации: """+Name()+""" "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'");
+	return result;
+endfunction	
+//<----------------------------------------------
+
+//--------------Users Support ----------------->
+
+//Имя проекта в редмайн
+//Описание пакета 
+function PkgDescription()
+	return 
+	//{PKGDESCRIPTION
+	"TODO Set PkgDescription";	
+	//PKGDESCRIPTION}
+endfunction
+
+//Заточено под редмайн
+//Установить значение переменной DefUserSupportUrl
+//Значение возвращаемое функцией можно переопределить 
+//в переменной окружения %ASPCUserSuppUrl%
+function UserSupportUrl() export
+	DefUserSupportUrl = 
+	//{DEFUSERSUPPORTURL
+	"TODO Set Default User Support Url" 
+	//DEFUSERSUPPORTURL}
+	;
+	СИ=Новый СистемнаяИнформация;
+	Если Найти(НРег(Строка(СИ.ТипПлатформы)),"windows") тогда
+		WSH=Новый COMobject("wscript.shell"); 
+		ASPCUserSuppUrl = WSH.ExpandEnvironmentStrings("%ASPCUserSuppUrl%");
+		result=?(СтрЧислоВхождений(ASPCUserSuppUrl,"%ASPCUserSuppUrl%")>0,DefUserSupportUrl,ASPCUserSuppUrl);
+	конецесли;
+	return result;	
+endfunction	
+
+//Адерес wiki страницы пользовательской справки:
+function UserGuidUrl(ИмяРаздела) export
+	ИмяРаздела = СтрЗаменить(ИмяРаздела," ","-");
+//По умолчанию url wiki форимруется для redmine:	
+	default = UserSupportUrl()+"/wiki/"+СтрЗаменить(СтрЗаменить(PkgDescription(),".","-")," ","_")+"_V"+СтрЗаменить(Version(),".","-")+"_Руководство_пользователя#"+ИмяРаздела;
+//Можно установить другое значение:
+
+	custom = "TDOD Set Адерес wiki страницы пользовательской справки.";
+//	
+	Если СтрЧислоВхождений(custom,"TODO") > 0 Тогда
+		return default;
+	Иначе
+		return custom;
+	КонецЕсли;	
+endfunction
+
+//Адрес обращения в поддержку
+function UserIssueUrl() export
+//По умолчанию url форимруется для redmine:
+	default = UserSupportUrl()+"/issues/new";
+//Можно установить другое значение:
+	custom = "TDOD Set Адрес обращения в поддержку.";
+//	
+	Если СтрЧислоВхождений(custom,"TODO") > 0 Тогда
+		return default;
+	Иначе
+		return custom;
+	КонецЕсли;	
+endfunction	
+//<---------------------------------------------
+
+// -------------внешние библиотеки--------------->
+//Возвращает внешние библиотеки
+function libs() export
+	return Include();	
+endFunction	
+//Загружает внешнюю библиотеку 
+//Возвращает объект внешняя обработка
+//package - имя пакета в который входит библиотека
+//libname - имя библиотеки
+//version - только версия как её возвращает функция Vrersion
+//			будет загружен максимальный найденный релиз
+//safemode- безопасный режим см. ВнешниеОбработкиМенеджер.Подключить
+function loadlib(package,libname,version,safemode=false)
+	ObjPath = GetMaxRel(package,libname,version);
+	if ПустаяСтрока(ObjPath) then
+	 	mess="
+			  |Package    = "+Package+"
+			  |Name       = "+libname+"
+			  |Version    = "+version+"
+			  |SearchPath = "+SearchPath(Package)+"
+			  |ObjFname   = "+ObjFname(libname,version,"*","epf")+"
+			  |";
+		raise _ExceptionLostDependens(mess);
+	else						
+		return ВнешниеОбработки.Создать(ObjPath,safemode);
+	endif	
+endfunction
+//Возвращает полный путь файла максимального релаза библиотеки
+function GetMaxRel(package,libname,version)
+	НайденныеФайлы=НайтиФайлы(SearchPath(Package),ObjFname(libname,version,"*","epf"),Ложь); 
+	Если НайденныеФайлы.Количество()=0 Тогда
+		result = "";	
+	КонецЕсли;
+	MaxRel=0; 
+	Для К=0 По НайденныеФайлы.Количество()-1 Цикл
+		Rel=Число(СтрПолучитьСтроку(СтрЗаменить(НайденныеФайлы[К].Имя,".",Символы.ПС),4));
+		MaxRel=Макс(Rel,MaxRel);
+	КонецЦикла;
+	RelFile = New File(SearchPath(Package)+ObjFname(libname,version,Строка(MaxRel),"epf"));
+	if RelFile.Существует() и RelFile.ЭтоФайл() тогда
+		return RelFile.ПолноеИмя;
+	else
+		return "";
+	endif;	
+endfunction	
+function SearchPath(Package) export
+	СИ=Новый СистемнаяИнформация;
+	Если Найти(НРег(Строка(СИ.ТипПлатформы)),"windows") тогда
+		SysDelim = "\";
+		WSH=Новый COMobject("wscript.shell"); 
+		SearchPath = WSH.ExpandEnvironmentStrings("%ASPCHome%");
+		SearchPath=?(СтрЧислоВхождений(SearchPath,"%ASPCHome%")>0,"",SearchPath);
+		if ПустаяСтрока(SearchPath) then
+			raise "Не установлена переменная окружения %ASPCHome%"
+		endif	
+	Иначе 
+		//возвращаем /opt/aspc/	- можно прмонтровать сетевую шару
+		SearchPath="/opt/aspc";
+		SysDelim = "/";
+	конецесли;
+	возврат SearchPath+"onesbin"+SysDelim+СтрЗаменить(Package,".",SysDelim)+SysDelim;
+endfunction	
+function RelPath() export
+	СИ=Новый СистемнаяИнформация;
+	Если Найти(НРег(Строка(СИ.ТипПлатформы)),"windows") тогда
+		SysDelim = "\";
+	Иначе
+		SysDelim = "/";
+	КонецЕсли;	
+	return SearchPath(Package())+Version()+"."+Rel()+SysDelim;
+endfunction	
+function ObjFname(objname,objversion,objrel,ext) export
+	return objname+"."+objversion+"."+objrel+"."+ext
+endfunction	
+procedure addlib(libs,package,libname,version,alias,safemode=false)
+ 	if libs=Неопределено then
+		libs = Новый Структура;
+	else
+		if libs.Свойство(alias) then
+			 raise _ExceptionConflictAliase(alias);
+		endif	
+    endif;
+   libs.Вставить(alias,loadlib(package,libname,version,safemode))	
+endprocedure	
+//<----------------------------------------------
+
+//-------------Стандартные исключения----------->
+function _ExceptionConflictAliase(mess="") export
+	return "<ExceptionConflictAliase>"+mess;
+endfunction	
+function _ExceptionLostDependens(mess="") export
+	return "<ExceptionLostDependens>"+mess;
+endfunction	
+function _ExceptionNotImpliment(mess="") export
+	return "<ExceptionNotImpliment>"+mess;
+endfunction
+function _ExceptionBadParamType(PName,Expected,Actual,mess="")
+	return "<ExceptionBadParamType PName="""+PName+""" expected="""+Expected+""" actual="""+Actual+""" >"+mess;
+endfunction
+function _ExceptionBadParamValue(PName,Expected,Actual,mess="")
+	return "<ExceptionBadParamValue PName="""+PName+""" expected="""+Expected+""" actual="""+Actual+""" >"+mess;
+endfunction
+function _ExceptionModIsCorrupt(mess="") export
+	return "<ExceptionModIsCorrupt>"+mess;
+endfunction	
+function _ExceptionEnvIsBad(mess="") export
+	return "<ExceptionEnvIsBad>"+mess;
+endfunction	
+//<----------------------------------------------
+
+
+//------------------Отладка--------------------->
+//Если строка подключения (имя ИБ) оканчивается 
+//на "devel" это релиз и Debug = false
+//Параметр set - булево - сли установлен то вернёт его. 
+//				 можно использовать для принудительного 
+//				 вкл отключения
+function Debug(set=Undefined) export
+	if ТипЗнч(set) = Тип("Булево") then
+		return set;
+	endif;
+	if НРег(Прав(СтрокаСоединенияИнформационнойБазы(),7)) = "devel"";" then
+		 return true;                                              
+	else
+		 return false;
+	endif 
+EndFunction
+procedure Trace(mess) export
+//Выводит сообщения если Debug=true
+if НРег(Прав(СтрокаСоединенияИнформационнойБазы(),6)) = "test"";" or Debug() then 
+    Сообщить("trace: <"+ClientServer()+"> "+mess);
+endif    
+endprocedure	
+function ClientServer() export
+    #Если Клиент тогда
+        return "Клиент";
+    #ИначеЕсли Сервер тогда
+        return "Сервер";
+    #ИначеЕсли ВнешнееСоединение тогда
+        return "ВнешнееСоединение";
+    #Иначе
+        return "Неопределено";
+    #КонецЕсли    
+endfunction    
+//<----------------------------------------------
+//
+
+//Служебные тестирование наличия объекта МД
+//Возвращает объект МД если найден или неопределено
+//	arg  - принимает  полное имя объекта метаданных(см. Метаданные.Объект.ПолноеИмя())
+//
+function _test_metaobject(arg)
+	mdoject=Метаданные.НайтиПоПолномуИмени(arg);
+	If mdoject=Неопределено then
+	  raise	_ExceptionModIsCorrupt("Объект МД: """+arg+""" - не найден;");
+	endif;	
+	return mdoject;
+endfunction
+//Служебные тестирование значений свойств 
+//только для типов котрые можно сравнит опреацией "="
+//
+//Param:
+//	mdobject - ОбъектМетаданных 
+//	property_name - имя свойства для котрого можно сделать так  mdobject[property_name]
+//	property_value - значение свойства  для котрого можно сделать так
+//  mdobject[property_name] = property_value
+procedure _test_object_property_value(mdobject,property_name,property_value)
+	if ТипЗнч(mdobject)<>Тип("ОбъектМетаданных") then
+		raise  _ExceptionBadParamType("mdobject",Тип("ОбъектМетаданных"),ТипЗнч(mdobject));
+	endif;
+	if not (mdobject[property_name] = property_value) then
+		raise _ExceptionModIsCorrupt("Тест значения свойства МД: """+mdobject+"["""+property_name+"""] expected="""+property_value+""" actual="""+mdobject[property_name]+"""");
+	endif	
+endprocedure
+//Служебные тестирование типов свойств 
+//только для типов котрые можно сравнит опреацией "="
+//
+//Param:
+//	mdobject - ОбъектМетаданных 
+//	property - имя свойства у котрого есть поле Тип
+//	property_type - значение типа  для котрого можно сделать так property.Тип.Содержит(property_type)
+//
+//Example:
+//  спр =  _test_metaobject("Справочник.Цены")
+//  property      = спр.реквизиты.ТипЦены
+//  property_type = Тип("ПеречислениеСсылка.ТипыЦен");
+//  _test_object_property_types(property,property_type)
+procedure _test_object_property_types(property,property_type)
+	if ТипЗнч(property)<>Тип("ОбъектМетаданных") then
+		raise  _ExceptionBadParamType("property",Тип("ОбъектМетаданных"),ТипЗнч(property));
+	endif;
+	Если НЕ property.Тип.Содержит(property_type) Тогда
+		raise _ExceptionModIsCorrupt("Тест типа свойства МД: """+property+""" не содержит тип:"""+property_type+"""");
+	КонецЕсли;	
+endprocedure	
+//Служебные тестирование наличия предопределённого значения
+//ReturnType:
+// <Ссылка> | <Неоределено>
+//ReturnValue:
+// Ссылка       -  если предопределённое значение существует
+// Неоределено  -  если предопределённое значение не существует
+//
+//Params:
+// objmanager - <ПрикладнойОбъект> - который хранит предопределённые значения
+// preset     - <Строка>           - имя предопределённог значчения   
+// 
+function _test_presetvalue(objmanager,preset)        
+	Попытка 
+	  return objmanager[preset];
+	Исключение
+		raise _ExceptionModIsCorrupt("Предопределённое значение: """+objmanager+"."+preset+""" - не найдено");
+	КонецПопытки;	
+endfunction
+//Служебные тестирование значений свойств предпоределённых значений 
+//только для типов котрые можно сравнит опреацией "="
+//
+//Param:
+//	presetvalue   - <Ссылка> - ссылка на пред. значение
+//	property_name - <Строка> - имя свойства
+//	property_value- <Любой>  - значение типа  для котрого можно сделать так presetvalue[property_name] = property_value
+//
+procedure _test_presetvalue_property_value(presetvalue,property_name,property_value)                                
+	if not (presetvalue[property_name] = property_value) then
+		raise _ExceptionModIsCorrupt("Тест значения свойства предопр. значения: """+presetvalue+"["""+property_name+"""] expected="""+property_value+""" actual="""+presetvalue[property_name]+"""");
+	endif	
+endprocedure
+//Тестирование наличия модификации котрая
+//необходима для работы этой модификации
+//Param:
+// - root_module_name - <строка> - имя корневого модуля модификации
+// - Package          - <строка> - пакет в состав которго входит модификация
+// - Name             - <строка> - имя модификации в пакете
+// - Version          - <строка> - ваерсия модификации
+procedure _test_depModifs(root_module_name,Package,Name,Version)
+   root_module = Вычислить( _test_metaobject(root_module_name).Name);
+   if root_module.Package() <> Package then
+		raise _ExceptionModIsCorrupt("Модификация """+Name+""" из пакета """+Package+""" не установлена");
+   endif;	   
+   if root_module.Name() <> Name then
+		raise _ExceptionModIsCorrupt("Модификация """+Name+""" из пакета """+Package+""" не установлена");
+   endif;	   
+   if root_module.Version() <> Version then
+		raise _ExceptionModIsCorrupt("Модификация """+Name+""" из пакета """+Package+""" требуется версия """+Version+""" установлена """+root_module.Version()+"""");
+   endif;	   
+endprocedure	
+//Тестирование значения
+// Только примитивные типы
+// Параметры:
+//  - mess - строка - текст сообщения
+//  - expected - ожидаемое значение
+//  - actual   - актуальное значение
+//  - exception - исключение котрое буте сгенериованно при неудачном тесте
+procedure _test_AssertEquals(mess,expected,actual,exception)
+	if expected<> actual then
+		raise Eval(exception+"(mess)");
+	endif;	
+endprocedure	
+//////////////////////////////////////////////////////////
+//Реализация
+//
+
+//Подключение внешних библиотек
+function Include()
+	libs = Новый Структура;
+//Подключаем библиотеки по образцу:	
+//	addlib(libs,"org.example.libs","pinglib","0.2","ping2",false);
+    возврат libs
+endFunction	
+
+//Установка
+function _update(arg)
+	result="";
+//Выполняем действия необходимые для
+//инициализации модификации
+	return result;
+endfunction	
+
+//Тест целостности
+//Если тест провален должна вызвать исключение _ExceptionModIsCorrupt()
+//В противном случае должна вернуть текст - протокол
+//Целостность должна тестироваться настолько подробно
+//на сколько это возможно сделать используя методы
+//объекта <Метаданные>
+procedure _test_complitenes()
+// Тест настройки свойств корневого модуля
+	//Модули
+	arg="ОбщийМодуль.TODO Set root_XXX";
+	ОбщийМодуль = _test_metaobject(arg);
+	_test_object_property_value(ОбщийМодуль,"Сервер",Истина);
+	_test_object_property_value(ОбщийМодуль,"ВнешнееСоединение",Истина);
+	_test_object_property_value(ОбщийМодуль,"ПовторноеИспользованиеВозвращаемыхЗначений",Метаданные.СвойстваОбъектов.ПовторноеИспользованиеВозвращаемыхЗначений.НаВремяСеанса);
+	Если Метаданные.ОсновнойРежимЗапуска =РежимЗапускаКлиентскогоПриложения.ОбычноеПриложение Тогда
+		_test_object_property_value(ОбщийМодуль,"КлиентОбычноеПриложение",Истина);                                
+		_test_object_property_value(ОбщийМодуль,"ВызовСервера",Ложь);
+	Иначе
+		_test_object_property_value(ОбщийМодуль,"КлиентОбычноеПриложение",Ложь);                                
+		_test_object_property_value(ОбщийМодуль,"ВызовСервера",Истина);
+	КонецЕсли;	
+// Далее пишем тесты
+// Для получения объекта МД используем конструкцию:
+//	arg="Справочник.Контрагенты";
+//	СправочникКонтрагенты = _test_metaobject(arg);
+// Для тестирования состояния объекта МД используем 
+// методы  _test*
+// Если эти методы не подходят тестируем 
+// соблюдая правило если тест не пройден 
+// вызывается исключение _ExceptionModIsCorrupt():
+//   raise _ExceptionModIsCorrupt();
+
+
+endprocedure	
+
+//Тест окружения
+//Если тест провален должна вызвать исключение _ExceptionEnvIsBad()
+//В противном случае должна вернуть текст - протокол
+//Целостность должна тестироваться настолько подробно                 
+//на сколько это возможно сделать используя методы
+//объекта <Метаданные>                                                          
+procedure _test_environment()
+//Проверяем окружение 
+//Если модификация зависит от другой модификации
+//Используем метод  _test_depModifs()
+//Далее тестируем соблюдая правило
+// соблюдая правило если тест не пройден 
+// вызывается исключение _ExceptionEnvIsBad():
+//   raise _ExceptionEnvIsBad();
+	
+
+//В конце пытаемся подключить библиотеки
+	try
+	  Include();
+	except
+	   raise _ExceptionEnvIsBad(ИнформацияОбОшибке().Описание);	
+	endtry;
+endprocedure
