@@ -30,8 +30,10 @@ module Onedev_init_object
   end 
   
   def self.subs(text,subs)
-    subs.each{|key,value| 
-      text.gsub!(/\b#{key.to_s}_sub\b/,value)}
+    subs.each{|key,value|
+      puts "подстановка #{key}=#{value.to_s.gsub(/\"/,"\"\"")}"
+      text.gsub!(/\b#{key.to_s}_sub\b/,value.to_s.gsub(/\"/,"\"\""))
+      }
     text  
   end     
   

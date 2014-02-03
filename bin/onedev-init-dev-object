@@ -8,8 +8,7 @@ require 'getoptlong'
 
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
-  [ '--version', '-V', GetoptLong::NO_ARGUMENT],
-  [ '--verbose', '-v', GetoptLong::NO_ARGUMENT]
+  [ '--version', '-V', GetoptLong::NO_ARGUMENT]
 )
 
 def usage
@@ -19,8 +18,7 @@ def usage
   Options:
   -V | --version - версия
   -h | --help    - покажет это сообщение
-  -v | --verbose - сделает  болтливым
-  Комманды:"
+   Комманды:"
   Onedev_init_object::usage
   abort
 end

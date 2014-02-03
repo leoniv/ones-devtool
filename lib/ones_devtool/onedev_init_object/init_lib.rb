@@ -81,7 +81,7 @@ module Onedev_init_object
     end
     
     def self.valid(opt)
-      abort ":name содержит запрещённые символы \"#{opt[:name]}\"" if opt[:name] =~ /([\s]|[^a-zA-Zа-яА-Я_])/
+      abort ":name содержит запрещённые символы \"#{opt[:name]}\"" if opt[:name] =~ /[^a-zA-Zа-яА-Я0-9_]/
       abort ":package содержит запрещённые символы \"#{opt[:package]}\"" if opt[:package] =~ /[^-0-9a-zA-z_.]/
       abort ":version содержит запрещённые символы \"#{opt[:version]}\"" if not opt[:version] =~ /^(\d)+[.](\d)+$/
       abort ":rel содержит запрещённые символы \"#{opt[:rel]}\"" if not opt[:rel] =~ /^(\d)+$/
@@ -108,12 +108,17 @@ module Onedev_init_object
       puts "#{opt_new.to_yaml}\nПродолжить?[Y/N]"
       
       $stdin.each{|line|
-        unless line =~ /^(Y|y|N|n)$/
-          puts "Yes или No [Y/N]"
-        else
-          make_object opt_new,path if line =~ /^(Y|y|)$/
-          puts "By..."
-          exit 
+        begin
+           unless line =~ /^(Y|y|N|n)$/
+              puts "Yes или No [Y/N]"
+            else
+              make_object opt_new,path if line =~ /^(Y|y|)$/
+              puts "By..."
+              break
+            end
+        rescue ArgumentError => e
+            puts e.message
+            puts "Yes или No [Y/N]"
         end
       }  
     end
