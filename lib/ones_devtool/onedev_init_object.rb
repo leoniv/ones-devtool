@@ -1,9 +1,10 @@
 # encoding: utf-8
 require 'yaml'
 require 'fileutils'
+require 'date'
 
 module Onedev_init_object
-@init_commands = {:lib=>Init_lib, :cf=>Init_cf}
+@init_commands = {:lib=>Init_lib, :cf=>Init_cf, :epf=>Init_epf, :erf=>Init_erf }
  
   def self.usage()
     @init_commands.each(){|key, value| $stderr.puts value.send(:usage)}
@@ -11,7 +12,7 @@ module Onedev_init_object
   
   def self.init_object(command,args)
     if @init_commands.has_key?(command)
-      @init_commands[command].send(:init_object,args) 
+      @init_commands[command].send(:init_object,args)       
     else
       $stderr.puts "Неизвестная команда '#{command}`"
     end   
@@ -24,12 +25,13 @@ module Onedev_init_object
       text.gsub!(/\r?\n?/, "")
       text
     else
-      "Установите знчение по образцу(org.example.lib.common)"
+      "org.example"
     end    
   end 
   
   def self.subs(text,subs)
-    subs.each{|key,value| text.gsub!(/#{key.to_s}_sub/,value)}
+    subs.each{|key,value| 
+      text.gsub!(/\b#{key.to_s}_sub\b/,value)}
     text  
   end     
   

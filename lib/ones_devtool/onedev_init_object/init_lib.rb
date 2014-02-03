@@ -22,7 +22,7 @@ module Onedev_init_object
       
       # Копируем файлы
       FileUtils.cp_r("#{@res_path}/libtemplate.epf.src",path+"/#{opt[:name]}.epf.src")
-      FileUtils.cp_r("#{@res_path}/libtests.epf.src",path+"/test@#{opt[:name]}.epf.src")
+      FileUtils.cp_r("#{@res_path}/test@libtemplate.epf.src",path+"/test@#{opt[:name]}.epf.src")
       FileUtils.cp_r("#{@res_path}/Rakefile",path+"/")
       
       

@@ -1,0 +1,410 @@
+﻿//**********************************************************************************
+//  Тестирование модуля доп. обработки
+//  При работе в управляемом режиме тестирование модуля доп. обработки
+//  выполняется на сервере иначе на клиенте
+//
+//  Respect: авторам проекта V8Unpack https://www.assembla.com/wiki/show/V8Unpack/. 
+//
+//  Copyright © 2013 Leonid Vlasov (leo@asscode.ru)
+//
+//	Данная лицензия разрешает лицам, получившим копию данного программного 
+//	обеспечения и сопутствующей документации (в дальнейшем именуемыми «Программное 
+//	Обеспечение»), безвозмездно использовать Программное Обеспечение без ограничений, 
+//	включая неограниченное право на использование, копирование, изменение, 
+//	добавление, публикацию, распространение, сублицензирование и/или продажу копий 
+//	Программного Обеспечения, также как и лицам, которым предоставляется данное 
+//	Программное Обеспечение, при соблюдении следующих условий:
+//
+//	Указанное выше уведомление об авторском праве и данные условия должны быть 
+//	включены во все копии или значимые части данного Программного Обеспечения.
+//
+//	ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО 
+//	ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ 
+//	ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И 
+//	ОТСУТСТВИЯ НАРУШЕНИЙ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ 
+//	ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО 
+//	ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ 
+//	СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ 
+//	ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
+//
+//***************************************************************************************
+Перем TestProtocol;
+Перем CallStack;
+
+//ANY 			- не зависит от окружения будет работать в любой ИБ (тестируем в пустой конфигурации)
+Перем ENVTYPE_ANY 			;
+//ARRAYOFIB 	- должен выполняться во множестве целевых ИБ. Targets() - возвращает список имен ИБ. (тестируем во всех ИБ по списку)
+Перем ENVTYPE_ARRAYOFIB 	;
+//ANYFROMCFTYPE - должен выполняться во любой ИБ с конфигурацией из списка.  Имеет смысл если зависит от конфигурации поставщика. Targets() - возвращает список кодовых имен конфигураций поле v8i BaseCodeName. (тестируем в первой попавшейся ИБ с заденным BaseCodeName)
+Перем ENVTYPE_ANYFROMCFTYPE ;
+//ALLFROMCFTYPE - должен выполняться во всех ИБ с конфигурацией из списка. Имеет смысл если зависит от конфигурации поставщика и возможно от доработок. Targets() - аналогично ANYFROMCFTYPE.
+Перем ENVTYPE_ALLFROMCFTYPE ;
+//ALL			- должен выполняться во всех ИБ опубликованных в АСПЦ-1С. Имеет смысл если зависит от общих для всех ИБ доработок (на пример от общего модуля который есть во всех ИБ). Targets() - не используется список формируетс динамически. 
+Перем ENVTYPE_ALL 			;
+//MAYBE			- бывает  в начале этапа разработки определить возможные зависимости. Тестирвание может быть выполнено только в ручном режиме с явным указанием целевого окружения.
+Перем ENVTYPE_MAYBE			;
+
+
+
+function SysDelim() export
+	СИ = new СистемнаяИнформация;
+	return ?(СИ.ТипПлатформы=ТипПлатформы.Windows_x86 ИЛИ СИ.ТипПлатформы=ТипПлатформы.Windows_x86_64,"\","/");
+endfunction	
+function CallStack() export
+	if CallStack=Неопределено then
+		CallStack = New Array;
+	endif;
+	return CallStack;
+endfunction	
+procedure AddProtocol(result,HostName) export
+//Добавляет строку в протокол тестирования	
+	systemInfo=new СистемнаяИнформация;
+	TestProtocol = TestProtocol();
+	TestProtocol = TestProtocol+"
+		|"+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'")+" Host:"+HostName+" "+result;
+endprocedure	
+function TestProtocol(StopProtocol=false) export
+//Возвращает протокол тестирования	
+	if TestProtocol=Неопределено тогда
+	systemInfo=new СистемнаяИнформация;
+	TestProtocol="Начало тестирования: "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'")+"
+	|   Host:........"+ИмяКомпьютера()+"
+	|   OSVersion:..."+systemInfo.ВерсияОС+"
+	|   1CVersion:..."+systemInfo.ВерсияПриложения+"
+	|	ConnStr:....."+СтрокаСоединенияИнформационнойБазы()+"
+	|   ClientServ..."+
+	#Если Клиент Тогда
+		"Клиент"
+	#Иначе
+		"Сервер"
+	#КонецЕсли	
+	+"
+	|";
+	endif;
+	if StopProtocol then
+		Result=TestProtocol+"Окончание тестирования: "+format(ТекущаяДата(),"ДФ='dd.MM.yyyy hh:mm:ss'");
+		TestProtocol = Неопределено;
+	endif;	
+	return Result;
+endfunction	
+//======Целевое окружение ===================
+function TargetEnv() export
+//Виды зависимости от окружения. Под окружением понимать определённую конфигурацию или  ИБ в контексте которой длжен выполняться код.
+//Массив имен целевых окружений возвращается функцией Targets()
+//Используется для прогона автоматических тестов.
+//ANY		 	- не зависит от окружения будет работать в любой ИБ (тестируем в пустой конфигурации)
+//ARRAYOFIB 	- должен выполняться во множестве целевых ИБ. Targets() - возвращает список имен ИБ. (тестируем во всех ИБ по списку)
+//ANYFROMCFTYPE - должен выполняться во любой ИБ с конфигурацией из списка.  Имеет смысл если зависит от конфигурации поставщика. Targets() - возвращает список кодовых имен конфигураций поле v8i BaseCodeName. (тестируем в первой попавшейся ИБ с заденным BaseCodeName)
+//ALLFROMCFTYPE - должен выполняться во всех ИБ с конфигурацией из списка. Имеет смысл если зависит от конфигурации поставщика и возможно от доработок. Targets() - аналогично ANYFROMCFTYPE.
+//ALL			- должен выполняться во всех ИБ опубликованных в АСПЦ-1С. Имеет смысл если зависит от общих для всех ИБ доработок (на пример от общего модуля который есть во всех ИБ). Targets() - не используется список формируетс динамически. 
+//MAYBE			- бывает трудно в начале этапа разработки определить возможные зависимости. Тестирвание может быть выполнено только в ручном режиме с явным указанием целевого окружения.
+return 
+	//$TagetEnv{
+"MAYBE"
+//$TagetEnv}
+	;
+endfunction	
+function Targets() export
+	return
+	//$Targets{
+""
+//$Targets}
+	 ;
+ endfunction	
+
+//При отладке кода библиотеки на сервере
+//В параметре надо передать обработку TransfOject
+//Иначе
+function Test(TestsObject=Неопределено,ИмяОбработкиНаСервере=Неопределено) export
+	if TestsObject=Неопределено тогда
+		return Test_local()
+	else
+		return Test_remote(TestsObject,ИмяОбработкиНаСервере)
+	endif	
+endFunction	 
+ 
+function Test_local()
+	TestsFile =новый файл(ЭтотОбъект.ИспользуемоеИмяФайла);
+	TestedObjFName = TestsFile.Путь+SysDelim()+СтрЗаменить(TestsFile.Имя,"test@","");
+	TestedFile = New Файл(TestedObjFName);
+	if  NOT (TestedFile.Существует() И TestedFile.ЭтоФайл()) then
+		Raise "Не обнаружен исходный файл объекта """+TestedFile.ПолноеИмя+"""";
+	endif;
+	//Тестируемый объект
+	Obj=ВнешниеОбработки.Создать(TestedFile.ПолноеИмя);     
+	//Загрузим актуальные тесты
+	TestsObj = ВнешниеОбработки.Создать(TestsFile.ПолноеИмя);
+	//Сбросим стек вызовов
+	TestsObj.CallStack=Undefined;
+	return TestsObj.test_(Obj);
+endfunction	
+
+function Test_remote(TestsObject,ИмяОбработкиНаСервере)
+	ИмяОбработкиНаСервере = Строка(Новый УникальныйИдентификатор);
+	ВнешниеОбработки.Подключить(TestsObject,ИмяОбработкиНаСервере,false);
+	TestsObject = ВнешниеОбработки.Создать(ИмяОбработкиНаСервере);
+	//TestsFile =новый файл(ЭтотОбъект.ИспользуемоеИмяФайла);
+	//TestedObjFName = TestsFile.Путь+SysDelim()+СтрЗаменить(TestsFile.Имя,"test@","");
+	//TestedFile = New Файл(TestedObjFName);
+	//if  NOT (TestedFile.Существует() И TestedFile.ЭтоФайл()) then
+	//	Raise "Не обнаружен исходный файл объекта """+TestedFile.ПолноеИмя+"""";
+	//endif;
+	////Тестируемый объект
+	//Obj=ВнешниеОбработки.Создать(TestedFile.ПолноеИмя);     
+	////Загрузим актуальные тесты
+	//TestsObj = ВнешниеОбработки.Создать(TestsFile.ПолноеИмя);
+	////Сбросим стек вызовов
+	//TestsObj.CallStack=Undefined;
+	return test_(TestsObject);
+endfunction	
+
+
+////////////////////////////////////////////////////////
+// Пишем тесты здесь
+
+//	Рзместите код взова тестов в теле функции test_()
+//	Запуск тестов вызовом Test() модуля объекта
+//	Для доступа к закрытым методам модулей разместите экспортную функцию test_()и вызывайте её из _Tests.test_()
+//	Для тестирования используйте экспортные "assertion methods" модуля формы _TestEngine через вызов TestEngine() модуля объекта.
+//
+//В праметре Obj передаётся тестируемый объект
+function test_(Obj) export
+	//Пример использования тестов
+	//Фксируем начало теста
+	TestProtocol();
+	////////
+	////////Можно тестировать с записью в протокол 
+	////////
+	//////TestWritten=false;
+	//////mess = "Тесты ещё не написаны";
+	//////AddProtocol(AssertFalse(mess,"_Tests.test() #100",TestWritten),ИмяКомпьютера());
+	////////
+	////////Без записи в протокол
+	////////
+	//////mess = "Эти значения одинаковы";
+	//////AssertEquals(mess,"_Tests.test() #150",TestWritten,false);
+	//////mess = "Тесты уже написаны";
+	//////AssertTrue(mess,"_Tests.test() #200",TestWritten);
+	////////
+	////////
+	 mess="Исходник Debug mode";
+	 AssertTrue(mess,"test_() #10",Obj.Debug());
+	//
+	 test_include(Obj);
+	//Фксируем окончание теста
+	Stop=true;
+	return TestProtocol(Stop); 
+endfunction
+
+procedure test_include(Obj)
+	lib="pinglib";
+	ver="0.1";
+	alias="ping";
+	expect_rel="2";
+	mess="Подключаем "+lib+" v"+ver+" aliase="+alias;
+	Obj.include("org.example.libs",lib,ver,alias);
+	AssertEquals(mess,"test_include() #10",Obj.libs.ping.name(),lib);
+	mess="Загружена версия";
+	AssertEquals(mess,"test_include() #20",Obj.libs.ping.version(),ver);
+	mess="Загружен релиз библиотеки";
+	AssertEquals(mess,"test_include() #30",Obj.libs.ping.rel(),expect_rel);
+	//
+	ver="0.2";
+	mess="Подключаем "+lib+" v"+ver+" aliase="+alias;
+	Попытка
+		Obj.include("org.example.libs",lib,ver,alias);
+	Исключение
+		AssertRaise(mess,"test_include() #40",Obj._ExceptionConflictAliase(),ИнформацияОбОшибке());
+	КонецПопытки;
+	alias="ping2";
+	mess="Подключаем "+lib+" v"+ver+" aliase="+alias;
+		Obj.include("org.example.libs",lib,ver,alias);
+    AssertEquals(mess+" кол подключенных","test_include() #30",Obj.libs.Count(),2);		
+	mess="Загружена версия";
+	AssertEquals(mess,"test_include() #50",Obj.libs.ping2.version(),ver);
+	mess="Релиз Debug mode";
+	AssertFalse(mess,"test_include() #60",Obj.libs.ping2.Debug());
+	Сообщить(Obj.libs.ping.ping());
+endprocedure	
+
+
+
+////////////////////////////////////////////////////////
+///
+//Реализация движка модульного тестирования.
+//Не трогайте код без надобности
+//Для трассировки используеися массив возвращаемый функцией CallStack() и параметр CallTrace типа строка в котром передаётся идетификатор места вызова Assert*. По этому идентификатору ищем строку.
+//Для протоколирования используется строка возвращаемая функцией TestProtocol()
+//Все функции Assert* возращают строку для протокола
+//**********************************************************************************
+
+//Public dec
+//assertion methods
+function AssertTrue(знач message="",знач CallTrace,знач condition) 
+	pushCallTrace(CallTrace);
+	if Not condition then
+		failNotEquals(message,true,condition);
+	endif;
+	popCallTrace();
+	return format_(message,true,condition);;
+endfunction
+function AssertFalse(знач message="",знач CallTrace,знач condition) 
+	pushCallTrace(CallTrace);
+	if condition then
+		failNotEquals(message,false,condition);
+	endif;
+	popCallTrace();
+	return format_(message,false,condition);
+endfunction
+function AssertEquals(знач message="",знач CallTrace,знач expected,знач actual) 
+	pushCallTrace(CallTrace);
+	//Сравниваем строки без учета регистра
+	expected=?(ТипЗнч(expected)=Тип("Строка"),НРег(expected),expected); 
+	actual=?(ТипЗнч(actual)=Тип("Строка"),НРег(actual),actual); 
+	if expected<>actual then
+		failNotEquals(message,expected,actual);
+	endif;	
+	popCallTrace();
+	return format_(message,expected,actual);
+endfunction	
+function AssertNotNull(знач message="",знач CallTrace,знач actual) 
+	pushCallTrace(CallTrace);
+	if (actual=Null) then
+		fail(message+" NotNullError"+" expected:<Not Null> bat was: <Null>");
+	endif;	
+	popCallTrace();
+	return message+" expected:<Not Null> actual: <"+" ("+ТипЗнч(actual)+") "+Строка(actual)+">";
+endfunction		
+function AssertNull(знач message="",знач CallTrace,знач actual) 
+	pushCallTrace(CallTrace);
+	if Not (actual=Null) then
+		fail(message+" NullError"+" expected:<Null> bat was: <"+" ("+ТипЗнч(actual)+") "+Строка(actual)+">");
+	endif;	
+	popCallTrace();
+	return message+" expected:<Null> actual: <Null>";
+endfunction		
+//Проверяет исключение ActualExeption на принадлежность к заданному типу ExpectedExeption
+//ExpectedExeption - значение возвращаемое функцией _Exception* вызванной без параметра
+//ActualExeption   - ОбъектТипа <ИнформацияОбОшибке>
+//
+//Для каждого типа исключения генерируемого объектом необходимо создать функцию вида
+//Префикс "_Exception" - обязательно 
+//function _ExceptionИмяТипаИсключения(mess="") 
+//	return "<_ExceptionИмяТипаИсключения>"+mess;
+//endfunction
+//
+//Вызов исключений в коде библиотеки:
+//Функция Echo(mess)
+// 	ВызватьИсключение _ExceptionNotImpliment("Функция Echo() не реализована в этой версии.")
+//КонецФункции
+//
+//При таком подходе в тестах всегда можно определить что это за исключение. 
+//Пример тест заглушки:
+//
+// mess = "Тест функции Echo()"
+//
+// Попытка
+// 	echo = Echo(mess);
+// Исключение
+// 	TestEngine().AssertRaise(mess,"_Test.test() #10",IsException(_ExceptionNotImpliment(),ИнформацияОбОшибке()));
+// КонецПопытки
+//
+// Пока функция Echo() будет генерировать исключения типа _ExceptionNotImpliment() это тест будет проходиться
+// При этом тест не будет пройден после реализации функции Echo() и встанет необходимость создать рабочий тест функции Echo() 
+//
+//Пример тест исключения:
+//
+//
+//Вызов исключений в коде библиотеки:
+//Функция Ping(mess)
+// if ТипЗнч(mess)<>Тип("Строка") then
+// 	ВызватьИсключение _ExceptionRestrictedType("Запрещенный тип параметра Ping().");
+// else
+//  return mess;
+// endif
+//КонецФункции
+//
+//Код теста
+// mess = "Тест функции Ping()"
+//
+// Попытка
+//  Value = "bla bla";
+// 	TestEngine().AssertEquals(mess,"_Test.test() #10",Value,Ping(Value)); //Это тест будет пройден
+//  Value = New Array;
+// 	TestEngine().AssertEquals(mess,"_Test.test() #15",Value,Ping(Value)); //Этот выбросит исключение _ExceptionRestrictedType()
+// Исключение
+// 	TestEngine().AssertRaise(mess,"_Test.test() #20",IsException(_ExceptionRestrictedType(),ИнформацияОбОшибке())); //Это тест будет пройден
+// КонецПопытки
+function AssertRaise(знач message="",знач CallTrace,знач ExpectedExeption,знач ActualExeption) 
+    if Найти(ActualExeption.Description,ExpectedExeption)=0 then
+        fail(message+" RaiseError"+" expected:"+ExpectedExeption+" bat was: <"+ActualExeption.Description+")>
+                     |-- Original exception:
+                     | "+ПодробноеПредставлениеОшибки(ActualExeption)+"
+                     |----------------------");
+    endif   
+endfunction 
+//TatgetEnvTypes
+function TatgetEnvTypes() 
+	result = new СписокЗначений;
+	result.Добавить(ENVTYPE_ANY,"ANY - работает в любой ИБ");
+	result.Добавить(ENVTYPE_ARRAYOFIB,"ARRAYOFIB - в ИБ из списка");
+	result.Добавить(ENVTYPE_ANYFROMCFTYPE,"ANYFROMCFTYPE - в любой ИБ с типом конф. из списка");
+	result.Добавить(ENVTYPE_ALLFROMCFTYPE,"ALLFROMCFTYPE - во всех ИБ с типом конф. из списка");
+	result.Добавить(ENVTYPE_ALL,"ALL - во всех ИБ опубликованных в АСПЦ-1С");
+	result.Добавить(ENVTYPE_MAYBE,"MAYBE - целевое окружение не извесно.");
+	return result;
+endfunction	
+//Privat dec
+function format_(знач message,знач expected,знач actual,result="")
+	return message + " expected:<"+" ("+ТипЗнч(expected)+") "+Строка(expected)+"> "+?(result="fail"," but was:"," actual:")+"<"+" ("+ТипЗнч(actual)+") "+Строка(actual)+">";	
+endfunction	
+procedure failNotEquals(знач message,знач expected,знач actual)
+	fail(format_(message,expected,actual,"fail"));	
+endprocedure	
+procedure fail(знач message)
+	Mess = AssertationError(message)+"
+	|"+Context()+"
+	|"+CallStackAsString();
+	raise Mess;
+endprocedure
+function AssertationError(знач message)
+	return "AssertationError: """+message+"""";
+endfunction	
+function pushCallTrace(CallTrace)
+	CallStack().Insert(0,CallTrace);
+endfunction	
+function popCallTrace()
+	CallStack().Delete(0);
+endfunction	
+function CallStackAsString();
+	 result = 		"CallStack:
+	 |";
+	 for i=0 to CallStack().UBound() do
+		result=result+CallStack()[i]+"
+		|";
+	enddo;
+	return	result+"============================
+	|";	
+endfunction	
+function Context()
+	systemInfo=new СистемнаяИнформация;
+	return "Context: 
+	|  ConnStr:......."+СтрокаСоединенияИнформационнойБазы()+"
+	|  OsVersion:....."+systemInfo.ВерсияОС+"
+	|  1CVersion:....."+systemInfo.ВерсияПриложения+"
+	|  Host:.........."+ИмяКомпьютера()+"
+	|  ClientServ..."+
+	#Если Клиент Тогда
+		"Клиент"
+	#Иначе
+		"Сервер"
+	#КонецЕсли	
+	+"
+	|";
+endfunction	
+ENVTYPE_ANY="ANY";
+ENVTYPE_ARRAYOFIB="ARRAYOFIB";
+ENVTYPE_ANYFROMCFTYPE="ANYFROMCFTYPE";
+ENVTYPE_ALLFROMCFTYPE="ALLFROMCFTYPE";
+ENVTYPE_ALL="ALL";
+ENVTYPE_MAYBE="MAYBE";

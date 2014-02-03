@@ -28,6 +28,7 @@ module Init_cf
     abort "#{$0.split("/").last}: файл `#{root_mod_target_path}' - существует." if File.exists?(root_mod_target_path)
     
     #Копируем
+    FileUtils.mkdir_p(path)
     FileUtils.cp_r(update_source_path,update_target_path)
     FileUtils.cp_r(test_source_path,test_target_path)
     FileUtils.cp_r(root_mod_source_path,root_mod_target_path)
@@ -93,8 +94,8 @@ module Init_cf
   def self.usage()
 "    cf - создаёт заготовку для разработки доработки конфигурации поставщика:
         * Файл ИмяОбъекта_root_mod.txt - код корневого модуля доработки
-        * Каталог с разобранной обработкой тестирования доработок test@ИмяОбъекта.cf.src
-        * Каталог с разобранной обработкой установки доработок update@ИмяОбъекта.cf.src
+        * Каталог с разобранной обработкой тестирования доработок test@ИмяОбъекта.epf.src
+        * Каталог с разобранной обработкой установки доработок update@ИмяОбъекта.epf.src
         * Rackefile    
   " 
   end

@@ -1,0 +1,1371 @@
+﻿{2
+,
+{36
+,0
+,0
+,0
+,0
+,1
+,0
+,0
+,00000000-0000-0000-0000-000000000000
+,1
+,
+{1
+,0}
+,0
+,0
+,1
+,1
+,1
+,0
+,1
+,0
+,
+{1
+,9f2e5ddb-3492-4f5d-8f0d-416b8d1d5c5b
+,"ПриСозданииНаСервере"}
+,
+{0}
+,1
+,
+{19
+,
+{-1
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,9
+,"ФормаКоманднаяПанель"
+,
+{1
+,0}
+,
+{1
+,0}
+,0
+,1
+,0
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,1
+,
+{0
+,0
+,1}
+,0
+,1
+,0
+,0}
+,3
+,a9f3b1ac-f51b-431e-b102-55a69acdecad
+,
+{22
+,
+{1
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,1
+,"Кнопка1"
+,
+{1
+,1
+,
+{"ru"
+,"Тест с перезагрузкой тестов (не доступна отладка)"}
+}
+,1
+,
+{1
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,
+{0}
+,3
+,0
+,0
+,0
+,2
+,2
+,0
+,0
+,0
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,0
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,1
+,
+{"Pattern"}
+,""
+,2
+,0
+,1
+,
+{8
+,
+{2
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,0
+,"Кнопка1ExtendedTooltip"
+,
+{1
+,0}
+,
+{1
+,0}
+,1
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,1
+,
+{5
+,0
+,0
+,3
+,0
+,
+{0}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,0
+,
+{0}
+,0
+,1
+,0
+,48312c09-257f-4b29-b280-284dd89efc1e}
+}
+,0
+,1
+,2
+,
+{1
+,
+{1
+,0}
+,0}
+,0
+,0}
+,
+{"U"}
+}
+,a9f3b1ac-f51b-431e-b102-55a69acdecad
+,
+{22
+,
+{5
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,1
+,"Кнопка3"
+,
+{1
+,0}
+,0
+,
+{3
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,
+{0}
+,3
+,0
+,0
+,0
+,2
+,2
+,0
+,0
+,0
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,0
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,1
+,
+{"Pattern"}
+,""
+,2
+,0
+,1
+,
+{8
+,
+{6
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,0
+,"Кнопка3РасширеннаяПодсказка"
+,
+{1
+,0}
+,
+{1
+,0}
+,1
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,1
+,
+{5
+,0
+,0
+,3
+,0
+,
+{0}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,0
+,
+{0}
+,0
+,1
+,0
+,48312c09-257f-4b29-b280-284dd89efc1e}
+}
+,0
+,1
+,2
+,
+{1
+,
+{1
+,0}
+,0}
+,0
+,0}
+,
+{"U"}
+}
+,a9f3b1ac-f51b-431e-b102-55a69acdecad
+,
+{22
+,
+{3
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,1
+,"Кнопка2"
+,
+{1
+,0}
+,1
+,
+{2
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,
+{0}
+,3
+,0
+,0
+,0
+,2
+,2
+,0
+,0
+,0
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,0
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,1
+,
+{"Pattern"}
+,""
+,2
+,0
+,1
+,
+{8
+,
+{4
+,02023637-7868-4a5f-8576-835a76e0c9ba}
+,0
+,0
+,1
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,0
+,"Кнопка2РасширеннаяПодсказка"
+,
+{1
+,0}
+,
+{1
+,0}
+,1
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,1
+,
+{5
+,0
+,0
+,3
+,0
+,
+{0}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,0
+,
+{0}
+,0
+,1
+,0
+,48312c09-257f-4b29-b280-284dd89efc1e}
+}
+,0
+,1
+,2
+,
+{1
+,
+{1
+,0}
+,0}
+,0
+,0}
+,
+{"U"}
+}
+,""
+,""
+,1
+,
+{19
+,
+{0}
+,0
+,0
+,0
+,7
+,"Navigator"
+,
+{1
+,0}
+,
+{1
+,0}
+,0
+,1
+,0
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,0
+,0
+,1
+,0
+,1
+,
+{8
+,
+{0}
+,0
+,0
+,0
+,0
+,"NavigatorExtendedTooltip"
+,
+{1
+,0}
+,
+{1
+,0}
+,1
+,0
+,0
+,2
+,2
+,
+{3
+,4
+,
+{0}
+}
+,
+{7
+,3
+,0
+,1
+,100}
+,
+{0
+,0
+,0}
+,1
+,
+{5
+,0
+,0
+,3
+,0
+,
+{0}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,4
+,
+{0}
+}
+,
+{3
+,0
+,
+{0}
+,0
+,1
+,0
+,48312c09-257f-4b29-b280-284dd89efc1e}
+}
+,0
+,1
+,2
+,
+{1
+,
+{1
+,0}
+,0}
+,0
+,0}
+}
+,1
+,""
+,2
+,0}
+,"&НаКлиенте
+Перем TestProtocol;
+&НаКлиенте
+Перем CallStack;
+&НаКлиенте
+Перем ИспользуемоеИмяФайла экспорт;
+
+&НаКлиенте
+function SysDelim()
+	СИ = new СистемнаяИнформация;
+	return ?(СИ.ТипПлатформы=ТипПлатформы.Windows_x86 ИЛИ СИ.ТипПлатформы=ТипПлатформы.Windows_x86_64
+,""\""
+,""/"");
+endfunction	
+&НаКлиенте
+function CallStack() export
+	if CallStack=Неопределено then
+		CallStack = New Array;
+	endif;
+	return CallStack;
+endfunction	
+&НаКлиенте
+procedure AddProtocol(result
+,HostName) export
+//Добавляет строку в протокол тестирования	
+	systemInfo=new СистемнаяИнформация;
+	TestProtocol = TestProtocol();
+	TestProtocol = TestProtocol+""
+		|""+format(ТекущаяДата()
+,""ДФ='dd.MM.yyyy hh:mm:ss'"")+"" Host:""+HostName+"" ""+result;
+endprocedure	
+&НаКлиенте
+function TestProtocol(StopProtocol=false) export
+//Возвращает протокол тестирования	
+	if TestProtocol=Неопределено тогда
+	systemInfo=new СистемнаяИнформация;
+	TestProtocol=""
+	|Начало тестирования Клиент: ""+format(ТекущаяДата()
+,""ДФ='dd.MM.yyyy hh:mm:ss'"")+""
+	|   Host:........""+ИмяКомпьютера()+""
+	|   OSVersion:...""+systemInfo.ВерсияОС+""
+	|   1CVersion:...""+systemInfo.ВерсияПриложения+""
+	|	ConnStr:.....""+СтрокаСоединенияИнформационнойБазы()+""
+	|   ClientServ...""+
+	#Если Клиент Тогда
+		""Клиент""
+	#Иначе
+		""Сервер""
+	#КонецЕсли	
+	+""
+	|"";
+	endif;
+	if StopProtocol then
+		Result=TestProtocol+""Окончание тестирования: ""+format(ТекущаяДата()
+,""ДФ='dd.MM.yyyy hh:mm:ss'"");
+		TestProtocol = Неопределено;
+	endif;	
+	return Result;
+endfunction	
+&НаКлиенте
+Процедура test_click(Команда)
+	_Test_manage = ПолучитьФорму(""ВнешняяОбработка.""+ ПодключитьТесты(ХранилищеТеста())+"".Форма.Test_manage""
+, 
+,ЭтаФорма);
+    Протокол = _Test_manage.start_test(ИспользуемоеИмяФайла(ИспользуемоеИмяФайла));
+	Сообщить(Протокол);
+КонецПроцедуры
+&НаКлиенте
+Процедура test_curent_click(Команда)
+	start_test(ИспользуемоеИмяФайла(ИспользуемоеИмяФайла))
+КонецПроцедуры
+
+&НаКлиенте
+Процедура reload(Команда)
+	_Test_manage = ПолучитьФорму(""ВнешняяОбработка.""+ ПодключитьТесты(ХранилищеТеста())+"".Форма""
+, 
+,ЭтаФорма);
+	_Test_manage.ИспользуемоеИмяФайла = ИспользуемоеИмяФайла(ИспользуемоеИмяФайла);
+	_Test_manage.Открыть();
+	Закрыть();
+КонецПроцедуры
+
+
+
+
+&НаКлиенте
+function ХранилищеТеста()
+	Возврат ПоместитьВоВременноеХранилище(Новый ДвоичныеДанные(ИспользуемоеИмяФайла(ИспользуемоеИмяФайла)));
+endfunction	
+&НаКлиенте
+function start_test(ИспользуемоеИмяФайла) export
+    ИмяОбработкиНаСервере = """";
+	//1) Выполняем тесты серверного кода (модуль обработки)
+	TestsFile =новый файл(ИспользуемоеИмяФайла);
+	TestedObjFName = TestsFile.Путь+SysDelim()+СтрЗаменить(TestsFile.Имя
+,""test@""
+,"""");
+	TestedFile = New Файл(TestedObjFName);
+	if  NOT (TestedFile.Существует() И TestedFile.ЭтоФайл()) then
+		Raise ""Не обнаружен исходный файл объекта """"""+TestedFile.ПолноеИмя+"""""""";
+	endif;
+	TestedObject = ПоместитьВоВременноеХранилище(Новый ДвоичныеДанные(TestedFile.ПолноеИмя));
+	result  = tets_srv(TestedObject
+,ИмяОбработкиНаСервере);
+	//2) Выполняем тесты клиентского кода (модуля формы)
+    result  = result + tets_client(ИмяОбработкиНаСервере);
+	Возврат result;
+endfunction	
+
+&НаСервере
+функция ПодключитьТесты(ХранилищеТестов)
+	ИмяОбработкиНаСервере = Строка(Новый УникальныйИдентификатор);
+    ВнешниеОбработки.Подключить(ХранилищеТестов
+,ИмяОбработкиНаСервере
+,false);
+    Возврат  ИмяОбработкиНаСервере;	
+КонецФункции	
+&Насервере
+функция ИспользуемоеИмяФайла(ИспользуемоеИмяФайла)
+	Если ИспользуемоеИмяФайла = Неопределено Тогда
+		_Объект = РеквизитФормыВЗначение(""Объект"");
+	    Возврат _Объект.ИспользуемоеИмяФайла;
+	Иначе
+		Возврат  ИспользуемоеИмяФайла;
+	КонецЕсли;
+конецФункции
+&Насервере
+функция tets_srv(TestsObject
+,ИмяОбработкиНаСервере)
+	_Объект = РеквизитФормыВЗначение(""Объект"");
+	result = _Объект.Test(TestsObject
+,ИмяОбработкиНаСервере);
+	TestsObject=Неопределено;
+	return result;
+конецФункции	
+
+
+///////////////////////////////////////////////////////////////
+//  ТЕСТИРОВАНИЕ НА КЛИЕНТЕ
+&НаКлиенте
+function tets_client(ИмяТестируемойОбработки)
+	TestProtocol();
+	//Получаем форму тестируемой обработки
+	ПараметрыОбработки = Неопределено;
+	TestedForm = ПолучитьФорму(""ВнешняяОбработка.""+ ИмяТестируемойОбработки +"".Форма""
+, ПараметрыОбработки
+,ЭтаФорма);
+
+
+
+	mess=""Тесты клиента написаны"";
+	 AssertEquals(mess
+,""tets_client() #10""
+,true
+,true);
+	//
+	//Фксируем окончание теста
+	Stop=true;
+	return TestProtocol(Stop); 
+endfunction	
+
+////////////////////////////////////////////////////////
+// Пишем тесты здесь
+
+//{TODO}
+
+///////////////////////////////////////////////////////////////
+//  ДВИЖОК ТЕСТИРОВАНИЯ НА КЛИЕНТЕ
+
+//Public dec
+//assertion methods
+&НаКлиенте
+function AssertTrue(знач message=""""
+,знач CallTrace
+,знач condition) 
+	pushCallTrace(CallTrace);
+	if Not condition then
+		failNotEquals(message
+,true
+,condition);
+	endif;
+	popCallTrace();
+	return format_(message
+,true
+,condition);;
+endfunction
+&НаКлиенте
+function AssertFalse(знач message=""""
+,знач CallTrace
+,знач condition) 
+	pushCallTrace(CallTrace);
+	if condition then
+		failNotEquals(message
+,false
+,condition);
+	endif;
+	popCallTrace();
+	return format_(message
+,false
+,condition);
+endfunction
+&НаКлиенте
+function AssertEquals(знач message=""""
+,знач CallTrace
+,знач expected
+,знач actual) 
+	pushCallTrace(CallTrace);
+	//Сравниваем строки без учета регистра
+	expected=?(ТипЗнч(expected)=Тип(""Строка"")
+,НРег(expected)
+,expected); 
+	actual=?(ТипЗнч(actual)=Тип(""Строка"")
+,НРег(actual)
+,actual); 
+	if expected<>actual then
+		failNotEquals(message
+,expected
+,actual);
+	endif;	
+	popCallTrace();
+	return format_(message
+,expected
+,actual);
+endfunction	
+&НаКлиенте
+function AssertNotNull(знач message=""""
+,знач CallTrace
+,знач actual) 
+	pushCallTrace(CallTrace);
+	if (actual=Null) then
+		fail(message+"" NotNullError""+"" expected:<Not Null> bat was: <Null>"");
+	endif;	
+	popCallTrace();
+	return message+"" expected:<Not Null> actual: <""+"" (""+ТипЗнч(actual)+"") ""+Строка(actual)+"">"";
+endfunction		
+&НаКлиенте
+function AssertNull(знач message=""""
+,знач CallTrace
+,знач actual) 
+	pushCallTrace(CallTrace);
+	if Not (actual=Null) then
+		fail(message+"" NullError""+"" expected:<Null> bat was: <""+"" (""+ТипЗнч(actual)+"") ""+Строка(actual)+"">"");
+	endif;	
+	popCallTrace();
+	return message+"" expected:<Null> actual: <Null>"";
+endfunction		
+//Проверяет исключение ActualExeption на принадлежность к заданному типу ExpectedExeption
+//ExpectedExeption - значение возвращаемое функцией _Exception* вызванной без параметра
+//ActualExeption   - ОбъектТипа <ИнформацияОбОшибке>
+//
+//Для каждого типа исключения генерируемого объектом необходимо создать функцию вида
+//Префикс ""_Exception"" - обязательно 
+//function _ExceptionИмяТипаИсключения(mess="""") 
+//	return ""<_ExceptionИмяТипаИсключения>""+mess;
+//endfunction
+//
+//Вызов исключений в коде библиотеки:
+//Функция Echo(mess)
+// 	ВызватьИсключение _ExceptionNotImpliment(""Функция Echo() не реализована в этой версии."")
+//КонецФункции
+//
+//При таком подходе в тестах всегда можно определить что это за исключение. 
+//Пример тест заглушки:
+//
+// mess = ""Тест функции Echo()""
+//
+// Попытка
+// 	echo = Echo(mess);
+// Исключение
+// 	TestEngine().AssertRaise(mess
+,""_Test.test() #10""
+,IsException(_ExceptionNotImpliment()
+,ИнформацияОбОшибке()));
+// КонецПопытки
+//
+// Пока функция Echo() будет генерировать исключения типа _ExceptionNotImpliment() это тест будет проходиться
+// При этом тест не будет пройден после реализации функции Echo() и встанет необходимость создать рабочий тест функции Echo() 
+//
+//Пример тест исключения:
+//
+//
+//Вызов исключений в коде библиотеки:
+//Функция Ping(mess)
+// if ТипЗнч(mess)<>Тип(""Строка"") then
+// 	ВызватьИсключение _ExceptionRestrictedType(""Запрещенный тип параметра Ping()."");
+// else
+//  return mess;
+// endif
+//КонецФункции
+//
+//Код теста
+// mess = ""Тест функции Ping()""
+//
+// Попытка
+//  Value = ""bla bla"";
+// 	TestEngine().AssertEquals(mess
+,""_Test.test() #10""
+,Value
+,Ping(Value)); //Это тест будет пройден
+//  Value = New Array;
+// 	TestEngine().AssertEquals(mess
+,""_Test.test() #15""
+,Value
+,Ping(Value)); //Этот выбросит исключение _ExceptionRestrictedType()
+// Исключение
+// 	TestEngine().AssertRaise(mess
+,""_Test.test() #20""
+,IsException(_ExceptionRestrictedType()
+,ИнформацияОбОшибке())); //Это тест будет пройден
+// КонецПопытки
+&НаКлиенте
+function AssertRaise(знач message=""""
+,знач CallTrace
+,знач ExpectedExeption
+,знач ActualExeption) 
+    if Найти(ActualExeption.Description
+,ExpectedExeption)=0 then
+        fail(message+"" RaiseError""+"" expected:""+ExpectedExeption+"" bat was: <""+ActualExeption.Description+"")>
+                     |-- Original exception:
+                     | ""+ПодробноеПредставлениеОшибки(ActualExeption)+""
+                     |----------------------"");
+    endif   
+endfunction 
+//Privat dec
+&НаКлиенте
+function format_(знач message
+,знач expected
+,знач actual
+,result="""")
+	return message + "" expected:<""+"" (""+ТипЗнч(expected)+"") ""+Строка(expected)+""> ""+?(result=""fail""
+,"" but was:""
+,"" actual:"")+""<""+"" (""+ТипЗнч(actual)+"") ""+Строка(actual)+"">"";	
+endfunction	
+&НаКлиенте
+procedure failNotEquals(знач message
+,знач expected
+,знач actual)
+	fail(format_(message
+,expected
+,actual
+,""fail""));	
+endprocedure	
+&НаКлиенте
+procedure fail(знач message)
+	Mess = AssertationError(message)+""
+	|""+Context()+""
+	|""+CallStackAsString();
+	raise Mess;
+endprocedure
+&НаКлиенте
+function AssertationError(знач message)
+	return ""AssertationError: """"""+message+"""""""";
+endfunction	
+&НаКлиенте
+function pushCallTrace(CallTrace)
+	CallStack().Insert(0
+,CallTrace);
+endfunction	
+&НаКлиенте
+function popCallTrace()
+	CallStack().Delete(0);
+endfunction	
+&НаКлиенте
+function CallStackAsString();
+	 result = 		""CallStack:
+	 |"";
+	 for i=0 to CallStack().UBound() do
+		result=result+CallStack()[i]+""
+		|"";
+	enddo;
+	return	result+""============================
+	|"";	
+endfunction	
+&НаКлиенте
+function Context()
+	systemInfo=new СистемнаяИнформация;
+	return ""Context: 
+	|  ConnStr:.......""+СтрокаСоединенияИнформационнойБазы()+""
+	|  OsVersion:.....""+systemInfo.ВерсияОС+""
+	|  1CVersion:.....""+systemInfo.ВерсияПриложения+""
+	|  Host:..........""+ИмяКомпьютера()+""
+	|  ClientServ...""+
+	#Если Клиент Тогда
+		""Клиент""
+	#Иначе
+		""Сервер""
+	#КонецЕсли	
+	+""
+	|"";
+endfunction	
+
+"
+,
+{4
+,1
+,
+{9
+,
+{1}
+,0
+,"Объект"
+,
+{1
+,0}
+,
+{"Pattern"
+,
+{"#"
+,3e2d4a40-bf22-40d9-b10d-216b94a53776}
+}
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,
+{0
+,0}
+,
+{0
+,0}
+,1
+,0
+,0
+,0
+,
+{0
+,0}
+,
+{0
+,0}
+}
+,0
+,0
+,
+{#base64:77u/PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxTZXR0
+aW5ncyB4bWxucz0iaHR0cDovL3Y4LjFjLnJ1LzguMS9kYXRhLWNvbXBvc2l0aW9u
+LXN5c3RlbS9zZXR0aW5ncyIgeG1sbnM6ZGNzY29yPSJodHRwOi8vdjguMWMucnUv
+OC4xL2RhdGEtY29tcG9zaXRpb24tc3lzdGVtL2NvcmUiIHhtbG5zOnN0eWxlPSJo
+dHRwOi8vdjguMWMucnUvOC4xL2RhdGEvdWkvc3R5bGUiIHhtbG5zOnN5cz0iaHR0
+cDovL3Y4LjFjLnJ1LzguMS9kYXRhL3VpL2ZvbnRzL3N5c3RlbSIgeG1sbnM6djg9
+Imh0dHA6Ly92OC4xYy5ydS84LjEvZGF0YS9jb3JlIiB4bWxuczp2OHVpPSJodHRw
+Oi8vdjguMWMucnUvOC4xL2RhdGEvdWkiIHhtbG5zOndlYj0iaHR0cDovL3Y4LjFj
+LnJ1LzguMS9kYXRhL3VpL2NvbG9ycy93ZWIiIHhtbG5zOndpbj0iaHR0cDovL3Y4
+LjFjLnJ1LzguMS9kYXRhL3VpL2NvbG9ycy93aW5kb3dzIiB4bWxuczp4cz0iaHR0
+cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDov
+L3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiLz4=}
+}
+,
+{0
+,0}
+,
+{0
+,3
+,
+{6
+,
+{1
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,"test"
+,
+{1
+,1
+,
+{"ru"
+,"Test"}
+}
+,
+{1
+,1
+,
+{"ru"
+,"Test"}
+}
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,
+{0
+,0
+,0}
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,"test_click"
+,3
+,0
+,0
+,
+{0
+,0}
+}
+,
+{6
+,
+{2
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,"test_curent"
+,
+{1
+,1
+,
+{"ru"
+,"Тест без перезагрузки тестов(доступна отладка)"}
+}
+,
+{1
+,1
+,
+{"ru"
+,"Test curent"}
+}
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,
+{0
+,0
+,0}
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,"test_curent_click"
+,3
+,0
+,0
+,
+{0
+,0}
+}
+,
+{6
+,
+{3
+,409b9a53-7f7e-4178-86c1-33176c7c7a7a}
+,"reload"
+,
+{1
+,1
+,
+{"ru"
+,"Переоткрыть обработку (оладка станет невозможной)"}
+}
+,
+{1
+,1
+,
+{"ru"
+,"Reload"}
+}
+,
+{0
+,
+{0
+,
+{"B"
+,1}
+,0}
+}
+,
+{0
+,0
+,0}
+,
+{3
+,0
+,
+{0}
+,""
+,-1
+,-1
+,1
+,0}
+,"reload"
+,3
+,0
+,0
+,
+{0
+,0}
+}
+}
+,
+{0
+,0}
+,
+{0
+,0}
+}

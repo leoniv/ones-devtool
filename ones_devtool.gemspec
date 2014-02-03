@@ -5,7 +5,7 @@
   require 'ones_devtool'
  
  Gem::Specification.new do |s|
-   s.files = FileList['lib/**/*.rb',
+   s.files = FileList['lib/**/*',
                         'bin/*',
                         '[A-Z]*',
                         'ext/**/*',
