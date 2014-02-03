@@ -54,7 +54,7 @@ module Init_erf
   end
   
   def self.valid(opt)
-     abort ":name содержит запрещённые символы \"#{opt[:name]}\"" if opt[:name] =~ /([\s]|[^a-zA-Zа-яА-Я_])/
+     abort ":name содержит запрещённые символы \"#{opt[:name]}\"" if opt[:name] =~ /[^-0-9a-zA-z_.]/
      abort ":package содержит запрещённые символы \"#{opt[:package]}\"" if opt[:package] =~ /([\s]|[^-a-zA-Zа-яА-Я_.])/
      abort ":version содержит запрещённые символы \"#{opt[:version]}\"" if not opt[:version] =~ /^(\d)+[.](\d)+$/
      abort ":rel содержит запрещённые символы \"#{opt[:rel]}\"" if not opt[:rel] =~ /^(\d)+$/

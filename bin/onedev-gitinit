@@ -57,7 +57,7 @@ def version
 end
 
 def validpkgname(pkgname)
-  raise "--pkgname <#{pkgname}> имеет запрещённые символы" if pkgname=~/[^-a-zA-z_.]/
+  raise "--pkgname <#{pkgname}> имеет запрещённые символы" if pkgname=~/[^-0-9a-zA-z_.]/
   pkgname
 end
 
