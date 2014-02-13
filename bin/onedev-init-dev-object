@@ -13,8 +13,7 @@ opts = GetoptLong.new(
 
 def usage
   $stderr.puts "Использование: #{$0.split("/").last} комманда  [ опции комманды ] путь
-  Собирает <файл> конфигурации 1С из <каталог> mds.
-  Использует метод класса: `Ones_mdscontainer#assemble'
+  Создаёт заготовку для разработки.
   Options:
   -V | --version - версия
   -h | --help    - покажет это сообщение
@@ -40,7 +39,7 @@ opts.each do |opt, arg|
   end
 end
 
-if ARGV.length != 2
+if ARGV.length < 2
   $stderr.puts "Не все аргументы\n\n"
   usage
 end

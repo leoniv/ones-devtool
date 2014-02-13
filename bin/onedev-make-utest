@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+require 'getoptlong'
+
+opts = GetoptLong.new(
+  [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
+  [ '--version', '-V', GetoptLong::NO_ARGUMENT],
+  [ '--uname', '-n', GetoptLong::NO_ARGUMENT ]
+)
+
+def usage
+  $stderr.puts "Использование: #{$0.split("/").last} КлассОбъекта.ИмяОбъекта  [ Опции ] Путь
+  Создаёт заготовку unit-теста объекта МД 'КлассОбъекта.ИмяОбъекта` конфигурации 1С.
+  'КлассОбъекта.ИмяОбъекта` - значение возвращаемое функцией ПолноеИмя(). Только объекты МД верхнего уровня.
+  'Путь` - рабочий каталог разработки. Ищет каталог тестов 'Путь/tests`
+  Опции:
+  -V | --version - версия
+  -h | --help    - покажет это сообщение
+  Доступные классы объектов МД:"
+  Onedev_make_utest::usage
+  abort
+end
+
+def version
+  puts "Версия: #{Version::VERSION}"
+  abort
+end
+
+opts.each do |opt, arg|
+  case opt
+    when '--help'
+      usage
+    when '--version'
+      version
+  end
+end
+
+if ARGV.length < 2
+  $stderr.puts "Не все аргументы.\n\n"
+  abort
+end
+
+mdobject=ARGV.shift()
+if mdobject.split(".").length!=2
+  $stderr.puts "Допустимы только объекты МД верхнего уровня 'КлассОбъекта.ИмяОбъекта`\n\n"
+  abort
+end
+
+path=ARGV.pop()
+
+if ! File.exist?(path)  || File.file?(path)
+  $stderr.puts "Недопустимое значение аргумента 'Путь`: '#{path}`. Каталог не существует или это файл.\n\n"
+  abort
+end
+
+
+args = ARGV
+
+puts Onedev_make_utest::maketest(mdobject,path,args)
+
+
+

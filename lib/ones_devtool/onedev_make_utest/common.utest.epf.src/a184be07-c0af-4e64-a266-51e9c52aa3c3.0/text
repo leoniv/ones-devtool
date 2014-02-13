@@ -1,0 +1,840 @@
+﻿//**********************************************************************************
+//  Unit-тест объекта МД
+//  
+//	http://rm.asscode.ru/projects/ru-asscode-ones-devtool/wiki/Unit-тестирование_объектов_МД
+//
+//  Respect: авторам проекта V8Unpack https://www.assembla.com/wiki/show/V8Unpack/. 
+//
+//  Copyright © 2013 Leonid Vlasov (leo@asscode.ru)
+//
+//	Данная лицензия разрешает лицам, получившим копию данного программного 
+//	обеспечения и сопутствующей документации (в дальнейшем именуемыми «Программное 
+//	Обеспечение»), безвозмездно использовать Программное Обеспечение без ограничений, 
+//	включая неограниченное право на использование, копирование, изменение, 
+//	добавление, публикацию, распространение, сублицензирование и/или продажу копий 
+//	Программного Обеспечения, также как и лицам, которым предоставляется данное 
+//	Программное Обеспечение, при соблюдении следующих условий:
+//
+//	Указанное выше уведомление об авторском праве и данные условия должны быть 
+//	включены во все копии или значимые части данного Программного Обеспечения.
+//
+//	ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ КАКИХ-ЛИБО 
+//	ГАРАНТИЙ, ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ 
+//	ГАРАНТИЯМИ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И 
+//	ОТСУТСТВИЯ НАРУШЕНИЙ ПРАВ. НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ 
+//	ОТВЕТСТВЕННОСТИ ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО 
+//	ДЕЙСТВУЮЩИМ КОНТРАКТАМ, ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ 
+//	СВЯЗАННЫМ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ 
+//	ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ.
+//
+//************************************************************************************
+////////////////////////////////////////////////////////
+// TestEngine -> 
+
+#Область TestEngine_СЛУЖЕБНЫЕ_ПЕРЕМЕННЫЕ
+Перем CallStack;
+Перем TestProtocol;
+Перем RefArray;
+Перем RecordSetArray;
+#КонецОбласти
+
+// <- TestEngine 
+////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////
+// ПИШЕМ ТЕСТЫ ОБЪЕКТА МД ЗДЕСЬ ->
+
+#Область ТЕСТЫ_ОБЪЕКТА_МД
+//Точка входа
+&Насервере
+функция ТестОбъектаМД(arg) export
+	StartProtocol("mdtest");
+//ТЕСТЫ ИЗ ОБЩЕГО ШАБЛОНА TestEngine ->
+	MDObject = Метаданные.НайтиПоПолномуИмени(TestName());
+	AssertEquals("Объект МД ["+TestName()+"] найден в конфигурации.","ТестОбъектаМД() #1",Тип("ОбъектМетаданных"),ТипЗнч(MDObject));
+//<-ТЕСТЫ ИЗ ОБЩЕГО ШАБЛОНА TestEngine
+
+
+//ТЕСТЫ ИЗ ШАБЛОНА КЛАССА ОБЪЕКТА МД ->
+
+//test_md_call_sub
+
+//<-ТЕСТЫ ИЗ ШАБЛОНА КЛАССА ОБЪЕКТА МД
+
+//ВЫЗЫВАЕМ ТЕСТОВЫЕ МЕТОДЫ ->	
+
+//TODO написать тесты
+
+//<- ВЫЗЫВАЕМ ТЕСТОВЫЕ МЕТОДЫ	
+	Возврат TestProtocol(true);	
+КонецФункции	
+
+//test_md_def_sub
+
+
+#КонецОбласти
+
+//<- ПИШЕМ ТЕСТЫ ОБЪЕКТА МД ЗДЕСЬ
+////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////
+// ПИШЕМ ТЕСТЫ СЕРВЕРА ЗДЕСЬ ->
+
+#Область ТЕСТЫ_СЕРВЕР
+//Точка входа в тесты сервера
+функция ТестыСервера(arg) export
+	StartProtocol("utest");
+//ВЫЗЫВАЕМ ТЕСТОВЫЕ МЕТОДЫ ->	
+	ДемострационныйТестСервер(arg);
+	
+//TODO написать тесты примерно так:
+
+	//ПревыйСерверныйТест();
+	//....
+	//ПоследнийСерверныйТест();
+	
+//<- ВЫЗЫВАЕМ ТЕСТОВЫЕ МЕТОДЫ	
+	Возврат TestProtocol(true);	
+КонецФункции	
+
+#КонецОбласти
+
+//<- ПИШЕМ ТЕСТЫ СЕРВЕРА ЗДЕСЬ
+////////////////////////////////////////////////////////
+
+//////////////!!!! ВНИМАНИЕ !!!!! //////////////////////
+//  !!!!! ЗНАЧЕНИЕ ЭТОЙ ФУНКЦИИ ДОЛЖНО ВОЗВРАЩАТЬ 
+//        ПОЛНОЕ ИМЯ ОБЪЕКТА МД КОНФИГУРАЦИИ И
+//        СООТВЕТСТВОВАТЬ ИМЕНИ ФАЙЛА БЕЗ РАСШИРЕНИЯ 
+//                  <.utest.epf>
+function TestName() export
+	return "ОбщийМодуль.testname_sub";	
+endfunction	
+//////////////!!!! ВНИМАНИЕ !!!!! //////////////////////
+//  !!!!! ЗНАЧЕНИЕ ЭТОЙ ФУНКЦИИ ДОЛЖНО ВОЗВРАЩАТЬ 
+//        ИСТИНА ЕСЛИ ПРИСУТСТВУЮТ ТЕСТЫ ИНТЕРФЕЙСА
+//        ЛОЖЬ ЕСЛИ ТЕСТЫ ИНТЕРФЕЙСА НЕ НУЖНЫ
+//        ПО УМОЛЧАНИЮ ИСТИНА
+function HaseUITest() export
+	return true;	
+endfunction	
+////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////
+// TestEngine -> 
+
+#Область TestEngine_ПРИМЕРЫ
+
+Процедура ДемострационныйТестСервер(arg)
+//ПРИМЕРЫ
+// CallTrace - строка содержащая идентификатор места вызова функции Assert*. По этому идентификатору ищем строку в котрой тест провален.
+//             При сравнении значений коллекций - CallTrace - покажет элемент коллекции который вызвал провал теста
+//1) Проверка значений специальных типов
+	CallTracePef="ДемострационныйТестКлиент()";
+	MessPref="Демострационный тест. ";
+	AssertTrue(MessPref+"Значение Истина",CallTracePef+"#10",Истина);
+	AssertFalse(MessPref+"Значение Ложь",CallTracePef+"#15",Ложь);
+	AssertNull(MessPref+"Значение Null",CallTracePef+"#16",Null);
+	AssertNotNull(MessPref+"Значение НЕ Null",CallTracePef+"#16",Неопределено);
+	AssertUndefined(MessPref+"Значение Неопределено",CallTracePef+"#17",Неопределено);
+//2) Тест значений примитивных типов
+    Число1 = 10;
+    Число2 = 10;
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#20",Число1,Число2);
+	
+	Дата1 = '00010101';
+	Дата2 = '00010101';
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#21",Дата1,Дата2);
+	
+	Строка1 = "Сравнивается без учета регистра";
+	Строка2 = "Сравнивается без учета регистра";
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#22",ВРег(Строка1),НРег(Строка2));
+	
+//3) Тест значений системных перечислений
+	СП1 = ВидДвиженияБухгалтерии.Дебет;
+	СП2 = ВидДвиженияБухгалтерии.Дебет;
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#22",СП1,СП2);
+	
+//4) Тест значений универсальных коллекций
+////a) КлючИЗначение
+    C1=Новый Структура("Ключ1",100);
+	Для Каждого с из C1 Цикл
+		КЗ1 = с;
+	КонецЦикла;	
+    C2=Новый Структура("Ключ1",100);
+	Для Каждого с из C2 Цикл
+		КЗ2 = с;
+	КонецЦикла;	
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#22",КЗ1,КЗ2);
+////б) Структура
+    C1=Новый Структура("Ключ1,Ключ2,Ключ3",100,200,300);
+	Для Каждого с из C1 Цикл
+		КЗ1 = с;
+	КонецЦикла;	
+    C2=Новый Структура("Ключ1,Ключ2,Ключ3",100,200,300);
+	Для Каждого с из C2 Цикл
+		КЗ2 = с;
+	КонецЦикла;	
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#23",C1,C2);
+////в) Соответствие
+    CO1=Новый Соответствие;
+	CO1.Вставить("Ключ 1",100);
+	CO1.Вставить("Структура 1",Новый Структура("Ключ1,Ключ2,Ключ3",100,200,300));
+    CO2=Новый Соответствие;
+	CO2.Вставить("Ключ 1",100);
+	CO2.Вставить("Структура 1",Новый Структура("Ключ1,Ключ2,Ключ3",100,200,300));
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#24",CO1,CO2);
+////г) Таблица значений 
+	ТЗ1 = Новый ТаблицаЗначений;
+	ТЗ1.Колонки.Добавить("К1",Новый ОписаниеТипов("Строка"));
+	ТЗ1.Колонки.Добавить("К2",Новый ОписаниеТипов("Строка"));
+	ТЗ1.Колонки.Добавить("К3",Новый ОписаниеТипов("Строка"));
+	Для К=0 по 10 Цикл
+		НС = ТЗ1.Добавить();
+		НС[0] = К;
+		НС[1] = К*2;
+		НС[2] = К*3;
+	КонецЦикла;	
+	ТЗ2 = Новый ТаблицаЗначений;
+	ТЗ2.Колонки.Добавить("К1",Новый ОписаниеТипов("Строка"));
+	ТЗ2.Колонки.Добавить("К2",Новый ОписаниеТипов("Строка"));
+	ТЗ2.Колонки.Добавить("К3",Новый ОписаниеТипов("Строка"));
+	Для К=0 по 10 Цикл
+		НС = ТЗ2.Добавить();
+		НС[0] = К;
+		НС[1] = К*2;
+		НС[2] = К*3;
+	КонецЦикла;	
+    AssertEquals(MessPref+"Значения равны",CallTracePef+"#25",ТЗ1,ТЗ2);
+
+////д) Массив - сравнивается с учетом порядка следования элементов.
+	А1 = Новый Массив;
+	А2 = Новый Массив;
+	Для К=0 по 10 Цикл
+		А1.Добавить(К);
+		А2.Добавить(К);
+	КонецЦикла;	
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#25",А1,А2);
+	
+////е) Дерево значений.	
+	ДЗ1 = Новый ДеревоЗначений;
+	ДЗ1.Колонки.Добавить("К1",Новый ОписаниеТипов("Строка"));
+	ДЗ1.Колонки.Добавить("К2",Новый ОписаниеТипов("Строка"));
+	ДЗ1.Колонки.Добавить("К3",Новый ОписаниеТипов("Строка"));
+	ДЗ2 = Новый ДеревоЗначений;
+	ДЗ2.Колонки.Добавить("К1",Новый ОписаниеТипов("Строка"));
+	ДЗ2.Колонки.Добавить("К2",Новый ОписаниеТипов("Строка"));
+	ДЗ2.Колонки.Добавить("К3",Новый ОписаниеТипов("Строка"));
+	
+	ГСЧ = Новый ГенераторСлучайныхЧисел(100);
+	
+	Для К=0 По ГСЧ.СлучайноеЧисло(2,5) Цикл
+		НС1 = ДЗ1.Строки.Добавить();
+		НС1.К1 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+		НС1.К2 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+		НС1.К3 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+		НС2 = ДЗ2.Строки.Добавить();
+		НС2.К1 = НС1.К1;
+		НС2.К2 = НС1.К2;
+		НС2.К3 = НС1.К3;
+		Для Л=0 по ГСЧ.СлучайноеЧисло(2,5) Цикл
+			НС11 = НС1.Строки.Добавить();
+			НС11.К1 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+			НС11.К2 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+			НС11.К3 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+			НС22 = НС2.Строки.Добавить();
+			НС22.К1 = НС11.К1;
+			НС22.К2 = НС11.К2;
+			НС22.К3 = НС11.К3;
+			Для М=0 по ГСЧ.СлучайноеЧисло(2,5) Цикл
+				НС111 = НС11.Строки.Добавить();
+				НС111.К1 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+				НС111.К2 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+				НС111.К3 = Строка(ГСЧ.СлучайноеЧисло(100,10000));
+				НС222 = НС22.Строки.Добавить();
+				НС222.К1 = НС111.К1;
+				НС222.К2 = НС111.К2;
+				НС222.К3 = НС111.К3;
+			КонецЦикла;
+		КонецЦикла;
+	КонецЦикла;
+	AssertEquals(MessPref+"Значения равны",CallTracePef+"#25",ДЗ1,ДЗ2);
+	
+	
+
+//5) Тест исключения. Выполняется в два этапа.
+//// Этап первый. Ожидание исключения определённого типа. 
+////              Тип исключения определяется по вхождению строки ExpectedExeption в строку ActualExeption.Description 
+	ЗначениеДоИсключения=неопределено;
+	Попытка 
+		raise "Exseption";
+		ЗначениеДоИсключения=100 ;
+	Исключение	
+		AssertRaise("Демострационный тест",CallTracePef+"#30","Exseption",ИнформацияОбОшибке());
+	КонецПопытки;	
+//// Этап втрой. Контроль того, что исключение было вызвано. Для этого контролируем значение
+///              контрольной переменной которой будет присвоено значение если исключение не было вызвано 
+	AssertUndefined("Демострационный тест",CallTracePef+"#40",ЗначениеДоИсключения);
+	
+//6) Сравнение значений типа ОписаниеТипов
+    МТ = Новый Массив;
+	МТ.Добавить(Тип("Строка"));
+	МТ.Добавить(Тип("Null"));
+	МТ.Добавить(Тип("ГенераторСлучайныхЧисел"));
+	ОТ1 = Новый ОписаниеТипов(МТ,,,Новый КвалификаторыЧисла(10,2,ДопустимыйЗнак.Любой)
+								  ,Новый КвалификаторыСтроки(1000,ДопустимаяДлина.Переменная)
+								  ,Новый КвалификаторыДаты(ЧастиДаты.Дата)
+								  );
+								  
+	ОТ2 = Новый ОписаниеТипов(МТ,,,Новый КвалификаторыЧисла(10,2,ДопустимыйЗнак.Любой)
+								  ,Новый КвалификаторыСтроки(1000,ДопустимаяДлина.Переменная)
+								  ,Новый КвалификаторыДаты(ЧастиДаты.Дата)
+							  );
+	AssertEquals("Демострационный тест",CallTracePef+"#50",ОТ1,ОТ2);
+//7) Тест с созданием объектов в БД								  
+////a) Поготовка к тесту создание объектов в БД
+	МассивСсылок = ДемострационныйТестСервер_ПодготовитьОбъекты(RefArray());
+////б) Выполнение тестов в защищенном блоке
+	Попытка
+		AssertEquals("Демострационный тест",CallTracePef+"#51",МассивСсылок[1],МассивСсылок[1]);
+	Исключение
+////в) Тест провален
+//////в.1) Удаление созданных объектов
+		ClearOjects(МассивСсылок);
+//////в.2) Прерываем тест
+		ВызватьИсключение ПодробноеПредставлениеОшибки(ИнформацияОбОшибке());
+	КонецПопытки;	
+////г) Тест пройден
+//////г.1) Удаление созданных объектов
+		ClearOjects(МассивСсылок);
+		
+//8) Тест с созданием записей регистров в БД								  
+////a) Поготовка к тесту создание записей регистра в БД
+	RecordSetArray = ДемострационныйТестСервер_ПодготовитьНаборыЗаписей(RecordSetArray());
+////б) Выполнение тестов в защищенном блоке
+	Попытка
+		AssertEquals("Демострационный тест",CallTracePef+"#52",RecordSetArray[0].Count(),RecordSetArray[1].Count());
+	Исключение
+////в) Тест провален
+//////в.1) Удаление созданных записей из БД
+		ClearRecordSet(RecordSetArray);
+//////в.2) Прерываем тест
+		ВызватьИсключение ПодробноеПредставлениеОшибки(ИнформацияОбОшибке());
+	КонецПопытки;	
+////г) Тест пройден
+//////г.1) Удаление созданных записей из БД
+		ClearRecordSet(RecordSetArray);
+конецПроцедуры	
+
+функция ДемострационныйТестСервер_ПодготовитьОбъекты(RefArray)
+	Спр2_1 = Справочники.Справочник2.СоздатьЭлемент();
+	Спр2_1.Наименование = "Спр2_1";
+// Для записи объекта используем вызов WriteObject()
+// WriteObject() добавляет параметр TetsName=TestName() 
+// в структуру ДополнительныеСвойства объекта. При этом
+// в обработчиках (на пример "При записи") объекта 
+// по наличию и значению свойства ДополнительныеСвойства.TetsName
+// можно выплнять некотрые действия.
+// WriteObject() помещает ссылку на записаный объект на голову(index=0)
+// массива RefArray. Массив RefArray используется для удаления созданных,
+// во время теста, объектов - вызов ClearOjects().
+	WriteObject(Спр2_1,RefArray);
+	Спр2_2 = Справочники.Справочник2.СоздатьЭлемент();
+	Спр2_2.Наименование = "Спр2_2";
+	WriteObject(Спр2_2,RefArray);
+	Возврат RefArray;
+КонецФункции
+
+функция ДемострационныйТестСервер_ПодготовитьНаборыЗаписей(RecordSetArray)
+    RecordSet1 = РегистрыСведений.Test.СоздатьНаборЗаписей();
+    RecordSet2 = РегистрыСведений.Test.СоздатьНаборЗаписей();
+	Для К=0 По 10 Цикл
+		Rec1 = RecordSet1.Добавить();
+		Rec1.Измерение1 = "Измерение1_"+Строка(К);
+		Rec1.Ресурс1 = "Ресурс1_"+Строка(К);
+		Rec1.Реквизит1 = "Реквизит1_"+Строка(К);
+		Rec2 = RecordSet2.Добавить();
+		Rec2.Измерение1 = "Измерение1_"+Строка(К+100);
+		Rec2.Ресурс1 = "Ресурс1_"+Строка(К+100);
+		Rec2.Реквизит1 = "Реквизит1_"+Строка(К+100);
+	КонецЦикла;	
+// Для записи набора записей независимого регистра используем вызов WriteRecordSet()
+// WriteRecordSet() добавляет параметр TetsName=TestName() 
+// в структуру ДополнительныеСвойства набора записей. При этом
+// в обработчиках (на пример "При записи") набора записей 
+// по наличию и значению свойства ДополнительныеСвойства.TetsName
+// можно выплнять некотрые действия.
+// WriteRecordSet() помещает ссылку на записаный объект на голову(index=0)
+// массива RecordSetArray. Массив RecordSetArray используется для удаления созданных,
+// во время теста, записей регистра - вызов ClearRecordSet().
+	WriteRecordSet(RecordSet1,RecordSetArray);
+	WriteRecordSet(RecordSet2,RecordSetArray);
+	Возврат RecordSetArray;
+КонецФункции
+
+
+#КонецОбласти
+
+#Область TestEngine_ОБЩИЕ_МЕТОДЫ
+////////////////////////////////////////////////////////
+//	ОБЩИЕ МЕТОДЫ ИСПОЛЬЗУЕМЫЕ В ТЕСТАХ
+////////////////////////////////////////////////////////
+
+//TODO ЗДЕСЬ РЕАЛИЗУЕМ СВОИ ОБЩИЕ МЕТОДЫ
+
+////////////////////////////////////////////////////////
+//  МЕТОДЫ ИЗ ШАБЛОНА
+
+//Запись объектов созданных в ходе теста
+procedure WriteObject(Object,RefArray) export
+	if ТипЗнч(RefArray)<>Тип("Массив") then
+		raise "WriteObject() требует массив в параметре RefArray";
+	endif;
+	Попытка
+		Ref = Object.Ссылка;
+	Исключение
+		raise "WriteObject() в параметре Object принимает только типы имеющие ссылки";
+	КонецПопытки;	
+	Object.ДополнительныеСвойства.Вставить("TestName",TestName());
+	Object.Записать();
+	RefArray.Insert(0,Object.Ссылка);
+endprocedure	
+//Очитстка объектов созданных в ходе теста
+procedure ClearOjects(RefArray) export
+	if ТипЗнч(RefArray)<>Тип("Массив") then
+		raise "ClearOjects() требует массив в параметре RefArray";
+	endif;
+	for each Ref in RefArray do
+		Попытка
+			Object = Ref.ПолучитьОбъект();
+			Object.Delete();
+		Исключение
+			Сообщить("ClearOjects() в массиве обнаружен элемент <("+ТипЗнч(Ref)+")"+Строка(Ref)+"> не являющийся ссылкой на объект БД",СтатусСообщения.Важное);
+		КонецПопытки;	
+	enddo	
+endprocedure	
+
+//Запись наборов записей не зависимых регистров созданных в ходе теста
+procedure WriteRecordSet(RecordSet,RecordSetArray)
+	if ТипЗнч(RecordSetArray)<>Тип("Массив") then
+		raise "WriteRecordSet() требует массив в параметре RecordSetArray";
+	endif;
+	Если Найти(XMLТипЗнч(RecordSet).ИмяТипа,"RecordSet.") = 0 Тогда
+		raise "WriteRecordSet() в параметре RecordSet принимает только тип Набор Записей Регистра";
+	КонецЕсли;	
+	RecordSet.ДополнительныеСвойства.Вставить("TestName",TestName());
+	RecordSet.Записать();
+	RecordSetArray.Insert(0,RecordSet);
+endprocedure	
+
+//Очитстка наборов записей не зависимых регистров созданных в ходе теста
+procedure ClearRecordSet(RecordSetArray)
+	if ТипЗнч(RecordSetArray)<>Тип("Массив") then
+		raise "WriteRecordSet() требует массив в параметре RecordSetArray";
+	endif;
+	for each RecordSet in RecordSetArray do
+		Если Найти(XMLТипЗнч(RecordSet).ИмяТипа,"RecordSet.") = 0 Тогда
+			Сообщить("ClearRecordSet() в массиве обнаружен элемент <("+ТипЗнч(RecordSet)+")"+Строка(RecordSet)+"> не являющийся набором записей регистра",СтатусСообщения.Важное);
+		КонецЕсли;	
+		for each Rec in RecordSet do
+			RecordSet.Delete(Rec);
+		enddo	
+	enddo	
+endprocedure	
+
+
+function Sleep(sec)
+	count = 0;
+	dateExit = ТекущаяДата()+sec;
+	while ТекущаяДата()<dateExit do
+		count=count+1;
+	enddo;
+	return count;
+endfunction	
+function SysDelim()
+	СИ = new СистемнаяИнформация;
+	return ?(СИ.ТипПлатформы=ТипПлатформы.Windows_x86 ИЛИ СИ.ТипПлатформы=ТипПлатформы.Windows_x86_64,"\","/");
+endfunction	
+
+
+#КонецОбласти
+
+#Область TestEngine_МЕТОДЫ_УТВЕРЖДЕНИЯ
+///////////////////////////////////////////////////////
+//	МЕТОДЫ-УТВЕРЖДЕНИЯ
+//Для трассировки используеися массив возвращаемый функцией CallStack() 
+//и параметр CallTrace типа строка в котром передаётся идетификатор места вызова Assert*.
+//По этому идентификатору ищем строку. 
+//При рекурсивном вызове (сравнение коллекций) AssertEquals() - CallStack() покажет элемент коллекции в котором значения не равны.
+//Для протоколирования используется строка возвращаемая функцией TestProtocol()
+//Все функции Assert* добавлябт строку в протокол  TestProtocol() - для AssertEquals() запись в протокол зависит от параметра record_protocol
+//Все функции Assert* возращают строку - сообщение записанное в протокол 
+////////////////////////////////////////////////////////
+
+
+//TODO ЗДЕСЬ РЕАЛИЗУЕМ СВОИ МЕТОДЫ-УТВЕРЖДЕНИЯ 
+
+////////////////////////////////////////////////////////
+//  МЕТОДЫ ИЗ ШАБЛОНА
+
+ 
+function AssertTrue(знач message="",знач CallTrace,знач condition) export
+	pushCallTrace(CallTrace);
+	if Not condition then
+		failNotEquals(message,true,condition);
+	endif;
+	popCallTrace();
+	return AddProtocol(format_(message,true,condition));
+endfunction
+ 
+function AssertFalse(знач message="",знач CallTrace,знач condition) export
+	pushCallTrace(CallTrace);
+	if condition then
+		failNotEquals(message,false,condition);
+	endif;
+	popCallTrace();
+	return AddProtocol(format_(message,false,condition));
+endfunction
+
+//record_protocol - булево - признак записи сообщения в протокол. При рекурсивных вызовах позволяет не захломлять протокол теста.
+function AssertEquals(знач message="",знач CallTrace,знач expected,знач actual,record_protocol=true) export
+	pushCallTrace(CallTrace);
+	//Сравниваем строки без учета регистра
+	expected=?(ТипЗнч(expected)=Тип("Строка"),НРег(expected),expected); 
+	actual=?(ТипЗнч(actual)=Тип("Строка"),НРег(actual),actual);
+    if ТипЗнч(expected)<>ТипЗнч(actual) then
+//1) Сравниваем типы
+		failNotEquals(message,expected,actual);
+	elsif ТипЗнч(expected)=Тип("КлючИЗначение") тогда
+//3) Сравниваем значения типа КлючИЗначение		
+		AssertEquals(message+" КлючИЗначение.key",CallTrace+" КлючИЗначение.key",expected.key,actual.key,false);
+		AssertEquals(message+" КлючИЗначение.value",CallTrace+" КлючИЗначение.value",expected.value,actual.value,false)
+	elsif ТипЗнч(expected) = Тип("Соответствие") тогда
+//4) Сравниваем элементы соответсвия
+////a) Количество элементов
+		if expected.count() <> actual.count() then
+			failNotEquals(message+" Количество элементов коллекции. ",expected.count(),actual.count());
+		endif;	
+////б) Элементы коллекции
+		for each item in expected do
+	        actual_value = actual.Получить(item.key);
+			AssertEquals(message+" Соответствие["+item.key+"].value",CallTrace+"Соответствие["+item.key+"]",item.value,actual_value,false);
+		enddo;	
+	elsif ТипЗнч(expected) = Тип("Структура") тогда
+//5) Сравниваем элементы стркутуры
+////a) Количество элементов
+		if expected.count() <> actual.count() then
+			failNotEquals(message+" Количество элементов коллекции. ",expected.count(),actual.count());
+		endif;	
+////б) Элементы коллекции
+		for each item in expected do
+	        actual_value = Неопределено;
+	        actual.Свойство(item.key,actual_value);
+			AssertEquals(message+" Структура["+item.key+"].value",CallTrace+"Структура["+item.key+"]",item.value,actual_value,false);
+		enddo;	
+	elsif ТипЗнч(expected) = Тип("СтрокаТаблицыЗначений") тогда
+//5.10) Сравниваем сторку таблицы значений
+		i=0;
+		for each item in expected do
+			AssertEquals(message+" ["+Строка(i)+"]",CallTrace+" ["+Строка(i)+"]",item,actual[i],false);
+			i=i+1;
+		enddo;	
+	elsif ТипЗнч(expected) = Тип("КолонкаТаблицыЗначений") тогда
+//5.11) Сравниваем клонки таблицы значений
+			AssertEquals(message+" Имя",CallTrace+" Имя",expected.Name,actual.Name,false);
+			AssertEquals(message+" ТипЗначения",CallTrace+" ТипЗначения",expected.ТипЗначения,actual.ТипЗначения,false);
+	elsif ТипЗнч(expected) = Тип("ТаблицаЗначений") тогда
+//5.12) Сравниваем таблицы значений
+////a) Количество элементов
+		if expected.count() <> actual.count() then
+			failNotEquals(message+" Количество элементов коллекции. ",expected.count(),actual.count());
+		endif;	
+////б) Колонки
+			AssertEquals(message+" КолонкиТЗ",CallTrace+" КолонкиТЗ",expected.Колонки,actual.Колонки,false);
+////в) Строки
+		i=0;
+		for each item in expected do
+			if Indexed(actual) then
+				AssertEquals(message+" ТаблицаЗначений["+Строка(i)+"]",CallTrace+"ТаблицаЗначений["+Строка(i)+"]",item,actual[i],false);
+			else
+				raise "Сравнение типа ["+ТипЗнч(actual)+"] не поддерживается";
+			endif;	
+			i=i+1;
+		enddo;
+	elsif ТипЗнч(expected) = Тип("СтрокаДереваЗначений") Тогда
+//5.50) Сравниваем Строку Дерева Значений
+////а) Значения ячеек строки Дерева Значений
+		i=0;
+		for each item in expected do
+			AssertEquals(message+" ["+Строка(i)+"]",CallTrace+" ["+Строка(i)+"]",item,actual[i],false);
+			i=i+1;
+		enddo;	
+////б) Коллкцию Строки строки Дерева Значений
+		AssertEquals(message+".Строки",CallTrace+".Строки",expected.Rows,actual.Rows,false);
+	elsif ТипЗнч(expected) = Тип("КолонкаДереваЗначений") Тогда
+//5.52) Сравниваем Колонку Дерева Значений
+		AssertEquals(message+" Имя",CallTrace+" Имя",expected.Name,actual.Name,false);
+		AssertEquals(message+" ТипЗначения",CallTrace+" ТипЗначения",expected.ТипЗначения,actual.ТипЗначения,false);
+	elsif ТипЗнч(expected) = Тип("ДеревоЗначений") Тогда
+//5.53) Сравниваем дерево значений
+////a) Колонки
+			AssertEquals(message+" КолонкиДЗ",CallTrace+" КолонкиДЗ",expected.Колонки,actual.Колонки,false);
+////б) Строки
+			AssertEquals(message+" ДеревоЗначений.Строки",CallTrace+"ДеревоЗначений.Строки",expected.Rows,actual.Rows,false);
+	elsif Iterable(expected) тогда
+//6) Сравниваем коллекции
+////a) Количество элементов
+		if Countable(expected) then
+			if expected.count() <> actual.count() then
+				failNotEquals(message+" Количество элементов коллекции. ",expected.count(),actual.count());
+			endif;
+		else
+				raise "Сравнение типа ["+ТипЗнч(actual)+"] не поддерживается";
+		endif;	
+////б) Элементы коллекции
+		i=0;
+		for each item in expected do
+			if Indexed(actual) then
+				AssertEquals(message+" Коллекция["+Строка(i)+"]",CallTrace+"Коллекция["+Строка(i)+"]",item,actual[i],false);
+			else
+				raise "Сравнение типа ["+ТипЗнч(actual)+"] не поддерживается";
+			endif;	
+			i=i+1;
+		enddo;	
+	elsif expected<>actual then
+//7) Сравниваем остальные типы		
+		failNotEquals(message,expected,actual);
+	endif;	
+	popCallTrace();
+	if record_protocol then
+		return AddProtocol(format_(message,expected,actual));
+	else
+		return format_(message,expected,actual);
+	endif;	
+endfunction	
+ 
+function AssertNotNull(знач message="",знач CallTrace,знач actual) export
+	pushCallTrace(CallTrace);
+	if (actual=Null) then
+		fail(message+" NotNullError"+" expected:[Not Null] bat was: [Null]");
+	endif;	
+	popCallTrace();
+	return AddProtocol(message+" expected:[Not Null] actual: ["+" ("+ТипЗнч(actual)+") "+Строка(actual)+"]");
+endfunction		
+  
+function AssertNull(знач message="",знач CallTrace,знач actual) export
+	pushCallTrace(CallTrace);
+	if Not (actual=Null) then
+		fail(message+" NullError"+" expected:[Null] bat was: ["+" ("+ТипЗнч(actual)+") "+Строка(actual)+"]");
+	endif;	
+	popCallTrace();
+	return AddProtocol(message+" expected:[Null] actual: [Null]");
+endfunction	
+  
+function AssertUndefined(знач message="",знач CallTrace,знач actual ) export
+	pushCallTrace(CallTrace);
+	if Not (actual=Undefined) then
+		fail(message+" UndefinedError"+" expected:[Undefined] bat was: ["+" ("+ТипЗнч(actual)+") "+Строка(actual)+"]");
+	endif;	
+	popCallTrace();
+	return AddProtocol(message+" expected:[Undefined] actual: [Undefined]");
+endfunction		
+ 
+//Тест исключения. Выполняется в два этапа.
+// Этап первый. Ожидание исключения определённого типа. 
+//              Тип исключения определяется по вхождению строки ExpectedExeption в строку ActualExeption.Description 
+	//ЗначениеДоИсключения=неопределено;
+	//Попытка 
+	//	raise "Exseption";
+	//	ЗначениеДоИсключения=100 ;
+	//Исключение	
+	//	AssertRaise("Демострационный тест",CallTracePef+"#30","Exseption",ИнформацияОбОшибке());
+	//КонецПопытки;	
+// Этап втрой. Контроль того, что исключение было вызвано. Для этого контролируем значение
+//              контрольной переменной которой будет присвоено значение если исключение не было вызвано 
+	//AssertUndefined("Демострационный тест",CallTracePef+"#40",ЗначениеДоИсключения);
+function AssertRaise(знач message="",знач CallTrace,знач ExpectedExeption,знач ActualExeption) export
+    if Найти(ActualExeption.Description,ExpectedExeption)=0 then
+        fail(message+" RaiseError"+" expected:"+ExpectedExeption+" bat was: ["+ActualExeption.Description+")]
+                     |-- Original exception:
+                     | "+ПодробноеПредставлениеОшибки(ActualExeption)+"
+                     |----------------------");
+    endif;
+	return AddProtocol(message+" Exception expected:["+ExpectedExeption+"] actual: ["+ActualExeption.Description+"]");			 
+endfunction 
+#КонецОбласти
+
+#Область TestEngine_СЛУЖЕБНЫЕ_МЕТОДЫ
+//Privat dec
+function RecordSetArray()
+	if ТипЗнч(RecordSetArray)<>Тип("Массив") then
+		RecordSetArray = новый Массив;
+	endif;
+	return RecordSetArray;
+endfunction	
+
+
+function RefArray()
+	if ТипЗнч(RefArray)<>Тип("Массив") then
+		RefArray = новый Массив;
+	endif;
+	return RefArray;
+endfunction	
+
+function Iterable(Value)
+	Попытка
+		Для Каждого item из Value цикл
+			Прервать;
+		КонецЦикла;	
+		return true;
+	Исключение
+		return false;
+	КонецПопытки;	
+endfunction	
+
+function Indexed(Value)
+	Попытка
+		if Value.Count()>0 then
+			item = Value[0];
+			return true;
+		else
+			return false
+		endif	
+	Исключение
+		return false;
+	КонецПопытки;	
+endfunction	
+
+function Countable(Value)
+	Попытка
+		Count = Value.Count();
+		return true;
+	Исключение
+		return false;
+	КонецПопытки;	
+endfunction	
+
+function format_(знач message,знач expected,знач actual,result="")
+	return message + " expected:["+" ("+ТипЗнч(expected)+") "+Строка(expected)+"] "+?(result="fail"," but was:"," actual:")+"["+" ("+ТипЗнч(actual)+") "+Строка(actual)+"]";	
+endfunction	
+
+procedure failNotEquals(знач message,знач expected,знач actual)
+	fail(format_(message,expected,actual,"fail"));	
+endprocedure	
+
+procedure fail(знач message)
+	Mess = AssertationError(message)+"
+	|"+Context()+"
+	|"+CallStackAsString();
+	CallStack().Clear();
+	ClearProtocol();
+	raise Mess;
+endprocedure
+
+function AssertationError(знач message)
+	return "AssertationError: """+message+"""";
+endfunction	
+
+function pushCallTrace(CallTrace)
+	CallStack().Insert(0,CallTrace);
+endfunction
+
+function CallStack() export
+	if CallStack=Неопределено then
+		CallStack = New Array;
+	endif;
+	return CallStack;
+endfunction	
+
+function popCallTrace()
+	CallStack().Delete(0);
+endfunction	
+
+function CallStackAsString();
+	 result = 		"CallStack:
+	 |";
+	 for i=0 to CallStack().UBound() do
+		result=result+CallStack()[i]+"
+		|";
+	enddo;
+	return	result+"============================
+	|";	
+endfunction	
+  
+function Context()
+	systemInfo=new СистемнаяИнформация;
+	return "Context: 
+	|  ConnStr:......."+СтрокаСоединенияИнформационнойБазы()+"
+	|  OsVersion:....."+systemInfo.ВерсияОС+"
+	|  1CVersion:....."+systemInfo.ВерсияПриложения+"
+	|  Host:.........."+ИмяКомпьютера()+"
+	|  Side:.........."+ClientServer()+"
+	|";
+endfunction	
+  
+function ClientServer()
+	#Если Клиент тогда
+		return "Клиент";
+	#ИначеЕсли Сервер тогда
+		return "Сервер";
+	#ИначеЕсли ВнешнееСоединение тогда
+		return "ВнешнееСоединение";
+	#Иначе
+		return "Неопределено";
+	#КонецЕсли	
+endfunction	
+  
+function AddProtocol(result)
+//Добавляет строку в протокол тестирования	
+	TestProtocol = TestProtocol();
+	TestProtocol = TestProtocol+"
+		|<item time='"+ProtocolDateFormat()+"'><![CDATA["+result+"]]></item>";
+	return result;	
+endfunction	
+  
+function TestProtocol(StopProtocol=false,testtype=undefined)
+//Возвращает протокол тестирования	
+	if ПустаяСтрока(TestProtocol) тогда
+		StartProtocol(testtype);
+	endif;
+	if StopProtocol then
+		TestProtocol=TestProtocol+"
+		|</items>
+		|<testend type='"+testtype+"' testname='"+TestName()+"' time='"+ProtocolDateFormat()+"'/>
+		|</test>"
+	endif;
+	result = TestProtocol;
+	ClearProtocol();
+	return result;
+endfunction	
+  
+procedure StartProtocol(testtype)
+	if ПустаяСтрока(testtype) then
+		raise "Начало протокола требует указать тип теста";
+	endif;	
+	systemInfo=new СистемнаяИнформация;
+	TestProtocol="<test type='"+testtype+"' testname='"+TestName()+"' side='"+ClientServer()+"'>
+		   	     |<teststart type='"+testtype+"'
+				 |           testname="""+TestName()+"""
+				 |           time='"+ProtocolDateFormat()+"'
+				 |           host='"+ИмяКомпьютера()+"'
+			     |           OSVersion='"+systemInfo.ВерсияОС+"'
+	             |           PVersion='"+systemInfo.ВерсияПриложения+"'
+	             |           ConnStr='"+СтрокаСоединенияИнформационнойБазы()+"'/>
+   		 		 |<items>";
+endprocedure	
+  
+procedure ClearProtocol()
+	TestProtocol="";
+endprocedure	
+
+function ProtocolDateFormat()
+	return format(ТекущаяДатаСеанса(),"ДФ='yyyy-MM-ddThh:mm:ss'") 
+endfunction	
+
+#КонецОбласти
+
+// <- TestEngine 
+////////////////////////////////////////////////////////
