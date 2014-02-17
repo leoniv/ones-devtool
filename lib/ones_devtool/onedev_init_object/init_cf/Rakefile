@@ -2,7 +2,7 @@
 #Сборка - разборка 1С объектов для помещения под управление git
 
 task :dissass do
-  Files =  Dir.glob('./*.epf').each{|entry|
+  Files =  Dir.glob(%w(./*.epf ./*.erf ./*.cf)).each{|entry|
     puts "#{entry}"
      abort "ууупс #{entry} это каталог ????" if File.directory?(entry)
   }
@@ -14,7 +14,7 @@ task :dissass do
 end
 
 task :assemble do
-  Dirs =  Dir.glob('./*.epf.src').each{|entry|
+  Dirs =  Dir.glob(%w(./*.epf.src ./*.erf.src ./*.cf.src)).each{|entry|
     abort "ууупс #{entry} это файл ????" if File.file?(entry)
   }
   Dirs.each{|d|
