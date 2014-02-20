@@ -119,7 +119,7 @@ function UserGuidUrl(ИмяРаздела) export
 	default = UserSupportUrl()+"/wiki/"+СтрЗаменить(СтрЗаменить(PkgDescription(),".","-")," ","_")+"_V"+СтрЗаменить(Version(),".","-")+"_Руководство_пользователя#"+ИмяРаздела;
 //Можно установить другое значение:
 
-	custom = "TDOD Set Адерес wiki страницы пользовательской справки.";
+	custom = "TODO Set Адерес wiki страницы пользовательской справки.";
 //	
 	Если СтрЧислоВхождений(custom,"TODO") > 0 Тогда
 		return default;
@@ -133,7 +133,7 @@ function UserIssueUrl() export
 //По умолчанию url форимруется для redmine:
 	default = UserSupportUrl()+"/issues/new";
 //Можно установить другое значение:
-	custom = "TDOD Set Адрес обращения в поддержку.";
+	custom = "TODO Set Адрес обращения в поддержку.";
 //	
 	Если СтрЧислоВхождений(custom,"TODO") > 0 Тогда
 		return default;
