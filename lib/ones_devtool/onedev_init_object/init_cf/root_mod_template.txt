@@ -334,7 +334,7 @@ procedure _test_object_property_types(property,property_type)
 	if ТипЗнч(property)<>Тип("ОбъектМетаданных") then
 		raise  _ExceptionBadParamType("property",Тип("ОбъектМетаданных"),ТипЗнч(property));
 	endif;
-	Если НЕ property.Тип.Содержит(property_type) Тогда
+	Если НЕ property.Тип.СодержитТип(property_type) Тогда
 		raise _ExceptionModIsCorrupt("Тест типа свойства МД: """+property+""" не содержит тип:"""+property_type+"""");
 	КонецЕсли;	
 endprocedure	
