@@ -40,7 +40,7 @@ module Onedev_init_object
 end
 
 begin
-   Dir.glob( File.join( File.dirname( __FILE__ ), "**", "*.rb" ) ).each { |l| require l }
+   Dir.glob( File.join( File.dirname( __FILE__ ), "onedev_init_object", "*.rb" ) ).each { |l| require l }
  rescue LoadError => e
-   $sdterr.puts( e.message )
+   $stderr.puts( e.message )
 end

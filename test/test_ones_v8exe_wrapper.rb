@@ -95,13 +95,13 @@ class Ones_v8exe_wrapperTest < Test::Unit::TestCase
       Ones_v8exe_wrapper.common_start_param(hash)
     end
     hash={
-      :S=>"path",
+      :S=>"host:23\\ibname",
       :Out=>Ones_v8exe_wrapper::OUT_FILE_DEF,
       :DisableStartupDialogs=>nil,
       :DisableStartupMessages=>nil,
       :AllowExecuteScheduledJobs=>{:Off=>nil}  
     }
-    assert_equal(hash,Ones_v8exe_wrapper.common_start_param({:S=>"path"}))
+    assert_equal(hash,Ones_v8exe_wrapper.common_start_param({:S=>"host:23/ibname"}))
     hash={
       :F=>"path",
       :Out=>Ones_v8exe_wrapper::OUT_FILE_DEF,

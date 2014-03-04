@@ -2,7 +2,7 @@
 require 'fileutils'
 class Ones_v8exe_wrapper
   #Класс обёртка для 1cv8.exe
-  OUT_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},'ones_v8exe_wrapper.out')}"
+  OUT_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},"ones_v8exe_wrapper.#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}.out")}"
   DUMPRES_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},'ones_v8exe_wrapper.dump_result')}"
   COMMON_START_PARAM={
     :F=>"<Путь>", 
@@ -93,8 +93,13 @@ class Ones_v8exe_wrapper
    conn_param+= 1 if hash.has_key?(:F)
    conn_param+= 1 if hash.has_key?(:S)
    conn_param+= 1 if hash.has_key?(:WS)
-   raise "Должен быть только один параметр подключения /F | /S | /WS" if conn_param != 1
-  
+   raise "Должен быть один параметр подключения к ИБ <F> | <S> | <WS>" if conn_param != 1
+  #Параметр /S приводим к виду host:port\ibname
+  if hash.has_key?(:S)
+    raise "Параметр <S> должен иметь вид `host:port/ibmane'" unless hash[:S] =~ /([\w\d\-]+[:0-9]*[\/][\w\d\-]+)/ && $1 == hash[:S]
+    hash.update(:S=>hash[:S].gsub(/\//){|s| s = "\\"})
+  end
+
   #Значения по умолчанию /Out
    hash.update(:Out=>OUT_FILE_DEF) if ! hash.has_key?(:Out) 
   #Значеник по умолчанию /DisableStartupDialogs
@@ -117,7 +122,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
        raise "ERR Создание информационной базы `#{$?.to_s}' \n #{lastout(OUT_FILE_DEF)}"
     else
-       $stderr.puts lastout(OUT_FILE_DEF)
+       $stdout.puts lastout(OUT_FILE_DEF)
        reg = "Создание информационной базы \\\(\\\"File=#{path.gsub(/\\/){|s| s='\\\\'}.gsub(/\./){|s| s='\.'}}.*?успешно завершено"
        raise "ERR Создание информационной базы\n #{lastout(OUT_FILE_DEF)}" unless lastout(OUT_FILE_DEF)=~ /#{reg}/ 
        #Создание информационной базы ("File=.\test\ones_v8exe_wrapper.res\tets_ib ;Locale = "ru_RU";") 
@@ -139,7 +144,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Выгрузка информационной базы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
       raise "ERR Выгрузка информационной базы\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Выгрузка информационной базы успешно завершена/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
@@ -155,7 +160,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Загрузка информационной базы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
       raise "ERR Загрузка информационной базы\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Загрузка информационной базы успешно завершена/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
@@ -171,7 +176,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Выгрузка конфигурации инф. базы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
       raise "ERR Выгрузка конфигурации инф. базы\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Сохранение конфигурации успешно завершено/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
@@ -187,7 +192,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Загрузка конфигурации инф. базы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
       raise "ERR Загрузка конфигурации инф. базы\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Загрузка конфигурации успешно завершена/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
@@ -204,8 +209,8 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Oбновление конфигурации базы данных `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
-      raise "ERR Oбновление конфигурации базы данных\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Обновление конфигурации базы данных успешно завершено/ 
+      $stdout.puts lastout(common_params[:Out])
+      raise "ERR Oбновление конфигурации базы данных\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Обновление конфигурации (базы данных )?успешно завершено/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  
@@ -220,7 +225,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Выгрузка конфигурации базы данных `#{$?.to_s}`\n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
       raise "ERR Выгрузка конфигурации базы данных\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Сохранение конфигурации успешно завершено/ 
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
@@ -243,14 +248,13 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Выгрузка конфигурации в файлы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts "Выгрузка конфигурации ИБ в файлы успешно завершена\n#{lastout(common_params[:Out])}"
       raise "ERR Выгрузка конфигурации в файлы\nКаталог выгрузки `#{dump_path}' не обнаружен\n #{lastout(common_params[:Out])}" unless File.exists?(dump_path)&&File.directory?(dump_path)
     end
-    FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
-    FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  
+    FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])
+    FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
   end
-   
-  
+
   #загружает конфигурацию ИБ из файлов - только для платформы >= 8.3.4
   def self.load_config_from_files(common_params,dump_path,update_db_cfg=false,warnings_as_errors=false,server=false)
     raise "Загрузка конфигурации из файлов возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
@@ -262,7 +266,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Загрузка конфигурации из файлов `#{$?.to_s}'\n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts "Загрузка конфигурации из файлов успешно завершена\n#{lastout(common_params[:Out])}"
+      $stdout.puts "Загрузка конфигурации из файлов успешно завершена\n#{lastout(common_params[:Out])}"
      end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
@@ -325,21 +329,21 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Запуск 1С:Конфигуратор `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  
   end  
 
   #Открываем в предприятии
-  def self.open_ib_enterprise(common_params)
+  def self.open_ib_enterprise(common_params,thin_client=false)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
-    system "\"#{ones_v8exe()}\" ENTERPRISE #{common_param_to_s(common_params)} /DumpResult\"#{DUMPRES_FILE_DEF}\""
+    system "\"#{ones_v8exe(thin_client)}\" ENTERPRISE #{common_param_to_s(common_params)} /DumpResult\"#{DUMPRES_FILE_DEF}\""
     if $?.exitstatus != 0 then
       raise "ERR Запуск 1С:Предприятие `#{$?.to_s}'\n #{lastout(common_params[:Out])}"
     else
-      $stderr.puts lastout(common_params[:Out])
+      $stdout.puts lastout(common_params[:Out])
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  

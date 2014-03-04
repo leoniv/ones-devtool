@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+
+command=__FILE__.split("-").last
+
+Onedev_mkib.exec(command.to_sym,ARGV)

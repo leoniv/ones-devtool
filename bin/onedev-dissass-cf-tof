@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+$:.unshift(File.join(File.dirname(__FILE__), %w[.. lib]))
+
+require 'ones_devtool'
+
+a = __FILE__.split("-")
+
+c3=a.pop
+c2=a.pop
+c1=a.pop
+
+command = "#{c1}_#{c2}_#{c3}"
+
+Onedev_dump.exec(command.to_sym,ARGV)
