@@ -1,7 +1,9 @@
 # encoding: utf-8
 require 'test/unit'
 require 'digest/md5'
+require 'tempfile'
 require_relative '../lib/ones_devtool/ones_v8exe_wrapper'
+require_relative '../lib/ones_devtool/ones_mdstream'
 require 'fileutils'
 
 class Ones_v8exe_wrapperTest < Test::Unit::TestCase
@@ -23,7 +25,19 @@ class Ones_v8exe_wrapperTest < Test::Unit::TestCase
     ENV.delete("ASSPATH");
     ENV.delete("ASSPLATFORM");
   end
- 
+
+  def test0_eol_to_crlf
+    file_path=Tempfile.new("txt").path;
+    old_text = "строка1 \n строка2 \r\n\n\n\n Cтрока3 \n\n\n"
+    exp_text="#{Ones_v8exe_wrapper::BOM}строка1 \r\n строка2 \r\n\r\n\r\n\r\n Cтрока3 \r\n\r\n\r\n"
+    File.open(file_path,'w'){|f| 
+      f.write(Ones_v8exe_wrapper::BOM)
+      f.write(old_text)
+    }
+    assert_equal(exp_text,Ones_v8exe_wrapper.eol_to_crlf(file_path))
+    FileUtils.rm_f(file_path) if File.exists?(file_path)
+  end
+
   def test0_version_less_8_3_4()
     assert_equal(true,Ones_v8exe_wrapper.version_less_8_3_4("8.2.5"))
     assert_equal(true,Ones_v8exe_wrapper.version_less_8_3_4("8.3.3"))

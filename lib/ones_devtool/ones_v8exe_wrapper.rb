@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'fileutils'
 class Ones_v8exe_wrapper
+  BOM="\xEF\xBB\xBF"
   #Класс обёртка для 1cv8.exe
   OUT_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},"ones_v8exe_wrapper.#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}.out")}"
   DUMPRES_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},'ones_v8exe_wrapper.dump_result')}"
@@ -116,7 +117,7 @@ class Ones_v8exe_wrapper
     pattern =  File.exists?(pattern) && File.file?(pattern) ? "/UseTemplate \"#{pattern}\"" : "" 
     raise "Путь существует" if File.exists?(path)
     FileUtils.mkdir(path)
-    path = path.gsub(/\//){|s| s="\\"}
+    path = `cygpath -w #{File.expand_path(path)}`.chomp
     FileUtils.rm(OUT_FILE_DEF) if File.exists?(OUT_FILE_DEF)  
     system "\"#{ones_v8exe()}\" CREATEINFOBASE File=\"#{path}\" #{pattern} /Out\"#{OUT_FILE_DEF}\""
     if $?.exitstatus != 0 then
@@ -248,6 +249,7 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Выгрузка конфигурации в файлы `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
+      normalize_eol(dump_path)
       $stdout.puts "Выгрузка конфигурации ИБ в файлы успешно завершена\n#{lastout(common_params[:Out])}"
       raise "ERR Выгрузка конфигурации в файлы\nКаталог выгрузки `#{dump_path}' не обнаружен\n #{lastout(common_params[:Out])}" unless File.exists?(dump_path)&&File.directory?(dump_path)
     end
@@ -262,6 +264,9 @@ class Ones_v8exe_wrapper
     raise "Каталог загрузки `#{dump_path}' не существует." if ! File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
+    system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
+    #Повторная загрузка вызвана глюком 1С. Глюк состоит в т, что при загрузке xml файлов конфигурации в пустую ИБ терябтся связи. На пример пропадают
+    #права у ролей
     system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
     if $?.exitstatus != 0 then
       raise "ERR Загрузка конфигурации из файлов `#{$?.to_s}'\n #{lastout(common_params[:Out])}"
@@ -279,7 +284,7 @@ class Ones_v8exe_wrapper
   
   #Разбирает конфигурацию из cf файл в xml файлы - только для платформы >= 8.3.4
   def self.dissass_cf_to_files(cf_path,dump_path,force_clear)
-    raise "Выгрузка конфигурации в файлы возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
+    raise "Разбор cf в файлы возможен для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
     ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
     common_params = common_start_param({:F=>ib_path}) 
@@ -294,7 +299,7 @@ class Ones_v8exe_wrapper
   
   #Собирает конфигурацию из xml файлы в cf файл 
   def self.assemble_cf_from_files(cf_path,dump_path)
-    raise "Выгрузка конфигурации в файлы возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
+    raise "Сборка cf из файлов возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
     ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
     common_params = common_start_param({:F=>ib_path}) 
@@ -408,5 +413,28 @@ def self.common_param_to_s(hash)
      result
  end
  
+
+ #Приводим конец строки к \r\n
+ #При выгрузке конфигурации в файлы полатформа
+ #Как попало вставляет концы строк
+ def self.normalize_eol(dir)
+   Dir.glob(File.join(dir,"*")).each{|f| eol_to_crlf(f)}
+ end
+
+ #Приводим конец строки к \r\n
+ #При выгрузке конфигурации в файлы полатформа
+ #Как попало вставляет концы строк
+ def self.eol_to_crlf(file_path)
+   result = ""
+   if Ones_mdstream.text_file?(file_path)
+     File.open(file_path, "r:bom|utf-8"){|file|
+     result = "#{BOM}#{file.read.gsub(/(?<!\r)\n{1}/){|s| s="\r\n"}}"
+     }
+     File.open(file_path, "w"){|file|
+       file.write(result)
+     }
+     result
+   end
+end
   
 end
