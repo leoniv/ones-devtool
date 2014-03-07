@@ -210,8 +210,10 @@ class Ones_v8exe_wrapper
     if $?.exitstatus != 0 then
       raise "ERR Oбновление конфигурации базы данных `#{$?.to_s}' \n #{lastout(common_params[:Out])}"
     else
-      $stdout.puts lastout(common_params[:Out])
-      raise "ERR Oбновление конфигурации базы данных\n #{lastout(common_params[:Out])}" unless lastout(common_params[:Out])=~ /Обновление конфигурации (базы данных )?успешно завершено/ 
+      lustout_ = lastout(common_params[:Out])
+      lustout_ = lustout_.length == 0 ? "Обновление конфигурации базы данных успешно завершено" : lustout_
+      $stdout.puts "#{lustout_}"
+      raise "ERR Oбновление конфигурации базы данных\n #{lustout_}" unless lustout_ =~ /Обновление конфигурации (базы данных )?успешно завершено/
     end
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  

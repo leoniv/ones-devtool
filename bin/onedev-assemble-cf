@@ -9,17 +9,21 @@ require 'getoptlong'
 opts = GetoptLong.new(
   [ '--help', '-h', GetoptLong::NO_ARGUMENT ],
   [ '--version', '-V', GetoptLong::NO_ARGUMENT],
-  [ '--verbose', '-v', GetoptLong::NO_ARGUMENT]
+  [ '--verbose', '-v', GetoptLong::NO_ARGUMENT],
+  [ '--rev', '-r', GetoptLong::REQUIRED_ARGUMENT]
   
 )
 
 def usage
-  puts "Использование: #{$0.split("/").last} [ options ] <каталог> <файл>
-  Собирает <файл> конфигурации 1С из <каталог> mds.
+  puts "Использование: #{$0.split("/").last} [ options ] <каталог> <cf|erf|epf файл>
+  Собирает <cf|erf|epf файл> 1С из мета-файлов объекта 1С хранящихся в <каталог>.
+  Объекты 1С cf - конфигурация, erf - отчет, epf - обработка.
+  Если установлен --rev используются фалы указанной ревизии git.
   Использует метод класса: `Ones_mdscontainer#assemble'
   Options:
   -V | --version - версия
   -h | --help    - покажет это сообщение
+  -r | --rev <sha>   - ревизия или метка git 
   -v | --verbose - сделает  болтливым"
   abort
 end
@@ -32,6 +36,7 @@ end
 verbose = false
 shift = false
 path=nil
+rev=nil
 opts.each do |opt, arg|
   case opt
     when '--help'
@@ -40,6 +45,8 @@ opts.each do |opt, arg|
       version
     when '--verbose'
     verbose=true
+    when '--rev'
+    rev=arg
   end
 end
 
@@ -53,6 +60,10 @@ dir_path=ARGV[0]
 
 if File.exists?(file_path)
   abort "#{$0.split("/").last}: #{file_path} - файл существует"
+end
+
+if rev
+  dir_path = Onedev_git.get_rev(rev,dir_path)
 end
   abort "#{$0.split("/").last}: #{dir_path} - Not a dir" unless File.exists?(dir_path) and File.directory?(dir_path)
 

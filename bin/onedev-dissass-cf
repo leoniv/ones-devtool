@@ -13,8 +13,9 @@ opts = GetoptLong.new(
 )
 
 def usage
-  puts "Использование: #{$0.split("/").last} [ options ] <файл> <каталог>
-  Разбирает <файл> конфигурации 1С в <каталог> mds.
+  puts "Использование: #{$0.split("/").last} [ options ] <cf|erf|epf файл> <каталог>
+  Разбирает <cf|erf|epf файл> - объект 1С в мета-файлы и сохраняет их в <каталог>.
+  Объекты 1С cf - конфигурация, erf - отчет, epf - обработка.
   Использует метод класса: `Ones_mdscontainer#disassemble'
   Options:
   -V | --version - версия
