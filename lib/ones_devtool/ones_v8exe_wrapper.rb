@@ -114,10 +114,13 @@ class Ones_v8exe_wrapper
  
   #создаёт файловую ИБ
   def self.mkinfobase_fs(path,pattern="")
-    pattern =  File.exists?(pattern) && File.file?(pattern) ? "/UseTemplate \"#{pattern}\"" : "" 
+    pattern =  File.exists?(pattern) && File.file?(pattern) ? "/UseTemplate \"#{pattern}\"" : ""
+    path=path.gsub(/\\/){|s| s='/'}
     raise "Путь существует" if File.exists?(path)
     FileUtils.mkdir(path)
-    path = `cygpath -w #{File.expand_path(path)}`.chomp
+    raise "Путь -F `#{path}' не должен содержать символы '-' (тире). Причина: fucking 1C" if path =~ /-/
+    raise "Относительный путь -F `#{path}' не может ссылатся на родительский каталог '../'. Причина: fucking 1C" if path =~ /\.{2}\//
+    path = `cygpath -w #{path}`.chomp
     FileUtils.rm(OUT_FILE_DEF) if File.exists?(OUT_FILE_DEF)  
     system "\"#{ones_v8exe()}\" CREATEINFOBASE File=\"#{path}\" #{pattern} /Out\"#{OUT_FILE_DEF}\""
     if $?.exitstatus != 0 then

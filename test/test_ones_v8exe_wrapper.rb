@@ -135,6 +135,16 @@ class Ones_v8exe_wrapperTest < Test::Unit::TestCase
   end
   
   def test5_mkinfobase_fs()
+    #Ограничения на путь
+    ib_path = "/tmp/fucking-ones"
+    assert_raise(RuntimeError) do
+      Ones_v8exe_wrapper.mkinfobase_fs(ib_path)
+    end
+    ib_path = "../fucking_ones"
+    assert_raise(RuntimeError) do
+      Ones_v8exe_wrapper.mkinfobase_fs(ib_path)
+    end
+    #
     ib_path = File.join(@@resdir,"test_ib")
     FileUtils.rm_r(ib_path) if File.exists?(ib_path)
     
