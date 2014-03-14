@@ -1,0 +1,840 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Attributes>
+		<Attribute id="1">
+			<Name>Список</Name>
+			<Title/>
+			<Type>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:DynamicList</v8:Type>
+			</Type>
+			<Accessibility>
+				<xr:common>true</xr:common>
+			</Accessibility>
+			<Editing>
+				<xr:common>true</xr:common>
+			</Editing>
+			<Content/>
+			<SavingContent/>
+			<MainProperty>true</MainProperty>
+			<StoredData>false</StoredData>
+			<FunctionalOptions/>
+			<FillCheck>DontCheck</FillCheck>
+			<Columns/>
+			<ExtInfo>
+				<Property>
+					<Name>QueryText</Name>
+					<Value xsi:type="xs:string">ВЫБРАТЬ
+	Идентификаторы.Ссылка,
+	Идентификаторы.ВерсияДанных,
+	Идентификаторы.ПометкаУдаления,
+	ВЫБОР
+		КОГДА ПОДСТРОКА(Идентификаторы.Имя, 0, 7) = "Удалить"
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК ПометкаБудущегоУдаления,
+	Идентификаторы.Предопределенный,
+	Идентификаторы.Родитель,
+	Идентификаторы.Наименование,
+	Идентификаторы.ПорядокКоллекции,
+	Идентификаторы.Имя,
+	Идентификаторы.Синоним,
+	Идентификаторы.ПолноеИмя,
+	Идентификаторы.ПолныйСиноним,
+	Идентификаторы.БезДанных,
+	Идентификаторы.ЗначениеПустойСсылки,
+	Идентификаторы.КлючОбъектаМетаданных
+ИЗ
+	Справочник.ИдентификаторыОбъектовМетаданных КАК Идентификаторы</Value>
+				</Property>
+				<Property>
+					<Name>MainTable</Name>
+					<Value xsi:type="xr:MDObjectRef">Catalog.ИдентификаторыОбъектовМетаданных</Value>
+				</Property>
+				<Property>
+					<Name>MainTableCategory</Name>
+					<Value xsi:type="xs:decimal">1</Value>
+				</Property>
+				<Property>
+					<Name>DynamicalDataSelection</Name>
+					<Value xsi:type="xs:boolean">false</Value>
+				</Property>
+				<Property>
+					<Name>ManualQuery</Name>
+					<Value xsi:type="xs:boolean">true</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId0</Name>
+					<Value xsi:type="xs:decimal">2</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName0</Name>
+					<Value xsi:type="xs:string">Description</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId0</Name>
+					<Value xsi:type="xs:decimal">2</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName0</Name>
+					<Value xsi:type="xs:string">Description</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId1</Name>
+					<Value xsi:type="xs:decimal">5</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName1</Name>
+					<Value xsi:type="xs:string">НеНайденПриОбновлении</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId1</Name>
+					<Value xsi:type="xs:decimal">5</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName1</Name>
+					<Value xsi:type="xs:string">НеНайденПриОбновлении</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId2</Name>
+					<Value xsi:type="xs:decimal">6</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName2</Name>
+					<Value xsi:type="xs:string">ПолныйСиноним</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId2</Name>
+					<Value xsi:type="xs:decimal">6</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName2</Name>
+					<Value xsi:type="xs:string">ПолныйСиноним</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId3</Name>
+					<Value xsi:type="xs:decimal">10</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName3</Name>
+					<Value xsi:type="xs:string">ТипНеНайденПриОбновлении</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId3</Name>
+					<Value xsi:type="xs:decimal">10</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName3</Name>
+					<Value xsi:type="xs:string">ТипНеНайденПриОбновлении</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId4</Name>
+					<Value xsi:type="xs:decimal">14</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName4</Name>
+					<Value xsi:type="xs:string">НетВМетаданных</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId4</Name>
+					<Value xsi:type="xs:decimal">14</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName4</Name>
+					<Value xsi:type="xs:string">НетВМетаданных</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId5</Name>
+					<Value xsi:type="xs:decimal">21</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName5</Name>
+					<Value xsi:type="xs:string">Коллекция</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId5</Name>
+					<Value xsi:type="xs:decimal">21</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName5</Name>
+					<Value xsi:type="xs:string">Коллекция</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId6</Name>
+					<Value xsi:type="xs:decimal">28</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName6</Name>
+					<Value xsi:type="xs:string">КоллекцияПорядок</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId6</Name>
+					<Value xsi:type="xs:decimal">28</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName6</Name>
+					<Value xsi:type="xs:string">КоллекцияПорядок</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId7</Name>
+					<Value xsi:type="xs:decimal">30</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName7</Name>
+					<Value xsi:type="xs:string">Predefined</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId7</Name>
+					<Value xsi:type="xs:decimal">30</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName7</Name>
+					<Value xsi:type="xs:string">Predefined</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId8</Name>
+					<Value xsi:type="xs:decimal">36</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName8</Name>
+					<Value xsi:type="xs:string">КоллекцияСиноним</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId8</Name>
+					<Value xsi:type="xs:decimal">36</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName8</Name>
+					<Value xsi:type="xs:string">КоллекцияСиноним</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId9</Name>
+					<Value xsi:type="xs:decimal">47</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName9</Name>
+					<Value xsi:type="xs:string">СинонимКоллекции</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId9</Name>
+					<Value xsi:type="xs:decimal">47</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName9</Name>
+					<Value xsi:type="xs:string">СинонимКоллекции</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId10</Name>
+					<Value xsi:type="xs:decimal">53</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName10</Name>
+					<Value xsi:type="xs:string">Используется</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId10</Name>
+					<Value xsi:type="xs:decimal">53</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName10</Name>
+					<Value xsi:type="xs:string">Используется</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId11</Name>
+					<Value xsi:type="xs:decimal">60</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName11</Name>
+					<Value xsi:type="xs:string">ПолноеИмя</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId11</Name>
+					<Value xsi:type="xs:decimal">60</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName11</Name>
+					<Value xsi:type="xs:string">ПолноеИмя</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId12</Name>
+					<Value xsi:type="xs:decimal">71</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName12</Name>
+					<Value xsi:type="xs:string">Синоним</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId12</Name>
+					<Value xsi:type="xs:decimal">71</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName12</Name>
+					<Value xsi:type="xs:string">Синоним</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId13</Name>
+					<Value xsi:type="xs:decimal">74</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName13</Name>
+					<Value xsi:type="xs:string">Parent</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId13</Name>
+					<Value xsi:type="xs:decimal">74</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName13</Name>
+					<Value xsi:type="xs:string">Parent</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId14</Name>
+					<Value xsi:type="xs:decimal">82</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName14</Name>
+					<Value xsi:type="xs:string">ПометкаБудущегоУдаления</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId14</Name>
+					<Value xsi:type="xs:decimal">82</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName14</Name>
+					<Value xsi:type="xs:string">ПометкаБудущегоУдаления</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId0</Name>
+					<Value xsi:type="xs:decimal">2</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId1</Name>
+					<Value xsi:type="xs:decimal">28</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId2</Name>
+					<Value xsi:type="xs:decimal">53</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId3</Name>
+					<Value xsi:type="xs:decimal">74</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId4</Name>
+					<Value xsi:type="xs:decimal">82</Value>
+				</Property>
+				<Property>
+					<Name>AutoSaveUserSettings</Name>
+					<Value xsi:type="xs:boolean">true</Value>
+				</Property>
+			</ExtInfo>
+		</Attribute>
+		<Attribute id="2">
+			<Name>ВыбиратьГруппыОбъектовМетаданных</Name>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Выбирать группы объектов метаданных</v8:content>
+				</v8:item>
+			</Title>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<Accessibility>
+				<xr:common>true</xr:common>
+			</Accessibility>
+			<Editing>
+				<xr:common>true</xr:common>
+			</Editing>
+			<Content/>
+			<SavingContent/>
+			<MainProperty>false</MainProperty>
+			<StoredData>false</StoredData>
+			<FunctionalOptions/>
+			<FillCheck>DontCheck</FillCheck>
+			<Columns/>
+			<ExtInfo/>
+		</Attribute>
+		<ConditionalAppearance/>
+	</Attributes>
+	<Commands/>
+	<Parameters>
+		<Parameter>
+			<Name>ВыбиратьГруппыОбъектовМетаданных</Name>
+			<Type>
+				<v8:Type>xs:boolean</v8:Type>
+			</Type>
+			<KeyParameter>false</KeyParameter>
+		</Parameter>
+	</Parameters>
+	<Elements id="0:02023637-7868-4a5f-8576-835a76e0c9ba">
+		<Properties>
+			<Title/>
+			<Width>0</Width>
+			<Height>0</Height>
+			<OpeningMode>Independent</OpeningMode>
+			<EnterKeyBehavior>ControlNavigation</EnterKeyBehavior>
+			<AutoSaveFormDataInSettings>DontUse</AutoSaveFormDataInSettings>
+			<SaveFormDataInSettings>DontUse</SaveFormDataInSettings>
+			<SettingsStorage/>
+			<AutoTitle>true</AutoTitle>
+			<AutoURL>true</AutoURL>
+			<ChildrenGrouping>Vertical</ChildrenGrouping>
+			<ChildItemsWidth>Auto</ChildItemsWidth>
+			<AutoFillCheck>true</AutoFillCheck>
+			<Customizable>true</Customizable>
+			<Enabled>true</Enabled>
+			<ReadOnly>false</ReadOnly>
+			<CommandBarLocation>Auto</CommandBarLocation>
+			<VerticalScrolling>useIfNecessary</VerticalScrolling>
+			<BaseFontVariant>Auto</BaseFontVariant>
+			<CommandsContent/>
+			<GroupsList/>
+		</Properties>
+		<Events>
+			<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		</Events>
+		<PredefinedContainedItems>
+			<CommandBar xsi:type="AutoMenuGroup" id="-1:02023637-7868-4a5f-8576-835a76e0c9ba">
+				<Properties>
+					<Name>ФормаКоманднаяПанель</Name>
+					<Type>AutoCommandBar</Type>
+					<Visible>true</Visible>
+					<UserVisible>
+						<xr:common>true</xr:common>
+					</UserVisible>
+					<Enabled>true</Enabled>
+					<ReadOnly>false</ReadOnly>
+					<EnableContentChange>false</EnableContentChange>
+					<Title/>
+					<TitleTextColor>auto</TitleTextColor>
+					<TitleFont kind="AutoFont"/>
+					<ToolTip/>
+					<ToolTipRepresentation>Auto</ToolTipRepresentation>
+					<Shortcut/>
+					<Width>0</Width>
+					<Height>0</Height>
+					<HorizontalStretch>auto</HorizontalStretch>
+					<VerticalStretch>auto</VerticalStretch>
+					<HorAlignment>Left</HorAlignment>
+					<FillWithStdCommands>true</FillWithStdCommands>
+				</Properties>
+				<PredefinedContainedItems/>
+				<ContainedItems/>
+			</CommandBar>
+		</PredefinedContainedItems>
+		<ContainedItems>
+			<Table id="1:02023637-7868-4a5f-8576-835a76e0c9ba">
+				<Properties>
+					<Name>Список</Name>
+					<Representation>HierarchicalList</Representation>
+					<Visible>true</Visible>
+					<UserVisible>
+						<xr:common>true</xr:common>
+					</UserVisible>
+					<TitleLocation>None</TitleLocation>
+					<TitleRowsCount>0</TitleRowsCount>
+					<CommandBarLocation>None</CommandBarLocation>
+					<AutoFill>false</AutoFill>
+					<Enabled>true</Enabled>
+					<ReadOnly>true</ReadOnly>
+					<SkipOnInput>auto</SkipOnInput>
+					<DefaultElement>true</DefaultElement>
+					<ChangeRowSet>false</ChangeRowSet>
+					<ChangeRowOrder>true</ChangeRowOrder>
+					<Width>0</Width>
+					<Height>0</Height>
+					<RowsCount>0</RowsCount>
+					<ChoiceMode>false</ChoiceMode>
+					<MultipleChoice>false</MultipleChoice>
+					<RowInputMode>EndOfList</RowInputMode>
+					<RowsSelectionMode>MultiRow</RowsSelectionMode>
+					<RowSelectionMode>Cell</RowSelectionMode>
+					<ShowHeader>false</ShowHeader>
+					<HeaderHeight>1</HeaderHeight>
+					<ShowFooter>false</ShowFooter>
+					<FooterHeight>1</FooterHeight>
+					<HorScroll>AutoUse</HorScroll>
+					<VertScroll>AutoUse</VertScroll>
+					<ShowHorLines>false</ShowHorLines>
+					<ShowVertLines>true</ShowVertLines>
+					<FixedLeft>4294967295</FixedLeft>
+					<FixedRight>4294967295</FixedRight>
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<AutoInsertNewRow>false</AutoInsertNewRow>
+					<AutoInsertNotCompletedVals>auto</AutoInsertNotCompletedVals>
+					<AutoMarkNotcompletedVals>auto</AutoMarkNotcompletedVals>
+					<SearchOnInput>Auto</SearchOnInput>
+					<InitialListView>Auto</InitialListView>
+					<InitialTreeView>ExpandTopLevel</InitialTreeView>
+					<UseOutput>Auto</UseOutput>
+					<HorStretchable>true</HorStretchable>
+					<VertStretchable>true</VertStretchable>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>false</EnableDrag>
+					<DataPath>Список</DataPath>
+					<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+					<RowsPicture/>
+					<TextColor>auto</TextColor>
+					<BackColor>auto</BackColor>
+					<BorderColor>auto</BorderColor>
+					<Font kind="AutoFont"/>
+					<Title/>
+					<TitleTextColor>auto</TitleTextColor>
+					<TitleFont kind="AutoFont"/>
+					<ShortCut/>
+					<CommandsContent/>
+					<Tooltip/>
+					<TooltipRepresentation>Auto</TooltipRepresentation>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshInterval>60</AutoRefreshInterval>
+					<Period xsi:type="v8:StandardPeriod">
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFolderAndItem>Items</ChoiceFolderAndItem>
+					<RestoreCurrentLine>false</RestoreCurrentLine>
+					<TopParent xsi:nil="true"/>
+					<ShowRoot>false</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChanges>Auto</UpdateOnDataChanges>
+					<UserSettingsGroup/>
+				</Properties>
+				<Events>
+					<Event name="ValueChoice">СписокВыборЗначения</Event>
+				</Events>
+				<PredefinedContainedItems>
+					<ContextMenu xsi:type="ContextMenuGroup" id="2:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокКонтекстноеМеню</Name>
+							<Type>ContextMenu</Type>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<EnableContentChange>false</EnableContentChange>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleFont kind="AutoFont"/>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<Shortcut/>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorizontalStretch>auto</HorizontalStretch>
+							<VerticalStretch>auto</VerticalStretch>
+							<FillWithStdCommands>true</FillWithStdCommands>
+						</Properties>
+						<PredefinedContainedItems/>
+						<ContainedItems/>
+					</ContextMenu>
+					<CommandBar xsi:type="AutoMenuGroup" id="3:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокКоманднаяПанель</Name>
+							<Type>AutoCommandBar</Type>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<EnableContentChange>false</EnableContentChange>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleFont kind="AutoFont"/>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<Shortcut/>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorizontalStretch>auto</HorizontalStretch>
+							<VerticalStretch>auto</VerticalStretch>
+							<HorAlignment>Left</HorAlignment>
+							<FillWithStdCommands>false</FillWithStdCommands>
+						</Properties>
+						<PredefinedContainedItems/>
+						<ContainedItems/>
+					</CommandBar>
+					<ExtTooltip xsi:type="TextDecoration" id="15:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокExtendedTooltip</Name>
+							<Kind>Label</Kind>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorStretchable>auto</HorStretchable>
+							<VertStretchable>auto</VertStretchable>
+							<SkipOnInput>auto</SkipOnInput>
+							<TextColor>auto</TextColor>
+							<Font kind="AutoFont"/>
+							<ShortCut/>
+							<Title/>
+							<Tooltip/>
+							<TooltipRepresentation>Auto</TooltipRepresentation>
+							<HyperLink>false</HyperLink>
+							<HorAlignment>Left</HorAlignment>
+							<VertAlignment>Auto</VertAlignment>
+							<TitleHeight>0</TitleHeight>
+							<BackColor>auto</BackColor>
+							<BorderColor>auto</BorderColor>
+							<Border width="1">
+								<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+							</Border>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems/>
+					</ExtTooltip>
+				</PredefinedContainedItems>
+				<ContainedItems>
+					<Text id="4:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>Синоним</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.Синоним</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>true</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title>
+								<v8:item>
+									<v8:lang>ru</v8:lang>
+									<v8:content>Синоним</v8:content>
+								</v8:item>
+							</Title>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="5:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>СинонимКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="16:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>СинонимExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+					<Text id="13:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>ПолноеИмя</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.ПолноеИмя</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>false</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="14:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ПолноеИмяКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="17:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ПолноеИмяExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+				</ContainedItems>
+			</Table>
+		</ContainedItems>
+	</Elements>
+	<NavigationPanel/>
+	<CommandPanel/>
+</Form>

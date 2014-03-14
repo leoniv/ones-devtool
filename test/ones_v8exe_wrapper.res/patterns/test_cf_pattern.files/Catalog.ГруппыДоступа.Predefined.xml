@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<predefinedData xmlns="http://v8.1c.ru/8.3/xcf/predef" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReferencePredefined">
+	<item id="3c39be2b-5978-46ca-b578-6f0d29e61822">
+		<isFolder>false</isFolder>
+		<name>Администраторы</name>
+		<code xsi:type="xs:string"/>
+		<description>Администраторы</description>
+	</item>
+</predefinedData>

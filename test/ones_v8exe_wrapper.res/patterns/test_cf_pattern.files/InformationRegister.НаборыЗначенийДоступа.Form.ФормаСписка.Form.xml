@@ -1,0 +1,1770 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://v8.1c.ru/8.3/xcf/logform" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:dcscor="http://v8.1c.ru/8.1/data-composition-system/core" xmlns:dcsset="http://v8.1c.ru/8.1/data-composition-system/settings" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Attributes>
+		<Attribute id="1">
+			<Name>Список</Name>
+			<Title/>
+			<Type>
+				<v8:Type xmlns:d5p1="http://v8.1c.ru/8.1/data/enterprise/current-config">d5p1:DynamicList</v8:Type>
+			</Type>
+			<Accessibility>
+				<xr:common>true</xr:common>
+			</Accessibility>
+			<Editing>
+				<xr:common>true</xr:common>
+			</Editing>
+			<Content/>
+			<SavingContent/>
+			<MainProperty>true</MainProperty>
+			<StoredData>false</StoredData>
+			<FunctionalOptions/>
+			<FillCheck>DontCheck</FillCheck>
+			<Columns/>
+			<ExtInfo>
+				<Property>
+					<Name>QueryText</Name>
+					<Value xsi:type="xs:string">ВЫБРАТЬ РАЗЛИЧНЫЕ
+	НаборыЗначенийДоступа.Объект,
+	НаборыЗначенийДоступа.НомерНабора,
+	НаборыЗначенийДоступа.ЗначениеДоступа,
+	ВЫБОР
+		КОГДА ТИПЗНАЧЕНИЯ(НаборыЗначенийДоступа.ЗначениеДоступа) = ТИП(Справочник.ИдентификаторыОбъектовМетаданных)
+			ТОГДА ИСТИНА
+		ИНАЧЕ ЛОЖЬ
+	КОНЕЦ КАК ЭтоПроверкаПраваТаблицы,
+	НаборыЗначенийДоступа.Чтение,
+	НаборыЗначенийДоступа.Изменение,
+	НаборыЗначенийДоступа.Уточнение,
+	НаборыЗначенийДоступа.СтандартноеЗначение,
+	НаборыЗначенийДоступа.ЗначениеБезГрупп
+ИЗ
+	РегистрСведений.НаборыЗначенийДоступа КАК НаборыЗначенийДоступа</Value>
+				</Property>
+				<Property>
+					<Name>MainTable</Name>
+					<Value xsi:type="xr:MDObjectRef">InformationRegister.НаборыЗначенийДоступа</Value>
+				</Property>
+				<Property>
+					<Name>MainTableCategory</Name>
+					<Value xsi:type="xs:decimal">1</Value>
+				</Property>
+				<Property>
+					<Name>DynamicalDataSelection</Name>
+					<Value xsi:type="xs:boolean">false</Value>
+				</Property>
+				<Property>
+					<Name>ManualQuery</Name>
+					<Value xsi:type="xs:boolean">true</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId0</Name>
+					<Value xsi:type="xs:decimal">1</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName0</Name>
+					<Value xsi:type="xs:string">ВидДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId0</Name>
+					<Value xsi:type="xs:decimal">1</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName0</Name>
+					<Value xsi:type="xs:string">ВидДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId1</Name>
+					<Value xsi:type="xs:decimal">2</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName1</Name>
+					<Value xsi:type="xs:string">ВидДоступаБезГруппЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId1</Name>
+					<Value xsi:type="xs:decimal">2</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName1</Name>
+					<Value xsi:type="xs:string">ВидДоступаБезГруппЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId2</Name>
+					<Value xsi:type="xs:decimal">3</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName2</Name>
+					<Value xsi:type="xs:string">ВидДоступаЕдинственныйДляТипаЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId2</Name>
+					<Value xsi:type="xs:decimal">3</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName2</Name>
+					<Value xsi:type="xs:string">ВидДоступаЕдинственныйДляТипаЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId3</Name>
+					<Value xsi:type="xs:decimal">4</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName3</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоДобавления</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId3</Name>
+					<Value xsi:type="xs:decimal">4</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName3</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоДобавления</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId4</Name>
+					<Value xsi:type="xs:decimal">5</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName4</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоИзменения</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId4</Name>
+					<Value xsi:type="xs:decimal">5</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName4</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоИзменения</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId5</Name>
+					<Value xsi:type="xs:decimal">6</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName5</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоЧтения</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId5</Name>
+					<Value xsi:type="xs:decimal">6</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName5</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоЧтения</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId6</Name>
+					<Value xsi:type="xs:decimal">7</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName6</Name>
+					<Value xsi:type="xs:string">ВидДоступаЧерезПраваПоЗначениямДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId6</Name>
+					<Value xsi:type="xs:decimal">7</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName6</Name>
+					<Value xsi:type="xs:string">ВидДоступаЧерезПраваПоЗначениямДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId7</Name>
+					<Value xsi:type="xs:decimal">8</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName7</Name>
+					<Value xsi:type="xs:string">Добавление</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId7</Name>
+					<Value xsi:type="xs:decimal">8</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName7</Name>
+					<Value xsi:type="xs:string">Добавление</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId8</Name>
+					<Value xsi:type="xs:decimal">9</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName8</Name>
+					<Value xsi:type="xs:string">ЗначениеДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId8</Name>
+					<Value xsi:type="xs:decimal">9</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName8</Name>
+					<Value xsi:type="xs:string">ЗначениеДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId9</Name>
+					<Value xsi:type="xs:decimal">10</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName9</Name>
+					<Value xsi:type="xs:string">Изменение</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId9</Name>
+					<Value xsi:type="xs:decimal">10</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName9</Name>
+					<Value xsi:type="xs:string">Изменение</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId10</Name>
+					<Value xsi:type="xs:decimal">11</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName10</Name>
+					<Value xsi:type="xs:string">НомерНабора</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId10</Name>
+					<Value xsi:type="xs:decimal">11</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName10</Name>
+					<Value xsi:type="xs:string">НомерНабора</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId11</Name>
+					<Value xsi:type="xs:decimal">12</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName11</Name>
+					<Value xsi:type="xs:string">Объект</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId11</Name>
+					<Value xsi:type="xs:decimal">12</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName11</Name>
+					<Value xsi:type="xs:string">Объект</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId12</Name>
+					<Value xsi:type="xs:decimal">13</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName12</Name>
+					<Value xsi:type="xs:string">ТипСсылкиЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId12</Name>
+					<Value xsi:type="xs:decimal">13</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName12</Name>
+					<Value xsi:type="xs:string">ТипСсылкиЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId13</Name>
+					<Value xsi:type="xs:decimal">14</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName13</Name>
+					<Value xsi:type="xs:string">Удаление</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId13</Name>
+					<Value xsi:type="xs:decimal">14</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName13</Name>
+					<Value xsi:type="xs:string">Удаление</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId14</Name>
+					<Value xsi:type="xs:decimal">15</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName14</Name>
+					<Value xsi:type="xs:string">Чтение</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId14</Name>
+					<Value xsi:type="xs:decimal">15</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName14</Name>
+					<Value xsi:type="xs:string">Чтение</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId15</Name>
+					<Value xsi:type="xs:decimal">16</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName15</Name>
+					<Value xsi:type="xs:string">ТаблицаЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId15</Name>
+					<Value xsi:type="xs:decimal">16</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName15</Name>
+					<Value xsi:type="xs:string">ТаблицаЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId16</Name>
+					<Value xsi:type="xs:decimal">17</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName16</Name>
+					<Value xsi:type="xs:string">ТаблицаОбъекта</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId16</Name>
+					<Value xsi:type="xs:decimal">17</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName16</Name>
+					<Value xsi:type="xs:string">ТаблицаОбъекта</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId17</Name>
+					<Value xsi:type="xs:decimal">19</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName17</Name>
+					<Value xsi:type="xs:string">ИдентификаторОбъекта</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId17</Name>
+					<Value xsi:type="xs:decimal">19</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName17</Name>
+					<Value xsi:type="xs:string">ИдентификаторОбъекта</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId18</Name>
+					<Value xsi:type="xs:decimal">20</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName18</Name>
+					<Value xsi:type="xs:string">ИдентификаторЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId18</Name>
+					<Value xsi:type="xs:decimal">20</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName18</Name>
+					<Value xsi:type="xs:string">ИдентификаторЗначенияДоступа</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId19</Name>
+					<Value xsi:type="xs:decimal">21</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName19</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоИзменение</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId19</Name>
+					<Value xsi:type="xs:decimal">21</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName19</Name>
+					<Value xsi:type="xs:string">ВидДоступаПравоИзменение</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId20</Name>
+					<Value xsi:type="xs:decimal">24</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName20</Name>
+					<Value xsi:type="xs:string">ЭтоПроверкаПраваТаблицы</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId20</Name>
+					<Value xsi:type="xs:decimal">24</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName20</Name>
+					<Value xsi:type="xs:string">ЭтоПроверкаПраваТаблицы</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId21</Name>
+					<Value xsi:type="xs:decimal">26</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName21</Name>
+					<Value xsi:type="xs:string">Уточнение</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId21</Name>
+					<Value xsi:type="xs:decimal">26</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName21</Name>
+					<Value xsi:type="xs:string">Уточнение</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId22</Name>
+					<Value xsi:type="xs:decimal">27</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName22</Name>
+					<Value xsi:type="xs:string">ТаблицаОтбораНастроекПрав</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId22</Name>
+					<Value xsi:type="xs:decimal">27</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName22</Name>
+					<Value xsi:type="xs:string">ТаблицаОтбораНастроекПрав</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId23</Name>
+					<Value xsi:type="xs:decimal">29</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName23</Name>
+					<Value xsi:type="xs:string">СтандартноеЗначение</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId23</Name>
+					<Value xsi:type="xs:decimal">29</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName23</Name>
+					<Value xsi:type="xs:string">СтандартноеЗначение</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemId24</Name>
+					<Value xsi:type="xs:decimal">30</Value>
+				</Property>
+				<Property>
+					<Name>FieldsMapItemName24</Name>
+					<Value xsi:type="xs:string">ЗначениеБезГрупп</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemId24</Name>
+					<Value xsi:type="xs:decimal">30</Value>
+				</Property>
+				<Property>
+					<Name>FiledsMapItemName24</Name>
+					<Value xsi:type="xs:string">ЗначениеБезГрупп</Value>
+				</Property>
+				<Property>
+					<Name>ReqMapFieldId0</Name>
+					<Value xsi:type="xs:decimal">24</Value>
+				</Property>
+				<Property>
+					<Name>AutoSaveUserSettings</Name>
+					<Value xsi:type="xs:boolean">true</Value>
+				</Property>
+			</ExtInfo>
+		</Attribute>
+		<ConditionalAppearance>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>Уточнение</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Список.ЭтоПроверкаПраваТаблицы</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Список.Уточнение</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="dcscor:DesignTimeValue">Справочник.ИдентификаторыОбъектовМетаданных.ПустаяСсылка</dcsset:right>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>Text</dcscor:parameter>
+						<dcscor:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Проверка права Чтение</v8:content>
+							</v8:item>
+						</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+			<dcsset:item>
+				<dcsset:selection>
+					<dcsset:item>
+						<dcsset:field>Уточнение</dcsset:field>
+					</dcsset:item>
+				</dcsset:selection>
+				<dcsset:filter>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Список.ЭтоПроверкаПраваТаблицы</dcsset:left>
+						<dcsset:comparisonType>Equal</dcsset:comparisonType>
+						<dcsset:right xsi:type="xs:boolean">true</dcsset:right>
+					</dcsset:item>
+					<dcsset:item xsi:type="dcsset:FilterItemComparison">
+						<dcsset:left xsi:type="dcscor:Field">Список.Уточнение</dcsset:left>
+						<dcsset:comparisonType>NotEqual</dcsset:comparisonType>
+						<dcsset:right xsi:type="dcscor:DesignTimeValue">Справочник.ИдентификаторыОбъектовМетаданных.ПустаяСсылка</dcsset:right>
+					</dcsset:item>
+				</dcsset:filter>
+				<dcsset:appearance>
+					<dcscor:item xsi:type="dcsset:SettingsParameterValue">
+						<dcscor:parameter>Text</dcscor:parameter>
+						<dcscor:value xsi:type="v8:LocalStringType">
+							<v8:item>
+								<v8:lang>ru</v8:lang>
+								<v8:content>Проверка права Изменение</v8:content>
+							</v8:item>
+						</dcscor:value>
+					</dcscor:item>
+				</dcsset:appearance>
+			</dcsset:item>
+		</ConditionalAppearance>
+	</Attributes>
+	<Commands>
+		<Command>
+			<Name>ВключитьВозможностьРедактирования</Name>
+			<Title>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Включить возможность редактирования</v8:content>
+				</v8:item>
+			</Title>
+			<ToolTip>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Включить возможность редактирования только для целей поиска неисправности (требуется углубленное понимание работы механизма)</v8:content>
+				</v8:item>
+			</ToolTip>
+			<Using>
+				<xr:common>true</xr:common>
+			</Using>
+			<ShortCut/>
+			<Picture/>
+			<Handler>ВключитьВозможностьРедактирования</Handler>
+			<FunctionalOptions/>
+			<DefaultRepresentation>Auto</DefaultRepresentation>
+			<ModifiesStoredData>false</ModifiesStoredData>
+			<AddedFromContext>false</AddedFromContext>
+		</Command>
+	</Commands>
+	<Parameters/>
+	<Elements id="0:02023637-7868-4a5f-8576-835a76e0c9ba">
+		<Properties>
+			<Title/>
+			<Width>110</Width>
+			<Height>0</Height>
+			<OpeningMode>Independent</OpeningMode>
+			<EnterKeyBehavior>ControlNavigation</EnterKeyBehavior>
+			<AutoSaveFormDataInSettings>DontUse</AutoSaveFormDataInSettings>
+			<SaveFormDataInSettings>DontUse</SaveFormDataInSettings>
+			<SettingsStorage/>
+			<AutoTitle>true</AutoTitle>
+			<AutoURL>true</AutoURL>
+			<ChildrenGrouping>Vertical</ChildrenGrouping>
+			<ChildItemsWidth>Auto</ChildItemsWidth>
+			<AutoFillCheck>true</AutoFillCheck>
+			<Customizable>true</Customizable>
+			<Enabled>true</Enabled>
+			<ReadOnly>false</ReadOnly>
+			<CommandBarLocation>Auto</CommandBarLocation>
+			<VerticalScrolling>useIfNecessary</VerticalScrolling>
+			<BaseFontVariant>Auto</BaseFontVariant>
+			<CommandsContent>
+				<ExcludedCommand>Copy</ExcludedCommand>
+			</CommandsContent>
+			<GroupsList/>
+		</Properties>
+		<Events>
+			<Event name="OnCreateAtServer">ПриСозданииНаСервере</Event>
+		</Events>
+		<PredefinedContainedItems>
+			<CommandBar xsi:type="AutoMenuGroup" id="-1:02023637-7868-4a5f-8576-835a76e0c9ba">
+				<Properties>
+					<Name>ФормаКоманднаяПанель</Name>
+					<Type>AutoCommandBar</Type>
+					<Visible>true</Visible>
+					<UserVisible>
+						<xr:common>true</xr:common>
+					</UserVisible>
+					<Enabled>true</Enabled>
+					<ReadOnly>false</ReadOnly>
+					<EnableContentChange>false</EnableContentChange>
+					<Title/>
+					<TitleTextColor>auto</TitleTextColor>
+					<TitleFont kind="AutoFont"/>
+					<ToolTip/>
+					<ToolTipRepresentation>Auto</ToolTipRepresentation>
+					<Shortcut/>
+					<Width>0</Width>
+					<Height>0</Height>
+					<HorizontalStretch>auto</HorizontalStretch>
+					<VerticalStretch>auto</VerticalStretch>
+					<HorAlignment>Left</HorAlignment>
+					<FillWithStdCommands>true</FillWithStdCommands>
+				</Properties>
+				<PredefinedContainedItems/>
+				<ContainedItems>
+					<Button id="36:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>ФормаВключитьВозможностьРедактирования</Name>
+							<Kind>CommandBarButton</Kind>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<TitleRowsCount>0</TitleRowsCount>
+							<Representation>Auto</Representation>
+							<DefaultButton>false</DefaultButton>
+							<SkipOnInput>auto</SkipOnInput>
+							<Enabled>true</Enabled>
+							<DefaultElement>false</DefaultElement>
+							<Important>false</Important>
+							<Width>0</Width>
+							<Height>0</Height>
+							<PlacementArea>userCmds</PlacementArea>
+							<Check>false</Check>
+							<Command>Form.Command.ВключитьВозможностьРедактирования</Command>
+							<Parameter xsi:nil="true"/>
+							<AttributeProperty/>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<BorderColor>auto</BorderColor>
+							<Font kind="AutoFont"/>
+							<ShortCut/>
+							<Picture/>
+							<Title/>
+							<TooltipRepresentation>Auto</TooltipRepresentation>
+						</Properties>
+						<PredefinedContainedItems>
+							<ExtTooltip xsi:type="TextDecoration" id="37:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ФормаВключитьВозможностьРедактированияExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Button>
+				</ContainedItems>
+			</CommandBar>
+		</PredefinedContainedItems>
+		<ContainedItems>
+			<Table id="1:02023637-7868-4a5f-8576-835a76e0c9ba">
+				<Properties>
+					<Name>Список</Name>
+					<Representation>List</Representation>
+					<Visible>true</Visible>
+					<UserVisible>
+						<xr:common>true</xr:common>
+					</UserVisible>
+					<TitleLocation>None</TitleLocation>
+					<TitleRowsCount>0</TitleRowsCount>
+					<CommandBarLocation>None</CommandBarLocation>
+					<AutoFill>false</AutoFill>
+					<Enabled>true</Enabled>
+					<ReadOnly>false</ReadOnly>
+					<SkipOnInput>false</SkipOnInput>
+					<DefaultElement>true</DefaultElement>
+					<ChangeRowSet>true</ChangeRowSet>
+					<ChangeRowOrder>true</ChangeRowOrder>
+					<Width>0</Width>
+					<Height>0</Height>
+					<RowsCount>0</RowsCount>
+					<ChoiceMode>false</ChoiceMode>
+					<MultipleChoice>false</MultipleChoice>
+					<RowInputMode>EndOfList</RowInputMode>
+					<RowsSelectionMode>MultiRow</RowsSelectionMode>
+					<RowSelectionMode>Cell</RowSelectionMode>
+					<ShowHeader>true</ShowHeader>
+					<HeaderHeight>1</HeaderHeight>
+					<ShowFooter>false</ShowFooter>
+					<FooterHeight>1</FooterHeight>
+					<HorScroll>AutoUse</HorScroll>
+					<VertScroll>AutoUse</VertScroll>
+					<ShowHorLines>true</ShowHorLines>
+					<ShowVertLines>true</ShowVertLines>
+					<FixedLeft>4294967295</FixedLeft>
+					<FixedRight>4294967295</FixedRight>
+					<UseAlternationRowColor>true</UseAlternationRowColor>
+					<AutoInsertNewRow>false</AutoInsertNewRow>
+					<AutoInsertNotCompletedVals>auto</AutoInsertNotCompletedVals>
+					<AutoMarkNotcompletedVals>auto</AutoMarkNotcompletedVals>
+					<SearchOnInput>Auto</SearchOnInput>
+					<InitialListView>Auto</InitialListView>
+					<InitialTreeView>ExpandTopLevel</InitialTreeView>
+					<UseOutput>Auto</UseOutput>
+					<HorStretchable>true</HorStretchable>
+					<VertStretchable>true</VertStretchable>
+					<EnableStartDrag>true</EnableStartDrag>
+					<EnableDrag>false</EnableDrag>
+					<DataPath>Список</DataPath>
+					<RowPictureDataPath>Список.DefaultPicture</RowPictureDataPath>
+					<RowsPicture/>
+					<TextColor>auto</TextColor>
+					<BackColor>auto</BackColor>
+					<BorderColor>auto</BorderColor>
+					<Font kind="AutoFont"/>
+					<Title/>
+					<TitleTextColor>auto</TitleTextColor>
+					<TitleFont kind="AutoFont"/>
+					<ShortCut/>
+					<CommandsContent>
+						<ExcludedCommand>Copy</ExcludedCommand>
+					</CommandsContent>
+					<Tooltip/>
+					<TooltipRepresentation>Auto</TooltipRepresentation>
+					<AutoRefresh>false</AutoRefresh>
+					<AutoRefreshInterval>60</AutoRefreshInterval>
+					<Period xsi:type="v8:StandardPeriod">
+						<v8:variant xsi:type="v8:StandardPeriodVariant">Custom</v8:variant>
+						<v8:startDate>0001-01-01T00:00:00</v8:startDate>
+						<v8:endDate>0001-01-01T00:00:00</v8:endDate>
+					</Period>
+					<ChoiceFolderAndItem>Items</ChoiceFolderAndItem>
+					<RestoreCurrentLine>false</RestoreCurrentLine>
+					<TopParent xsi:nil="true"/>
+					<ShowRoot>true</ShowRoot>
+					<AllowRootChoice>false</AllowRootChoice>
+					<UpdateOnDataChanges>Auto</UpdateOnDataChanges>
+					<UserSettingsGroup/>
+				</Properties>
+				<Events/>
+				<PredefinedContainedItems>
+					<ContextMenu xsi:type="ContextMenuGroup" id="2:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокКонтекстноеМеню</Name>
+							<Type>ContextMenu</Type>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<EnableContentChange>false</EnableContentChange>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleFont kind="AutoFont"/>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<Shortcut/>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorizontalStretch>auto</HorizontalStretch>
+							<VerticalStretch>auto</VerticalStretch>
+							<FillWithStdCommands>true</FillWithStdCommands>
+						</Properties>
+						<PredefinedContainedItems/>
+						<ContainedItems/>
+					</ContextMenu>
+					<CommandBar xsi:type="AutoMenuGroup" id="3:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокКоманднаяПанель</Name>
+							<Type>AutoCommandBar</Type>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<EnableContentChange>false</EnableContentChange>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleFont kind="AutoFont"/>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<Shortcut/>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorizontalStretch>auto</HorizontalStretch>
+							<VerticalStretch>auto</VerticalStretch>
+							<HorAlignment>Left</HorAlignment>
+							<FillWithStdCommands>false</FillWithStdCommands>
+						</Properties>
+						<PredefinedContainedItems/>
+						<ContainedItems/>
+					</CommandBar>
+					<ExtTooltip xsi:type="TextDecoration" id="38:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СписокExtendedTooltip</Name>
+							<Kind>Label</Kind>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<Enabled>true</Enabled>
+							<Width>0</Width>
+							<Height>0</Height>
+							<HorStretchable>auto</HorStretchable>
+							<VertStretchable>auto</VertStretchable>
+							<SkipOnInput>auto</SkipOnInput>
+							<TextColor>auto</TextColor>
+							<Font kind="AutoFont"/>
+							<ShortCut/>
+							<Title/>
+							<Tooltip/>
+							<TooltipRepresentation>Auto</TooltipRepresentation>
+							<HyperLink>false</HyperLink>
+							<HorAlignment>Left</HorAlignment>
+							<VertAlignment>Auto</VertAlignment>
+							<TitleHeight>0</TitleHeight>
+							<BackColor>auto</BackColor>
+							<BorderColor>auto</BorderColor>
+							<Border width="1">
+								<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+							</Border>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems/>
+					</ExtTooltip>
+				</PredefinedContainedItems>
+				<ContainedItems>
+					<Text id="4:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>Объект</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.Объект</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>true</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="5:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ОбъектКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="39:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ОбъектExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+					<Text id="6:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>НомерНабора</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.НомерНабора</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="7:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>НомерНабораКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="40:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>НомерНабораExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+					<Text id="10:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>ЗначениеДоступа</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.ЗначениеДоступа</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="11:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЗначениеДоступаКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="42:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЗначениеДоступаExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+					<Text id="46:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>Уточнение</Name>
+							<Type>LabelField</Type>
+							<DataPath>Список.Уточнение</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<Width>0</Width>
+							<RowsCount>0</RowsCount>
+							<HorizontalStretchable>auto</HorizontalStretchable>
+							<VerticalStretchable>auto</VerticalStretchable>
+							<MarkNegatives>auto</MarkNegatives>
+							<Format/>
+							<HiperLink>false</HiperLink>
+							<PasswordMode>auto</PasswordMode>
+							<TextColor>auto</TextColor>
+							<BackColor>auto</BackColor>
+							<Font kind="AutoFont"/>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="47:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>УточнениеКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="48:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>УточнениеРасширеннаяПодсказка</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</Text>
+					<CheckBox id="12:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>Чтение</Name>
+							<Type>CheckBoxField</Type>
+							<DataPath>Список.Чтение</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ThreeState>false</ThreeState>
+							<BorderColor>auto</BorderColor>
+							<EqualElementsWidth>auto</EqualElementsWidth>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="13:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЧтениеКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="43:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЧтениеExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</CheckBox>
+					<CheckBox id="16:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>Изменение</Name>
+							<Type>CheckBoxField</Type>
+							<DataPath>Список.Изменение</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ThreeState>false</ThreeState>
+							<BorderColor>auto</BorderColor>
+							<EqualElementsWidth>auto</EqualElementsWidth>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="17:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ИзменениеКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="45:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ИзменениеExtendedTooltip</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</CheckBox>
+					<CheckBox id="52:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>СтандартноеЗначение</Name>
+							<Type>CheckBoxField</Type>
+							<DataPath>Список.СтандартноеЗначение</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ThreeState>false</ThreeState>
+							<BorderColor>auto</BorderColor>
+							<EqualElementsWidth>auto</EqualElementsWidth>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="53:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>СтандартноеЗначениеКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="54:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>СтандартноеЗначениеРасширеннаяПодсказка</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</CheckBox>
+					<CheckBox id="55:02023637-7868-4a5f-8576-835a76e0c9ba">
+						<Properties>
+							<Name>ЗначениеБезГрупп</Name>
+							<Type>CheckBoxField</Type>
+							<DataPath>Список.ЗначениеБезГрупп</DataPath>
+							<Visible>true</Visible>
+							<UserVisible>
+								<xr:common>true</xr:common>
+							</UserVisible>
+							<DefaultItem>false</DefaultItem>
+							<Enabled>true</Enabled>
+							<ReadOnly>false</ReadOnly>
+							<SkipOnInput>auto</SkipOnInput>
+							<Title/>
+							<TitleTextColor>auto</TitleTextColor>
+							<TitleBackColor>auto</TitleBackColor>
+							<TitleFont kind="AutoFont"/>
+							<TitleLocation>Auto</TitleLocation>
+							<TitleHeight>0</TitleHeight>
+							<ToolTip/>
+							<ToolTipRepresentation>Auto</ToolTipRepresentation>
+							<WarningOnEditRepresentation>Auto</WarningOnEditRepresentation>
+							<WarningOnEdit/>
+							<Shortcut/>
+							<CommandsContent/>
+							<HorizontalAlign>Auto</HorizontalAlign>
+							<VerticalAlign>Auto</VerticalAlign>
+							<EditMode>Enter</EditMode>
+							<FixingInTable>None</FixingInTable>
+							<CellHyperlink>false</CellHyperlink>
+							<AutoCellHeight>false</AutoCellHeight>
+							<ShowInHeader>true</ShowInHeader>
+							<HeaderPicture/>
+							<HeaderHorizontalAlign>Left</HeaderHorizontalAlign>
+							<ShowInFooter>true</ShowInFooter>
+							<FooterDataPath/>
+							<FooterText/>
+							<FooterTextColor>auto</FooterTextColor>
+							<FooterBackColor>auto</FooterBackColor>
+							<FooterFont kind="AutoFont"/>
+							<FooterPicture/>
+							<FooterHorizontalAlign>Auto</FooterHorizontalAlign>
+							<CheckBoxType>Auto</CheckBoxType>
+							<ThreeState>false</ThreeState>
+							<BorderColor>auto</BorderColor>
+							<EqualElementsWidth>auto</EqualElementsWidth>
+						</Properties>
+						<Events/>
+						<PredefinedContainedItems>
+							<ContextMenu xsi:type="ContextMenuGroup" id="56:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЗначениеБезГруппКонтекстноеМеню</Name>
+									<Type>ContextMenu</Type>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<ReadOnly>false</ReadOnly>
+									<EnableContentChange>false</EnableContentChange>
+									<Title/>
+									<TitleTextColor>auto</TitleTextColor>
+									<TitleFont kind="AutoFont"/>
+									<ToolTip/>
+									<ToolTipRepresentation>Auto</ToolTipRepresentation>
+									<Shortcut/>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorizontalStretch>auto</HorizontalStretch>
+									<VerticalStretch>auto</VerticalStretch>
+									<FillWithStdCommands>true</FillWithStdCommands>
+								</Properties>
+								<PredefinedContainedItems/>
+								<ContainedItems/>
+							</ContextMenu>
+							<ExtTooltip xsi:type="TextDecoration" id="57:02023637-7868-4a5f-8576-835a76e0c9ba">
+								<Properties>
+									<Name>ЗначениеБезГруппРасширеннаяПодсказка</Name>
+									<Kind>Label</Kind>
+									<Visible>true</Visible>
+									<UserVisible>
+										<xr:common>true</xr:common>
+									</UserVisible>
+									<Enabled>true</Enabled>
+									<Width>0</Width>
+									<Height>0</Height>
+									<HorStretchable>auto</HorStretchable>
+									<VertStretchable>auto</VertStretchable>
+									<SkipOnInput>auto</SkipOnInput>
+									<TextColor>auto</TextColor>
+									<Font kind="AutoFont"/>
+									<ShortCut/>
+									<Title/>
+									<Tooltip/>
+									<TooltipRepresentation>Auto</TooltipRepresentation>
+									<HyperLink>false</HyperLink>
+									<HorAlignment>Left</HorAlignment>
+									<VertAlignment>Auto</VertAlignment>
+									<TitleHeight>0</TitleHeight>
+									<BackColor>auto</BackColor>
+									<BorderColor>auto</BorderColor>
+									<Border width="1">
+										<style xmlns="http://v8.1c.ru/8.1/data/ui" xsi:type="ControlBorderType">WithoutBorder</style>
+									</Border>
+								</Properties>
+								<Events/>
+								<PredefinedContainedItems/>
+							</ExtTooltip>
+						</PredefinedContainedItems>
+					</CheckBox>
+				</ContainedItems>
+			</Table>
+		</ContainedItems>
+	</Elements>
+	<NavigationPanel/>
+	<CommandPanel/>
+</Form>

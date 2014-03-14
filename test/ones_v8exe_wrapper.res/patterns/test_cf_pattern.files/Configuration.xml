@@ -1,41 +1,41 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <MetaDataObject xmlns="http://v8.1c.ru/8.3/MDClasses" xmlns:app="http://v8.1c.ru/8.2/managed-application/core" xmlns:cfg="http://v8.1c.ru/8.1/data/enterprise/current-config" xmlns:cmi="http://v8.1c.ru/8.2/managed-application/cmi" xmlns:ent="http://v8.1c.ru/8.1/data/enterprise" xmlns:lf="http://v8.1c.ru/8.2/managed-application/logform" xmlns:style="http://v8.1c.ru/8.1/data/ui/style" xmlns:sys="http://v8.1c.ru/8.1/data/ui/fonts/system" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:v8ui="http://v8.1c.ru/8.1/data/ui" xmlns:web="http://v8.1c.ru/8.1/data/ui/colors/web" xmlns:win="http://v8.1c.ru/8.1/data/ui/colors/windows" xmlns:xen="http://v8.1c.ru/8.3/xcf/enums" xmlns:xpr="http://v8.1c.ru/8.3/xcf/predef" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<Configuration uuid="f086bfff-85c4-49c7-9f28-dd67ae972f1a" formatVersion="1.0">
+	<Configuration uuid="709c4134-d655-4c54-89c7-57852dcd96cf" formatVersion="1.0">
 		<InnerInfo>
 			<xr:containedObject>
 				<xr:classId>9cd510cd-abfc-11d4-9434-004095e12fc7</xr:classId>
-				<xr:objectId>1985ffb6-abe4-4708-834f-3f51d4e63db3</xr:objectId>
+				<xr:objectId>1eb4d3fe-6360-4a5f-9545-9222ee5b1e36</xr:objectId>
 			</xr:containedObject>
 			<xr:containedObject>
 				<xr:classId>9fcd25a0-4822-11d4-9414-008048da11f9</xr:classId>
-				<xr:objectId>fadcbf4d-b69c-46cc-97c2-a48df445356d</xr:objectId>
+				<xr:objectId>54abefec-2f7f-45fd-87a0-481bd1c3d08a</xr:objectId>
 			</xr:containedObject>
 			<xr:containedObject>
 				<xr:classId>e3687481-0a87-462c-a166-9f34594f9bba</xr:classId>
-				<xr:objectId>661a7b49-677f-4beb-b177-0fd1002d1235</xr:objectId>
+				<xr:objectId>a51e79fe-297c-4ddd-9659-6775a1886801</xr:objectId>
 			</xr:containedObject>
 			<xr:containedObject>
 				<xr:classId>9de14907-ec23-4a07-96f0-85521cb6b53b</xr:classId>
-				<xr:objectId>e50f5a79-0208-4111-aae1-24caa05cbae1</xr:objectId>
+				<xr:objectId>8eb1f99d-9b40-4d89-a1e1-c47897b9f113</xr:objectId>
 			</xr:containedObject>
 			<xr:containedObject>
 				<xr:classId>51f2d5d8-ea4d-4064-8892-82951750031e</xr:classId>
-				<xr:objectId>c31b8be8-6207-4bca-88e7-54229ec96e23</xr:objectId>
+				<xr:objectId>7d256a4a-2593-4860-b8f8-8f7ed859b4fa</xr:objectId>
 			</xr:containedObject>
 			<xr:containedObject>
 				<xr:classId>e68182ea-4237-4383-967f-90c1e3370bc7</xr:classId>
-				<xr:objectId>b3138e01-c87e-4bc6-9db6-3e3b13f73cf5</xr:objectId>
+				<xr:objectId>0b0d35f4-c4da-49c5-8196-8214bf1b8d3e</xr:objectId>
 			</xr:containedObject>
 		</InnerInfo>
 		<Properties>
-			<Name>ИмяКонфигурации</Name>
+			<Name>ЗаказыИДоставка</Name>
 			<Synonym>
 				<v8:item>
 					<v8:lang>ru</v8:lang>
-					<v8:content>Имя конфигурации</v8:content>
+					<v8:content>Заказы и Доставка, редакция 0.0</v8:content>
 				</v8:item>
 			</Synonym>
-			<Comment/>
+			<Comment>Конфигурация автоматизирует процессы приёма, создания, реализации и доставки заказа покупателю.</Comment>
 			<DefaultRunMode>ManagedApplication</DefaultRunMode>
 			<UsePurposes>
 				<v8:Value xsi:type="app:ApplicationUsePurpose">PersonalComputer</v8:Value>
@@ -43,7 +43,7 @@
 			<ScriptVariant>Russian</ScriptVariant>
 			<DefaultRoles/>
 			<Vendor/>
-			<Version/>
+			<Version>0.0.1.0</Version>
 			<UpdateCatalogAddress/>
 			<IncludeHelpInContents>false</IncludeHelpInContents>
 			<UseManagedFormInOrdinaryApplication>false</UseManagedFormInOrdinaryApplication>
@@ -64,27 +64,373 @@
 			<DefaultStyle/>
 			<DefaultLanguage>Language.Русский</DefaultLanguage>
 			<BriefInformation/>
-			<DetailedInformation/>
+			<DetailedInformation>
+				<v8:item>
+					<v8:lang>ru</v8:lang>
+					<v8:content>Конфигурация автоматизирует процессы приёма, создания, реализации и доставки заказа покупателю.</v8:content>
+				</v8:item>
+			</DetailedInformation>
 			<Copyright/>
 			<VendorInformationAddress/>
 			<ConfigurationInformationAddress/>
 			<DataLockControlMode>Managed</DataLockControlMode>
 			<ObjectAutonumerationMode>NotAutoFree</ObjectAutonumerationMode>
-			<ModalityUseMode>Use</ModalityUseMode>
+			<ModalityUseMode>DontUse</ModalityUseMode>
 			<InterfaceCompatibilityMode>Version8_2</InterfaceCompatibilityMode>
-			<CompatibilityMode>Version8_2_16</CompatibilityMode>
+			<CompatibilityMode>DontUse</CompatibilityMode>
 			<DefaultConstantsForm/>
 		</Properties>
 		<ChildObjects>
 			<Language>Русский</Language>
-			<Role>Роль1</Role>
-			<Catalog>Справочник1</Catalog>
-			<Catalog>Справочник2</Catalog>
-			<Catalog>Справочник3</Catalog>
-			<Catalog>Справочник4</Catalog>
-			<Catalog>Справочник6</Catalog>
-			<Document>Документ1</Document>
-			<ChartOfAccounts>ПланСчетов1</ChartOfAccounts>
+			<Subsystem>СтандартныеПодсистемы</Subsystem>
+			<StyleItem>ВыполненнаяЗадача</StyleItem>
+			<StyleItem>НедоступныеДанныеЦвет</StyleItem>
+			<StyleItem>ЗапрещенноеПравоДоступа</StyleItem>
+			<StyleItem>ЗаблокированныйРеквизитЦвет</StyleItem>
+			<StyleItem>ПоясняющийОшибкуТекст</StyleItem>
+			<StyleItem>ПоясняющийТекст</StyleItem>
+			<StyleItem>ЗавершенныйБизнесПроцесс</StyleItem>
+			<StyleItem>МоиВариантыОтчетовЦвет</StyleItem>
+			<StyleItem>ПользовательВыбранный</StyleItem>
+			<StyleItem>ПросроченныеДанныеЦвет</StyleItem>
+			<StyleItem>РольБезИсполнителей</StyleItem>
+			<StyleItem>СкрытыйВариантОтчетаЦвет</StyleItem>
+			<StyleItem>СобытиеОтказ</StyleItem>
+			<StyleItem>ТекстЗапрещеннойЯчейкиЦвет</StyleItem>
+			<StyleItem>ФайлЗанятыйДругимПользователем</StyleItem>
+			<StyleItem>ФайлЗанятыйТекущимПользователем</StyleItem>
+			<StyleItem>ФонУправляющегоПоля</StyleItem>
+			<CommonPicture>Администрирование48</CommonPicture>
+			<CommonPicture>ВидыНавигацииПоВзаимодействиямОтКатегорий</CommonPicture>
+			<CommonPicture>ГраницаСверху</CommonPicture>
+			<CommonPicture>ВосклицательныйЗнакСерый</CommonPicture>
+			<CommonPicture>ВидыНавигацииПоВзаимодействиямОтКонтактов</CommonPicture>
+			<CommonPicture>ВыравниваниеПоЛевомуКраю</CommonPicture>
+			<CommonPicture>ВидыНавигацииПоВзаимодействиямОтДопРеквизитовСведений</CommonPicture>
+			<CommonPicture>ГраницаВнутри</CommonPicture>
+			<CommonPicture>ВыравниваниеПоШирине</CommonPicture>
+			<CommonPicture>ВыравниваниеПоПравомуКраю</CommonPicture>
+			<CommonPicture>Вопрос32</CommonPicture>
+			<CommonPicture>ВариантыОтчетовДоступныеВсемПользователям</CommonPicture>
+			<CommonPicture>ВыполнитьРегламентноеЗаданиеВручную</CommonPicture>
+			<CommonPicture>ВыравниваниеПоЦентру</CommonPicture>
+			<CommonPicture>ВидыНавигацииПоВзаимодействиямОтПредметовВзаимодействий</CommonPicture>
+			<CommonPicture>ВидыОпераций</CommonPicture>
+			<CommonPicture>Встреча</CommonPicture>
+			<CommonPicture>ГраницаВезде</CommonPicture>
+			<CommonPicture>ГраницаВокруг</CommonPicture>
+			<CommonPicture>Взаимодействия</CommonPicture>
+			<CommonPicture>ГраницаСлева</CommonPicture>
+			<CommonPicture>ГраницаСнизу</CommonPicture>
+			<CommonPicture>ГраницаСправа</CommonPicture>
+			<CommonPicture>ДлительнаяОперация48</CommonPicture>
+			<CommonPicture>ДополнительныеРеквизитыСведения</CommonPicture>
+			<CommonPicture>ДополнительныеСведения</CommonPicture>
+			<CommonPicture>ЗакончитьРедактированиеФайла</CommonPicture>
+			<CommonPicture>ЗанятьФайл</CommonPicture>
+			<CommonPicture>ЗапланированноеВзаимодействие</CommonPicture>
+			<CommonPicture>ЗаполнитьФорму</CommonPicture>
+			<CommonPicture>ЗаставкаВнешнейОперации</CommonPicture>
+			<CommonPicture>Зашифрован</CommonPicture>
+			<CommonPicture>ЗнакСтоп</CommonPicture>
+			<CommonPicture>ЗнакСтопЧБ</CommonPicture>
+			<CommonPicture>ЗначокЗаставкиВнешнейОперации</CommonPicture>
+			<CommonPicture>ИерархическийСписок</CommonPicture>
+			<CommonPicture>ИзменитьШрифт</CommonPicture>
+			<CommonPicture>Информация</CommonPicture>
+			<CommonPicture>Информация32</CommonPicture>
+			<CommonPicture>ИнформацияПоНедоступнымПолям</CommonPicture>
+			<CommonPicture>ИспользованиеМакета</CommonPicture>
+			<CommonPicture>ИспользоватьПользовательскийМакет</CommonPicture>
+			<CommonPicture>ИспользоватьПоставляемыйМакет</CommonPicture>
+			<CommonPicture>КоличествоРассмотрено</CommonPicture>
+			<CommonPicture>КоллекцияВариантыВажности</CommonPicture>
+			<CommonPicture>КоллекцияВидыАктивныхПользователей</CommonPicture>
+			<CommonPicture>КоллекцияВидыСобытийЖурналаРегистрации</CommonPicture>
+			<CommonPicture>КоллекцияДеревоАнкеты</CommonPicture>
+			<CommonPicture>КоллекцияДляПомеченныхНаУдалениеОбъектов</CommonPicture>
+			<CommonPicture>КоллекцияКонтролируемыеСобытия152ФЗ</CommonPicture>
+			<CommonPicture>КоллекцияПиктограммФайлов</CommonPicture>
+			<CommonPicture>КоллекцияПиктограммЭлементов</CommonPicture>
+			<CommonPicture>Комментарий</CommonPicture>
+			<CommonPicture>КонтактнаяИнформация</CommonPicture>
+			<CommonPicture>КурсивноеНачертание</CommonPicture>
+			<CommonPicture>НаписатьSMS</CommonPicture>
+			<CommonPicture>НетГраницы</CommonPicture>
+			<CommonPicture>ОбновитьФайлИзФайлаНаДиске</CommonPicture>
+			<CommonPicture>ОбъединитьЯчейки</CommonPicture>
+			<CommonPicture>ОпубликоватьФайл</CommonPicture>
+			<CommonPicture>Органайзер</CommonPicture>
+			<CommonPicture>ОсвободитьФайл</CommonPicture>
+			<CommonPicture>ОтветитьНаЭлектронноеПисьмо</CommonPicture>
+			<CommonPicture>ОтветитьНаЭлектронноеПисьмоВсем</CommonPicture>
+			<CommonPicture>ОткрытьВыбранныйФайл</CommonPicture>
+			<CommonPicture>ОткрытьМакет</CommonPicture>
+			<CommonPicture>ОтложитьРассмотрениеВзаимодействия</CommonPicture>
+			<CommonPicture>ОтправитьПолучитьПочту</CommonPicture>
+			<CommonPicture>ОтправитьЭлектронноеПисьмо</CommonPicture>
+			<CommonPicture>Ошибка32</CommonPicture>
+			<CommonPicture>Папка</CommonPicture>
+			<CommonPicture>Папки</CommonPicture>
+			<CommonPicture>ПапкиЭлектронныхПисем</CommonPicture>
+			<CommonPicture>ПереместитьВЗакладкиВзаимодействия</CommonPicture>
+			<CommonPicture>ПереместитьВПапкуПисем</CommonPicture>
+			<CommonPicture>ПереслатьЭлектронноеПисьмо</CommonPicture>
+			<CommonPicture>ПиктограммыЭлементов</CommonPicture>
+			<CommonPicture>ПодписанЭП</CommonPicture>
+			<CommonPicture>Подсистема</CommonPicture>
+			<CommonPicture>Подчеркивание</CommonPicture>
+			<CommonPicture>ПоказатьОтличия</CommonPicture>
+			<CommonPicture>ПоказатьТолькоВыбранныеРоли</CommonPicture>
+			<CommonPicture>ПолужирноеНачертание</CommonPicture>
+			<CommonPicture>Предупреждение</CommonPicture>
+			<CommonPicture>Предупреждение32</CommonPicture>
+			<CommonPicture>ПрименитьПравилаОбработкиПисем</CommonPicture>
+			<CommonPicture>ПрочиеПользовательскиеНастройки</CommonPicture>
+			<CommonPicture>РазорватьСоединение</CommonPicture>
+			<CommonPicture>Рассчитать</CommonPicture>
+			<CommonPicture>РедактироватьМакет</CommonPicture>
+			<CommonPicture>РедактироватьФайл</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхАнализДанных48</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхВыполнение</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхДлительнаяОперация48</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхИнтерактивноеВыполнение</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхНастройка</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхПодсистема</CommonPicture>
+			<CommonPicture>СинхронизацияДанныхСостояниеРасписания</CommonPicture>
+			<CommonPicture>Скрепка</CommonPicture>
+			<CommonPicture>СнятьПризнакРассмотреноУВзаимодействия</CommonPicture>
+			<CommonPicture>СостояниеОбменаДанными</CommonPicture>
+			<CommonPicture>СостояниеОбменаДаннымиОшибка</CommonPicture>
+			<CommonPicture>СостояниеПользователя01</CommonPicture>
+			<CommonPicture>СостояниеПользователя02</CommonPicture>
+			<CommonPicture>СостояниеПользователя03</CommonPicture>
+			<CommonPicture>СостояниеПользователя04</CommonPicture>
+			<CommonPicture>СостояниеПользователя05</CommonPicture>
+			<CommonPicture>СостояниеПользователя06</CommonPicture>
+			<CommonPicture>СостояниеПользователя07</CommonPicture>
+			<CommonPicture>СостояниеПользователя08</CommonPicture>
+			<CommonPicture>СостояниеПользователя09</CommonPicture>
+			<CommonPicture>СостояниеПользователя10</CommonPicture>
+			<CommonPicture>СостояниеПользователя11</CommonPicture>
+			<CommonPicture>СостояниеПользователя12</CommonPicture>
+			<CommonPicture>СостояниеРассылкиОтчетов</CommonPicture>
+			<CommonPicture>СостоянияПользователей</CommonPicture>
+			<CommonPicture>СохранитьФайлКак</CommonPicture>
+			<CommonPicture>СтатусыДокумента</CommonPicture>
+			<CommonPicture>СтатусыСопоставленияОбъектов</CommonPicture>
+			<CommonPicture>ТелефонныйЗвонок</CommonPicture>
+			<CommonPicture>ТипыМакетов</CommonPicture>
+			<CommonPicture>ТолстаяГраницаВокруг</CommonPicture>
+			<CommonPicture>ТолстаяГраницаСверху</CommonPicture>
+			<CommonPicture>ТолстаяГраницаСнизу</CommonPicture>
+			<CommonPicture>УвеличитьШрифт</CommonPicture>
+			<CommonPicture>УдалитьПользовательскийМакет</CommonPicture>
+			<CommonPicture>УменьшитьШрифт</CommonPicture>
+			<CommonPicture>Успешно</CommonPicture>
+			<CommonPicture>Успешно32</CommonPicture>
+			<CommonPicture>УстановитьОтветственногоЗаВзаимодействие</CommonPicture>
+			<CommonPicture>УстановитьПредметВзаимодействия</CommonPicture>
+			<CommonPicture>УстановитьПризнакРассмотреноДляВзаимодействия</CommonPicture>
+			<CommonPicture>ФорматExcel</CommonPicture>
+			<CommonPicture>ФорматExcel2007</CommonPicture>
+			<CommonPicture>ФорматHTML</CommonPicture>
+			<CommonPicture>ФорматMXL</CommonPicture>
+			<CommonPicture>ФорматOpenOfficeCalc</CommonPicture>
+			<CommonPicture>ФорматOpenOfficeWriter</CommonPicture>
+			<CommonPicture>ФорматPDF</CommonPicture>
+			<CommonPicture>ФорматTXT</CommonPicture>
+			<CommonPicture>ФорматWord</CommonPicture>
+			<CommonPicture>ФорматWord2007</CommonPicture>
+			<CommonPicture>ФорматПустой</CommonPicture>
+			<CommonPicture>ЦветТекста</CommonPicture>
+			<CommonPicture>ЦветФона</CommonPicture>
+			<SessionParameter>АвторизованныйПользователь</SessionParameter>
+			<SessionParameter>ВыполняетсяОбновлениеИБ</SessionParameter>
+			<SessionParameter>ВидыДоступаСОтключеннымИспользованием</SessionParameter>
+			<SessionParameter>ВидыДоступаСОднойГруппойДляЗначенияДоступа</SessionParameter>
+			<SessionParameter>ВидыДоступаБезГруппДляЗначенияДоступа</SessionParameter>
+			<SessionParameter>ВсеВидыДоступаКромеСпециальных</SessionParameter>
+			<SessionParameter>ИдентификаторыТаблицСОтдельнымиНастройкамиПрав</SessionParameter>
+			<SessionParameter>ОбластьДанныхЗначение</SessionParameter>
+			<SessionParameter>ОбластьДанныхИспользование</SessionParameter>
+			<SessionParameter>ПараметрыКлиентаНаСервере</SessionParameter>
+			<SessionParameter>ТаблицыСОтдельнымиНастройкамиПрав</SessionParameter>
+			<SessionParameter>ТекущийВнешнийПользователь</SessionParameter>
+			<SessionParameter>ТекущийПользователь</SessionParameter>
+			<SessionParameter>ТипыВладельцевНастроекПрав</SessionParameter>
+			<SessionParameter>ТипыЗначенийДоступаСГруппами</SessionParameter>
+			<Role>АдминистраторСистемы</Role>
+			<Role>Администрирование</Role>
+			<Role>БазовыеПрава</Role>
+			<Role>ВыводНаПринтерФайлБуферОбмена</Role>
+			<Role>ДобавлениеИзменениеБазовойНСИ</Role>
+			<Role>ДобавлениеИзменениеВнешнихПользователей</Role>
+			<Role>ДобавлениеИзменениеОбщейБазовойНСИ</Role>
+			<Role>ДобавлениеИзменениеПользователей</Role>
+			<Role>ЗапускAutomation</Role>
+			<Role>ЗапускВебКлиента</Role>
+			<Role>ЗапускВнешнегоСоединения</Role>
+			<Role>ЗапускТолстогоКлиента</Role>
+			<Role>ЗапускТонкогоКлиента</Role>
+			<Role>ИзменениеТекущегоВнешнегоПользователя</Role>
+			<Role>ИзменениеТекущегоПользователя</Role>
+			<Role>ИзменениеУчастниковГруппДоступа</Role>
+			<Role>ИнтерактивноеОткрытиеВнешнихОтчетовИОбработок</Role>
+			<Role>ОбновлениеКонфигурацииБазыДанных</Role>
+			<Role>ПолныеПрава</Role>
+			<Role>ПросмотрЖурналаРегистрации</Role>
+			<Role>ПросмотрОписанияИзмененийПрограммы</Role>
+			<Role>РежимВсеФункции</Role>
+			<Role>СохранениеДанныхПользователя</Role>
+			<Role>УдаленныйДоступБазоваяФункциональность</Role>
+			<Role>ЧтениеБазовойНСИ</Role>
+			<Role>ЧтениеВнешнихПользователей</Role>
+			<CommonTemplate>ПолучениеДереваОбработчиковОбновления</CommonTemplate>
+			<CommonModule>ВнешниеПользователи</CommonModule>
+			<CommonModule>ЖурналРегистрацииКлиент</CommonModule>
+			<CommonModule>ЖурналРегистрацииВызовСервера</CommonModule>
+			<CommonModule>ДлительныеОперацииКлиент</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазы</CommonModule>
+			<CommonModule>ЖурналРегистрации</CommonModule>
+			<CommonModule>ДлительныеОперацииКлиентПовтИсп</CommonModule>
+			<CommonModule>НастройкиПользователейКлиент</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыБСП</CommonModule>
+			<CommonModule>ДлительныеОперации</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыВызовСервера</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыГлобальный</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыКлиент</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыКлиентПереопределяемый</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыПереопределяемый</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыСлужебныйПовтИсп</CommonModule>
+			<CommonModule>ОбновлениеИнформационнойБазыСобытия</CommonModule>
+			<CommonModule>ОбщегоНазначения</CommonModule>
+			<CommonModule>ОбщегоНазначенияВызовСервера</CommonModule>
+			<CommonModule>ОбщегоНазначенияГлобальный</CommonModule>
+			<CommonModule>ОбщегоНазначенияКлиент</CommonModule>
+			<CommonModule>ОбщегоНазначенияКлиентПереопределяемый</CommonModule>
+			<CommonModule>ОбщегоНазначенияКлиентПовтИсп</CommonModule>
+			<CommonModule>ОбщегоНазначенияКлиентСервер</CommonModule>
+			<CommonModule>ОбщегоНазначенияПереопределяемый</CommonModule>
+			<CommonModule>ОбщегоНазначенияПовтИсп</CommonModule>
+			<CommonModule>ПодсистемыКонфигурацииПереопределяемый</CommonModule>
+			<CommonModule>Пользователи</CommonModule>
+			<CommonModule>ПользователиКлиентСервер</CommonModule>
+			<CommonModule>ПользователиПереопределяемый</CommonModule>
+			<CommonModule>ПользователиСлужебный</CommonModule>
+			<CommonModule>ПользователиСлужебныйВызовСервера</CommonModule>
+			<CommonModule>ПользователиСлужебныйКлиент</CommonModule>
+			<CommonModule>ПользователиСлужебныйКлиентСервер</CommonModule>
+			<CommonModule>ПользователиСлужебныйПовтИсп</CommonModule>
+			<CommonModule>РегламентированныеДанныеКлиентСервер</CommonModule>
+			<CommonModule>СтандартныеПодсистемыВызовСервера</CommonModule>
+			<CommonModule>СтандартныеПодсистемыГлобальный</CommonModule>
+			<CommonModule>СтандартныеПодсистемыКлиент</CommonModule>
+			<CommonModule>СтандартныеПодсистемыКлиентПовтИсп</CommonModule>
+			<CommonModule>СтандартныеПодсистемыКлиентСервер</CommonModule>
+			<CommonModule>СтандартныеПодсистемыПовтИсп</CommonModule>
+			<CommonModule>СтандартныеПодсистемыСервер</CommonModule>
+			<CommonModule>СтроковыеФункцииКлиентСервер</CommonModule>
+			<CommonModule>УправлениеДоступом</CommonModule>
+			<CommonModule>УправлениеДоступомПереопределяемый</CommonModule>
+			<CommonModule>УправлениеДоступомСлужебный</CommonModule>
+			<CommonModule>УправлениеДоступомСлужебныйВызовСервера</CommonModule>
+			<CommonModule>УправлениеДоступомСлужебныйКлиент</CommonModule>
+			<CommonModule>УправлениеДоступомСлужебныйКлиентСервер</CommonModule>
+			<CommonModule>УправлениеДоступомСлужебныйПовтИсп</CommonModule>
+			<WebService>InterfaceVersion</WebService>
+			<EventSubscription>ЗаписатьНаборыЗначенийДоступа</EventSubscription>
+			<EventSubscription>ОбновитьГруппыЗначенийДоступа</EventSubscription>
+			<EventSubscription>ОбновитьПредставлениеВнешнегоПользователя</EventSubscription>
+			<EventSubscription>ПослеОтправкиДанных</EventSubscription>
+			<EventSubscription>ПослеПолученияДанных</EventSubscription>
+			<EventSubscription>ПриОтправкеДанныхГлавному</EventSubscription>
+			<EventSubscription>ПриОтправкеДанныхПодчиненному</EventSubscription>
+			<EventSubscription>ПриПолученииДанныхОтГлавного</EventSubscription>
+			<EventSubscription>ПриПолученииДанныхОтПодчиненного</EventSubscription>
+			<ScheduledJob>ЗаполнениеДанныхДляОграниченияДоступа</ScheduledJob>
+			<ScheduledJob>ОтложенноеОбновлениеИБ</ScheduledJob>
+			<ScheduledJob>УдалениеПомеченных</ScheduledJob>
+			<SettingsStorage>ХранилищеВариантовОтчетов</SettingsStorage>
+			<FunctionalOption>ИспользоватьВнешнихПользователей</FunctionalOption>
+			<FunctionalOption>ИспользоватьГруппыПользователей</FunctionalOption>
+			<FunctionalOption>ОграничиватьДоступНаУровнеЗаписей</FunctionalOption>
+			<FunctionalOption>РаботаВАвтономномРежиме</FunctionalOption>
+			<FunctionalOption>РаботаВЛокальномРежиме</FunctionalOption>
+			<FunctionalOption>РаботаВМоделиСервиса</FunctionalOption>
+			<FunctionalOption>СтандартныеПодсистемыВАвтономномРежиме</FunctionalOption>
+			<FunctionalOption>СтандартныеПодсистемыВЛокальномРежиме</FunctionalOption>
+			<FunctionalOption>СтандартныеПодсистемыВМоделиСервиса</FunctionalOption>
+			<DefinedType>ВладелецНастроекПрав</DefinedType>
+			<DefinedType>ЗначениеДоступа</DefinedType>
+			<CommonCommand>НастроитьПрава</CommonCommand>
+			<CommonCommand>ПраваДоступа</CommonCommand>
+			<CommonCommand>СведенияОПользователе</CommonCommand>
+			<CommonCommand>УстановитьРасширениеРаботыСФайлами</CommonCommand>
+			<CommandGroup>Информация</CommandGroup>
+			<CommandGroup>Органайзер</CommandGroup>
+			<Constant>ДетализироватьОбновлениеИБВЖурналеРегистрации</Constant>
+			<Constant>ЗаголовокСистемы</Constant>
+			<Constant>ИспользоватьВнешнихПользователей</Constant>
+			<Constant>ИдентификаторИнформационнойБазы</Constant>
+			<Constant>ИспользоватьГруппыПользователей</Constant>
+			<Constant>ИспользоватьРазделениеПоОбластямДанных</Constant>
+			<Constant>НеИспользоватьРазделениеПоОбластямДанных</Constant>
+			<Constant>ОграничиватьДоступНаУровнеЗаписей</Constant>
+			<Constant>ПараметрыБазовойФункциональности</Constant>
+			<Constant>ПараметрыОграниченияДоступа</Constant>
+			<Constant>ПараметрыРаботыПользователей</Constant>
+			<Constant>ПараметрыСлужебныхСобытий</Constant>
+			<Constant>РазделыОписанияИзмененийСистемы</Constant>
+			<Constant>СведенияОбОбновленииИБ</Constant>
+			<Constant>ЭтоАвтономноеРабочееМесто</Constant>
+			<CommonForm>Вопрос</CommonForm>
+			<CommonForm>ВопросОбУстановкеРасширенияРаботыСФайлами</CommonForm>
+			<CommonForm>ВыборУзловПлановОбмена</CommonForm>
+			<CommonForm>ВыборОбъектовМетаданных</CommonForm>
+			<CommonForm>ГруппыПользователей</CommonForm>
+			<CommonForm>ДлительнаяОперация</CommonForm>
+			<CommonForm>НастройкиПравОбъектов</CommonForm>
+			<CommonForm>ОписаниеИзмененийСистемы</CommonForm>
+			<CommonForm>ПраваДоступа</CommonForm>
+			<CommonForm>ПраваДоступаУпрощенно</CommonForm>
+			<CommonForm>ПредупрежденияПриЗавершенииРаботы</CommonForm>
+			<CommonForm>РедактированиеТабличногоДокумента</CommonForm>
+			<Catalog>ГруппыВнешнихПользователей</Catalog>
+			<Catalog>ВнешниеПользователи</Catalog>
+			<Catalog>ГруппыДоступа</Catalog>
+			<Catalog>ГруппыПользователей</Catalog>
+			<Catalog>ИдентификаторыОбъектовМетаданных</Catalog>
+			<Catalog>Пользователи</Catalog>
+			<Catalog>ПрофилиГруппДоступа</Catalog>
+			<Catalog>ВидыКонтактнойИнформации</Catalog>
+			<Document>УдалитьЗаглушкаДляПодпискиНАСОбытия</Document>
+			<Enum>ДополнительныеЗначенияДоступа</Enum>
+			<Enum>ТипыДанныхКэшаПрограммныхИнтерфейсов</Enum>
+			<Enum>ТипыПользователей</Enum>
+			<Enum>ФорматыСохраненияОтчетов</Enum>
+			<Enum>ТипыКонтактнойИнформации</Enum>
+			<Enum>ТипыОтчетов</Enum>
+			<Report>МестаИспользованияСсылок</Report>
+			<Report>ПраваДоступа</Report>
+			<DataProcessor>ЖурналРегистрации</DataProcessor>
+			<DataProcessor>ЗаменаСсылок</DataProcessor>
+			<DataProcessor>НастройкиПользователей</DataProcessor>
+			<DataProcessor>НерекомендуемаяВерсияПлатформы</DataProcessor>
+			<DataProcessor>ОбновлениеИнформационнойБазы</DataProcessor>
+			<DataProcessor>УдалениеПомеченныхОбъектов</DataProcessor>
+			<InformationRegister>ВерсииПодсистем</InformationRegister>
+			<InformationRegister>ГруппыЗначенийДоступа</InformationRegister>
+			<InformationRegister>ЗависимостиПравДоступа</InformationRegister>
+			<InformationRegister>ЗначенияГруппДоступа</InformationRegister>
+			<InformationRegister>ЗначенияГруппДоступаПоУмолчанию</InformationRegister>
+			<InformationRegister>КэшПрограммныхИнтерфейсов</InformationRegister>
+			<InformationRegister>НаборыЗначенийДоступа</InformationRegister>
+			<InformationRegister>НаследованиеНастроекПравОбъектов</InformationRegister>
+			<InformationRegister>НастройкиПравОбъектов</InformationRegister>
+			<InformationRegister>ПраваРолей</InformationRegister>
+			<InformationRegister>СоставыГруппПользователей</InformationRegister>
+			<InformationRegister>ТаблицыГруппДоступа</InformationRegister>
 		</ChildObjects>
 	</Configuration>
 </MetaDataObject>

@@ -269,15 +269,31 @@ class Ones_v8exe_wrapper
     raise "Каталог загрузки `#{dump_path}' не существует." if ! File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
-    system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
-    #Повторная загрузка вызвана глюком 1С. Глюк состоит в т, что при загрузке xml файлов конфигурации в пустую ИБ терябтся связи. На пример пропадают
-    #права у ролей
-    system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
+    #Копируем xml dump_path
+    copy_dump_path = `cygpath.exe -m #{File.join(ENV["TMP"],"copy_dump_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}")}`.chomp
+    FileUtils.mkdir(copy_dump_path)
+    FileUtils.cp(Dir.glob(File.join(dump_path,"*")),copy_dump_path)
+    #Прячем файлы на которых спотыкается загрузка
+    stash_dump_path = File.join(copy_dump_path,"stash")
+    FileUtils.mkdir(stash_dump_path)
+    FileUtils.mv(Dir.glob(File.join(copy_dump_path,"CommonForm.*.Form.*")),stash_dump_path)
+    FileUtils.mv(Dir.glob(File.join(copy_dump_path,"*.Form.*.Form.*")),stash_dump_path)
+    FileUtils.mv(Dir.glob(File.join(copy_dump_path,"Role.*.Rights.xml")),stash_dump_path)
+    FileUtils.mv(Dir.glob(File.join(copy_dump_path,"CommonTemplate.*.Template.xml")),stash_dump_path)
+    FileUtils.mv(Dir.glob(File.join(copy_dump_path,"*.Template.*.Template.*")),stash_dump_path)
+    #Выполняем первый проход
+    system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{copy_dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
+    #Возвращаем файлы в каталог xml дампа
+    FileUtils.mv(Dir.glob(File.join(stash_dump_path,"*")),copy_dump_path)
+    #Выполняем второй проход
+    system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /LoadConfigFromFiles\"#{copy_dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
     if $?.exitstatus != 0 then
+      FileUtils.rm_r(copy_dump_path)
       raise "ERR Загрузка конфигурации из файлов `#{$?.to_s}'\n #{lastout(common_params[:Out])}"
     else
       $stdout.puts "Загрузка конфигурации из файлов успешно завершена\n#{lastout(common_params[:Out])}"
      end
+    FileUtils.rm_r(copy_dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
     if update_db_cfg 

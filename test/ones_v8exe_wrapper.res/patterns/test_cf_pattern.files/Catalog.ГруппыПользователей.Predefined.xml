@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<predefinedData xmlns="http://v8.1c.ru/8.3/xcf/predef" xmlns:v8="http://v8.1c.ru/8.1/data/core" xmlns:xr="http://v8.1c.ru/8.3/xcf/readable" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReferencePredefined">
+	<item id="515b9805-054f-424e-816e-87afebdac3b6">
+		<isFolder>false</isFolder>
+		<name>ВсеПользователи</name>
+		<code xsi:type="xs:string">000000001</code>
+		<description>Все пользователи</description>
+	</item>
+</predefinedData>

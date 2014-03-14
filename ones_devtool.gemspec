@@ -8,8 +8,7 @@
    s.files = FileList['lib/**/*',
                         'bin/*',
                         '[A-Z]*',
-                        'ext/**/*',
-                        'test/**/*'].to_a
+                        'ext/**/*'].to_a
   s.executables = []
   Dir.glob('bin/*'){|f| s.executables << File.basename(f)}
 #  s.extensions << 'ext/v8unpack/extconf.rb'
