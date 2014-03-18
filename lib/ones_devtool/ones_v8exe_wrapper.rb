@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'fileutils'
+require 'shellwords'
 class Ones_v8exe_wrapper
   BOM="\xEF\xBB\xBF"
   #Класс обёртка для 1cv8.exe
@@ -113,7 +114,8 @@ class Ones_v8exe_wrapper
   end
  
   #создаёт файловую ИБ
-  def self.mkinfobase_fs(path,pattern="")
+  def self.mkinfobase_fs(path,_pattern="")
+    pattern =  cygpath(_pattern)
     pattern =  File.exists?(pattern) && File.file?(pattern) ? "/UseTemplate \"#{pattern}\"" : ""
     path=path.gsub(/\\/){|s| s='/'}
     raise "Путь существует" if File.exists?(path)
@@ -140,7 +142,8 @@ class Ones_v8exe_wrapper
   end
 
   #выгрузить ИБ в файл
-  def self.dump_ib(common_params,dump_path)
+  def self.dump_ib(common_params,_dump_path)
+    dump_path = cygpath(_dump_path)
     raise "Файл существует `#{dump_path}'" if File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
@@ -156,7 +159,8 @@ class Ones_v8exe_wrapper
   end
   
   #загрузить ИБ из файла  
-  def self.restore_ib(common_params,dump_path)
+  def self.restore_ib(common_params,_dump_path)
+    dump_path = cygpath(_dump_path)
     raise "Файл не существует `#{dump_path}'" if ! File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
@@ -172,8 +176,9 @@ class Ones_v8exe_wrapper
   end
 
   #выгружает конфигурацию ИБ в cf файл
-  def self.dump_cfg(common_params,dump_path)
-    raise "Файл существует `#{dump_path}'" if File.exists?(dump_path)
+  def self.dump_cfg(common_params,_dump_path)
+   dump_path = cygpath(_dump_path)
+   raise "Файл существует `#{dump_path}'" if File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
     system "\"#{ones_v8exe()}\" DESIGNER #{common_param_to_s(common_params)} /DumpCfg\"#{dump_path}\" /DumpResult\"#{DUMPRES_FILE_DEF}\""
@@ -188,7 +193,8 @@ class Ones_v8exe_wrapper
   end
   
   #загружает конфигурацию ИБ из cf файла 
-  def self.load_cfg(common_params,dump_path)
+  def self.load_cfg(common_params,_dump_path)
+    dump_path = cygpath(_dump_path)
     raise "Файл не существует `#{dump_path}'" if ! File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
@@ -223,7 +229,8 @@ class Ones_v8exe_wrapper
   end
 
   #выгружает конфигурацию БД в cf файл
-  def self.dump_db_cfg(common_params,dump_path)
+  def self.dump_db_cfg(common_params,_dump_path)
+    dump_path = cygpath(_dump_path)
     raise "Файл существует `#{dump_path}'" if File.exists?(dump_path)
     FileUtils.rm(common_params[:Out]) if File.exists?(common_params[:Out])  
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)
@@ -240,7 +247,8 @@ class Ones_v8exe_wrapper
 
   
   #выгружает конфигурацию ИБ в файлы - только для платформы >= 8.3.4
-  def self.dump_config_to_files(common_params,dump_path,force_clear)
+  def self.dump_config_to_files(common_params,_dump_path,force_clear)
+    dump_path = cygpath(_dump_path)
     raise "Выгрузка конфигурации в файлы возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     raise "Путь выгрузки `#{dump_path}' это файл." if File.exists?(dump_path) && File.file?(dump_path)
     raise "Каталог существует `#{dump_path}'. Для очистки установите аргумент `force_clear'" if File.exists?(dump_path) && ! force_clear
@@ -263,7 +271,8 @@ class Ones_v8exe_wrapper
   end
 
   #загружает конфигурацию ИБ из файлов - только для платформы >= 8.3.4
-  def self.load_config_from_files(common_params,dump_path,update_db_cfg=false,warnings_as_errors=false,server=false)
+  def self.load_config_from_files(common_params,_dump_path,update_db_cfg=false,warnings_as_errors=false,server=false)
+    dump_path = cygpath(_dump_path)
     raise "Загрузка конфигурации из файлов возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     raise "Путь загрузки `#{dump_path}' это файл." if File.exists?(dump_path) && File.file?(dump_path)
     raise "Каталог загрузки `#{dump_path}' не существует." if ! File.exists?(dump_path)
@@ -304,7 +313,8 @@ class Ones_v8exe_wrapper
   
   
   #Разбирает конфигурацию из cf файл в xml файлы - только для платформы >= 8.3.4
-  def self.dissass_cf_to_files(cf_path,dump_path,force_clear)
+  def self.dissass_cf_to_files(cf_path,_dump_path,force_clear)
+    dump_path = cygpath(_dump_path)
     raise "Разбор cf в файлы возможен для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
     ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
@@ -319,7 +329,8 @@ class Ones_v8exe_wrapper
   end
   
   #Собирает конфигурацию из xml файлы в cf файл 
-  def self.assemble_cf_from_files(cf_path,dump_path)
+  def self.assemble_cf_from_files(cf_path,_dump_path)
+    dump_path = cygpath(_dump_path)
     raise "Сборка cf из файлов возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
     ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
@@ -335,7 +346,8 @@ class Ones_v8exe_wrapper
   
   #выгружает конфигурацию БД целевой ИБ в файлы - только для платформы >= 8.3.4
   #common_params - параметры подключения к ИБ
-  def self.dump_db_config_to_files(common_params,dump_path,force_clear)
+  def self.dump_db_config_to_files(common_params,_dump_path,force_clear)
+    dump_path = cygpath(_dump_path)
     raise "Выгрузка конфигурации в файлы возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Выгружаем конф БД в tmp.cf
     tmp_cf_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
@@ -420,7 +432,7 @@ def self.common_param_to_s(hash)
    hash.each(){|key,value|
      case value.class.to_s
        when "String"
-        result = "#{result} /#{key.to_s}\"#{value.to_s}\""
+        result = "#{result} /#{key.to_s}\"#{f_key_cygpath(key,value.to_s)}\""
        when "Hash"
          result = "#{result} /#{key.to_s}"
          value.each{|_key,_value|
@@ -434,6 +446,13 @@ def self.common_param_to_s(hash)
      result
  end
  
+ def self.f_key_cygpath(key,value)
+   if key == :F
+     cygpath(value)
+   else
+     value
+   end
+ end
 
  #Приводим конец строки к \r\n
  #При выгрузке конфигурации в файлы полатформа
@@ -457,5 +476,12 @@ def self.common_param_to_s(hash)
      result
    end
 end
-  
+
+ def self.cygpath(path)
+   if path == ""
+     path
+   else
+     `cygpath -m #{Shellwords.escape(path)}`.chomp
+   end
+ end
 end

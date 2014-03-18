@@ -89,8 +89,9 @@ class Ones_v8exe_wrapperTest < Test::Unit::TestCase
      :PAR2=>"Строка2", 
      :PAR3=>{:key1=>"Знач1",:key2=>"Знач2"},
      :PAR4=>nil,
+     :F=>"/tmp/"
     }
-    str=" /PAR1\"Строка1\" /PAR2\"Строка2\" /PAR3 -key1\"Знач1\" -key2\"Знач2\" /PAR4"
+    str=" /PAR1\"Строка1\" /PAR2\"Строка2\" /PAR3 -key1\"Знач1\" -key2\"Знач2\" /PAR4 /F\"#{`cygpath -m /tmp/`.chomp}\""
     assert_equal(str,Ones_v8exe_wrapper.common_param_to_s(hash))
   end  
   
