@@ -4,6 +4,12 @@ require 'fileutils'
 require 'date'
 
 module Onedev_init_object
+  begin
+     Dir.glob( File.join( File.dirname( __FILE__ ), "onedev_init_object", "*.rb" ) ).each { |l| require l }
+   rescue LoadError => e
+     $stderr.puts( e.message )
+  end
+
 @init_commands = {:lib=>Init_lib, :cf=>Init_cf, :epf=>Init_epf, :erf=>Init_erf }
  
   def self.usage()

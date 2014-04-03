@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'fileutils'
+require 'shellwords'
 require 'ones_devtool/ones_mdstream'
 # Файл контейнер 1C metadata-stream
 # Файл *.cf  - содержит  конфигурацию 1С
@@ -12,6 +13,8 @@ class Ones_mdscontaiter
   @@ENDBLOCK=""
   #Версия использует утилиту v8unpack.exe
   def self.disassemble(file_path,dir_path,&closure)
+    dir_path = cygpath(dir_path)
+    file_path = cygpath(file_path)
     closure ||= lambda{|message|}
     test_binary
     if not container?(file_path)
@@ -38,6 +41,8 @@ class Ones_mdscontaiter
   
   #Версия использует утилиту v8unpack.exe
   def self.assemble(dir_path,file_path,&closure)
+    dir_path = cygpath(dir_path)
+    file_path = cygpath(file_path)
     #Надо копировать и приводить у исходному копию и её-же собирать
     closure ||= lambda{|message|}
     test_binary
@@ -90,5 +95,13 @@ class Ones_mdscontaiter
       yield entry  
     end
     }
+  end
+  
+  def self.cygpath(path)
+    if path == ""
+      path
+    else
+      `cygpath -m #{Shellwords.escape(path)}`.chomp
+    end
   end
 end
