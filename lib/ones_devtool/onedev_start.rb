@@ -73,7 +73,7 @@ module Onedev_start
   
  
   def self.usage(command)
-    $stderr.puts "onedev-start-#{command} -S | -F #{command == :enterprise ? "| -W" : ""} [-N] [-P] [--uc <строка>]#{command != :designer ? "[--debug] [--debuger_url <host>] [--exec <путь>] [--cmd <строка>]" : ""} #{command == :enterprise ? "#{enterprise_usage}" : ""} #{command == :testclient ? "[--port]" : ""}
+    $stderr.puts "onedev-start-#{command} -S | -F #{command == :enterprise ? "| -W" : ""} [-N] [-P] [--uc <строка>]#{command != :disigner ? "[--debug] [--debuger_url <host>] [--exec <путь>] [--cmd <строка>]" : ""} #{command == :enterprise ? "#{enterprise_usage}" : ""} #{command == :testclient ? "[--port]" : ""}
     #{command_usage(command)}\n
     Параметры:
     -v | --version           - версия
