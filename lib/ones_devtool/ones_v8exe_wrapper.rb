@@ -118,6 +118,8 @@ class Ones_v8exe_wrapper
     pattern =  cygpath(_pattern)
     pattern =  File.exists?(pattern) && File.file?(pattern) ? "/UseTemplate \"#{pattern}\"" : ""
     path=path.gsub(/\\/){|s| s='/'}
+    #Надо удалить последние сиволы "/" из пути
+    path.gsub!(/\/*$/){|s| s=""}
     raise "Путь существует" if File.exists?(path)
     FileUtils.mkdir(path)
     raise "Путь -F `#{path}' не должен содержать символы '-' (тире). Причина: fucking 1C" if path =~ /-/
