@@ -30,6 +30,7 @@ end
 
 def version
   puts "Версия: #{Version::VERSION}"
+  puts "Версия v8unpack.exe: #{`#{Ones_mdscontaiter.v8unpack()} -V`}"
   abort
 end
 

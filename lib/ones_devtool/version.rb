@@ -2,7 +2,7 @@ module Version
   INFO = {
     :major =>0,
     :minor =>5,
-    :patch =>2
+    :patch =>3
   }
 
   NAME = 'ones_devtool'

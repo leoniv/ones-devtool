@@ -11,7 +11,6 @@
                         'ext/**/*'].to_a
   s.executables = []
   Dir.glob('bin/*'){|f| s.executables << File.basename(f)}
-#  s.extensions << 'ext/v8unpack/extconf.rb'
   s.name        = Version::NAME
   s.version     = Version::VERSION
   s.platform    = Gem::Platform::CURRENT

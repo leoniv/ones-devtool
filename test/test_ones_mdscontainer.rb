@@ -1,6 +1,7 @@
 require 'test/unit'
 require 'digest/md5'
-require 'ones_devtool/ones_mdscontainer'
+require_relative '../lib/ones_devtool/ones_mdstream'
+require_relative '../lib/ones_devtool/ones_mdscontainer'
 
 class Ones_mdstreamTest < Test::Unit::TestCase
   @@mdsc="./test/ones_mdscontainer.res/test.epf"

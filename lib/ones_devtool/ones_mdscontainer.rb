@@ -1,7 +1,6 @@
 # encoding: utf-8
 require 'fileutils'
 require 'shellwords'
-require 'ones_devtool/ones_mdstream'
 # Файл контейнер 1C metadata-stream
 # Файл *.cf  - содержит  конфигурацию 1С
 # Файл *.epf - содержит внешнюю обоаботку
@@ -11,12 +10,16 @@ require 'ones_devtool/ones_mdstream'
 class Ones_mdscontaiter
   @@MAGIC="\xFF\xFF\xFF\x7F"
   @@ENDBLOCK=""
+
+  def self.v8unpack()
+    File.join(File.expand_path('../../../ext/v8unpack/', __FILE__),'v8unpack.exe')
+  end
+
   #Версия использует утилиту v8unpack.exe
   def self.disassemble(file_path,dir_path,&closure)
     dir_path = cygpath(dir_path)
     file_path = cygpath(file_path)
     closure ||= lambda{|message|}
-    test_binary
     if not container?(file_path)
       raise "Файл #{file_path} не является контейнером 1C meta-data stream"
     end 
@@ -24,7 +27,7 @@ class Ones_mdscontaiter
     closure.call("Очищаю каталог: #{dir_path}") if File.exist?(dir_path) 
     FileUtils.rm_rf(Dir.glob(dir_path+"/*"));
     closure.call("Распаковываю: #{file_path} в #{dir_path}")
-    system "v8unpack.exe -P #{file_path} #{dir_path}" 
+    system "#{v8unpack()} -P #{file_path} #{dir_path}" 
     if $? == 0
       count = 0
       counter=0
@@ -35,7 +38,7 @@ class Ones_mdscontaiter
       }
       closure.call("Обработано: #{counter} фалов")
     else
-      raise "Dissasseble ERROR"  
+        raise "ERR процесс v8unpack.exe завершился с ошибкой `#{$?.to_s}'\n"
     end
   end
   
@@ -45,7 +48,6 @@ class Ones_mdscontaiter
     file_path = cygpath(file_path)
     #Надо копировать и приводить у исходному копию и её-же собирать
     closure ||= lambda{|message|}
-    test_binary
     tmp_path="./assemble.tmp"
     Dir.mkdir(tmp_path) if not Dir.exist?(tmp_path)
     closure.call("Копирую файлы из: #{dir_path} в #{tmp_path}")
@@ -58,7 +60,10 @@ class Ones_mdscontaiter
     }
     closure.call("Обработано: #{counter} фалов")
     closure.call("Упаковываю: #{tmp_path} в #{file_path}")
-    system "v8unpack.exe -B  #{tmp_path} #{file_path}"
+    system "#{v8unpack()} -B  #{tmp_path} #{file_path}"
+    if $?.exitstatus != 0 then
+      raise "ERR процесс v8unpack.exe завершился с ошибкой `#{$?.to_s}'\n"
+    end
     closure.call("Удаляю временный каталог: #{tmp_path}")
     FileUtils.rm_rf(tmp_path)
   end
@@ -72,20 +77,6 @@ class Ones_mdscontaiter
   end
    
   protected
-  def self.test_binary
-    ext_dir = File.expand_path('../../../ext/v8unpack/', __FILE__)
-   # puts "Path = #{ext_dir}"
-    v8unpack=ext_dir+'/v8unpack.exe'
-    zlib=ext_dir+'/zlib1.dll'
-    bin_root='/usr/local/bin/'  
-    if not File.exist?(bin_root+'v8unpack.exe')
-      FileUtils.cp(v8unpack,bin_root)
-      FileUtils.chmod 0755 , bin_root+'v8unpack.exe'
-    end
-    if not File.exist?(bin_root+'zlib1.dll')
-      FileUtils.cp(zlib,bin_root+'zlib1.dll')
-    end
-  end
 
   def self.findfiles(dir_path,&closure)
     Dir.glob(dir_path+"/*").each{|entry|

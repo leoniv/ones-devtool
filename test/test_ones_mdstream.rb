@@ -1,6 +1,6 @@
 require 'test/unit'
 require 'digest/md5'
-require 'ones_devtool/ones_mdstream'
+require_relative '../lib/ones_devtool/ones_mdstream'
 
 class Ones_mdstreamTest < Test::Unit::TestCase
   @@resdir="./test/ones_mdstream.res/"
