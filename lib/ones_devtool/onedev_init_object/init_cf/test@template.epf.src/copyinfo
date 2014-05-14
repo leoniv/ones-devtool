@@ -7,7 +7,7 @@
 ,1
 ,
 {c3831ec8-d8d5-4f93-8a22-f9bfae07327f
-,"libtests"}
+,"test"}
 }
 ,
 {b2bed37f-f7b3-47c9-8486-8c19e6db2716
@@ -15,7 +15,7 @@
 ,1
 ,
 {d5b0e5ed-256d-401c-9c36-f630cafd8a62
-,"_Test_manage"}
+,"Main"}
 }
 ,
 {e0c10d1d-b5fe-4425-8a27-1a3ef5759e58
@@ -23,7 +23,7 @@
 ,1
 ,
 {d5b0e5ed-256d-401c-9c36-f630cafd8a62
-,"_Tests"}
+,"MainOrdinary"}
 }
 }
 ,
