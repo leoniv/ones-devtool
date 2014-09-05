@@ -21,9 +21,9 @@ class Onedev_assembleTest < Test::Unit::TestCase
   end
   def test_onedev_assemble_cf_rev
     #Пути
-    tmp_git_repo = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib.gitrepo")
+    tmp_git_repo = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib.gitrepo")
     cf_src = File.join(tmp_git_repo,"git","tmpib.cf.src")
-    out_cf = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib_cf_")
+    out_cf = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib_cf_")
     exp_cf = File.join(@@resdir,"tmpib_cf_")
     #Создали временный git
     FileUtils.rm_r(tmp_git_repo) if File.exists?(tmp_git_repo)
@@ -34,6 +34,7 @@ class Onedev_assembleTest < Test::Unit::TestCase
       FileUtils.rm_r("#{out_cf}#{rev}") if File.exists?("#{out_cf}#{rev}")
       system "./bin/onedev-assemble-cf --rev #{rev} #{cf_src} #{out_cf}#{rev}"
       assert_equal(0,$?.exitstatus)
+      #ассертация может проваливатся т.к. необходимо контролирвать сборку в ручную
       assert_equal(Digest::MD5.hexdigest(File.read("#{exp_cf}#{rev}")),Digest::MD5.hexdigest(File.read("#{out_cf}#{rev}")))
     end
     #Очистили

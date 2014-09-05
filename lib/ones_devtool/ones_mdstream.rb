@@ -52,9 +52,10 @@ class Ones_mdstream
   protected
  
   def self.read_mdsfile(path)
+    path = File.expand_path(path)
     stream = "" 
     if text_file?(path)
-      File.open(path, "r:bom|utf-8"){|file|
+       File.open(path, "r:bom|utf-8"){|file|
          stream = file.read
         stream = "" if not is_mdstream?(stream)
         stream
@@ -119,6 +120,6 @@ class Ones_mdstream
     File.open(path){|f|
       bufer = f.read(3)
     }
-    not (bufer.dump != @@BOM.dump)
+    not (bufer != @@BOM.force_encoding(Encoding::ASCII_8BIT))
   end  
 end

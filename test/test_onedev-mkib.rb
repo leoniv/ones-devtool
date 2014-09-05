@@ -46,7 +46,7 @@ class OnedevMkibTest < Test::Unit::TestCase
   end
   
   def test_mkib_f()
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
     FileUtils.rm_r(tmp_ib_path) if File.exists?(tmp_ib_path)
     system "#{@@bindir}/onedev-mkib -F \"#{tmp_ib_path}\""
     
@@ -57,7 +57,7 @@ class OnedevMkibTest < Test::Unit::TestCase
   end
 
   def test_mkib_fromcf()
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
     pattern_path = File.join(@@resdir,"test_cf_pattern")  
     FileUtils.rm_rf(tmp_ib_path) if File.exists?(tmp_ib_path)
     system "#{@@bindir}/onedev-mkib-fromcf -F #{tmp_ib_path} --pattern_path #{pattern_path}"
@@ -69,7 +69,7 @@ class OnedevMkibTest < Test::Unit::TestCase
   end
 
   def test_mkib_fromf()
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
     pattern_path = File.join(@@resdir,"test_cf_pattern.files")  
     FileUtils.rm_rf(tmp_ib_path) if File.exists?(tmp_ib_path)
     system "#{@@bindir}/onedev-mkib-fromf -F #{tmp_ib_path} --pattern_path #{pattern_path}"
@@ -82,7 +82,7 @@ class OnedevMkibTest < Test::Unit::TestCase
 
   def test_mkib_fromf_rev()
     system "tar -xf #{File.join(@@resdir,'git.tar')} -C #{@@resdir}"
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
       
     pattern_path = File.join(@@resdir,"git","tmpib.cf.files")  
     FileUtils.rm_rf(tmp_ib_path) if File.exists?(tmp_ib_path)
@@ -97,7 +97,7 @@ class OnedevMkibTest < Test::Unit::TestCase
 
   
   def test_mkib_fromdt()
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
     pattern_path = File.join(@@resdir,"test_dt_pattern")  
     FileUtils.rm_rf(tmp_ib_path) if File.exists?(tmp_ib_path)
     system "#{@@bindir}/onedev-mkib-fromdt -F #{tmp_ib_path} --pattern_path #{pattern_path}"

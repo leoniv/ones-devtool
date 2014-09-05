@@ -4,8 +4,15 @@ require 'shellwords'
 class Ones_v8exe_wrapper
   BOM="\xEF\xBB\xBF"
   #Класс обёртка для 1cv8.exe
-  OUT_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},"ones_v8exe_wrapper.#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}.out")}"
-  DUMPRES_FILE_DEF="#{File.join(ENV['temp'].gsub(/\\/){|s| s='/'},'ones_v8exe_wrapper.dump_result')}"
+  def self.cygpath(path)
+    if (RUBY_PLATFORM =~ /cygwin/i) == nil or path == ""
+      path
+    else
+      `cygpath -m #{Shellwords.escape(path)}`.chomp
+    end
+  end
+  OUT_FILE_DEF=Ones_v8exe_wrapper.cygpath("#{File.join(ENV['TMP'].gsub(/\\/){|s| s='/'},"ones_v8exe_wrapper.#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}.out")}")
+  DUMPRES_FILE_DEF=Ones_v8exe_wrapper.cygpath("#{File.join(ENV['TMP'].gsub(/\\/){|s| s='/'},'ones_v8exe_wrapper.dump_result')}")
   COMMON_START_PARAM={
     :F=>"<Путь>", 
     :S=>'<host:port\IBName>',
@@ -56,8 +63,7 @@ class Ones_v8exe_wrapper
   #Можно заставить искать платформу в другом месте
   #установив пепременную %ASSPATH%
   def self.ones_v8exe(thin=false)
-    tc=thin ? "c" : ""
-    result = File.join(asspath,version(),"bin","1cv8#{tc}.exe")
+    result = File.join(asspath,version(),"bin",v8bin(thin))
   end
   
   #возвращает последнее сообщение 1cv8.exe записанное в файл /Out
@@ -319,7 +325,7 @@ class Ones_v8exe_wrapper
     dump_path = cygpath(_dump_path)
     raise "Разбор cf в файлы возможен для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
-    ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
+    ib_path = File.join(ENV["TMP"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
     common_params = common_start_param({:F=>ib_path}) 
     mkinfobase_fs(ib_path)
     #2) Загружаем cf_path в ИБ
@@ -335,7 +341,7 @@ class Ones_v8exe_wrapper
     dump_path = cygpath(_dump_path)
     raise "Сборка cf из файлов возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Создаём пустую ИБ во временном каталоге
-    ib_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
+    ib_path = File.join(ENV["TMP"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
     common_params = common_start_param({:F=>ib_path}) 
     mkinfobase_fs(ib_path)
     #2) Загружаем файлы dump_path в ИБ
@@ -352,7 +358,7 @@ class Ones_v8exe_wrapper
     dump_path = cygpath(_dump_path)
     raise "Выгрузка конфигурации в файлы возможна для платформы >= 8.3.4" if version_less_8_3_4(version())
     #1) Выгружаем конф БД в tmp.cf
-    tmp_cf_path = File.join(ENV["temp"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
+    tmp_cf_path = File.join(ENV["TMP"],"infobase_#{Time.now.strftime("%Y_%d_%m_%H_%M_%S")}_tmp")
     dump_db_cfg(common_params,tmp_cf_path)
     #2) Разбираем cf в файлы
     dissass_cf_to_files(tmp_cf_path,dump_path,force_clear)
@@ -389,7 +395,6 @@ class Ones_v8exe_wrapper
     FileUtils.rm(DUMPRES_FILE_DEF) if File.exists?(DUMPRES_FILE_DEF)  
   end  
 
-    
   private
   
   def self.version_less_8_3_4(version)
@@ -479,11 +484,15 @@ def self.common_param_to_s(hash)
    end
 end
 
- def self.cygpath(path)
-   if path == ""
-     path
+ def self.v8bin(thin)
+   tc=thin ? "c" : ""
+   case RUBY_PLATFORM
+    when /ix/i,/ux/i,/gnu/i
+     "1cv8#{tc}"
+   when /win/i,/ming/i
+     "1cv8#{tc}.exe"
    else
-     `cygpath -m #{Shellwords.escape(path)}`.chomp
-   end
+     raise "Неизвесная платформа `#{RUBY_PLATFORM}'"
+    end
  end
 end

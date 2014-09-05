@@ -98,17 +98,17 @@ class TestOnedevLoad < Test::Unit::TestCase
   
   def test_load_all
     #Создали временную ИБ
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
     FileUtils.rm_r(tmp_ib_path) if File.exists?(tmp_ib_path)
-    system "tar -xf #{File.join(@@resdir,"tmpib.tar")} -C #{ENV["temp"].gsub(/\\/){|s| s="/"}}"       
+    system "tar -xf #{File.join(@@resdir,"tmpib.tar")} -C #{ENV["TMP"].gsub(/\\/){|s| s="/"}}"       
     #Создали временный git
-    tmp_git_repo = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib.gitrepo")
+    tmp_git_repo = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib.gitrepo")
     FileUtils.rm_r(tmp_git_repo) if File.exists?(tmp_git_repo)
     FileUtils.mkdir(tmp_git_repo)
     system "tar -xf #{File.join(@@resdir,"git.tar")} -C #{tmp_git_repo}"
     
     #:assmble-cf-from
-    assemble_path = ENV["temp"].gsub(/\\/){|s| s="/"}
+    assemble_path = ENV["TMP"].gsub(/\\/){|s| s="/"}
     cf = "tmpib.cf"
     FileUtils.rm_r(File.join(assemble_path,cf)) if File.exists?(File.join(assemble_path,cf))
     system "#{@@bindir}/onedev-assemble-cf-fromf --dump_path #{File.join(tmp_git_repo,'git','tmpib.cf.files')} --assemble_path #{assemble_path} --cf #{cf}"

@@ -116,10 +116,10 @@ class OnedevDumpTest < Test::Unit::TestCase
   end
 
   def test_dump_all
-    tmp_ib_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"tmpib")
-    dump_path = ENV["temp"].gsub(/\\/){|s| s="/"}  
+    tmp_ib_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"tmpib")
+    dump_path = ENV["TMP"].gsub(/\\/){|s| s="/"}  
     FileUtils.rm_r(tmp_ib_path) if File.exists?(tmp_ib_path)
-    system "tar -xf #{File.join(@@resdir,"tmpib.tar")} -C #{ENV["temp"].gsub(/\\/){|s| s="/"}}"       
+    system "tar -xf #{File.join(@@resdir,"tmpib.tar")} -C #{ENV["TMP"].gsub(/\\/){|s| s="/"}}"       
     
     #dump_infobase
     FileUtils.rm_r(File.join(dump_path,"dump_tmpib.dt")) if File.exists?(File.join(dump_path,"dump_tmpib.dt"))

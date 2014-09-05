@@ -3,6 +3,7 @@ require 'git'
 require 'logger'
 require 'fileutils'
 require 'tempfile'
+
 module Onedev_git
   TAR_BIN = '/bin/tar'
   #Возвращает путь к выгруженному элементу path рабочего дерева git ревизии tree_ish
@@ -15,7 +16,7 @@ module Onedev_git
     commit = vlid_commit(g.gcommit(tree_ish))
     $stdout.puts "Выгружаю ревизию `#{tree_ish}' объекта `#{path}'"
     arch_out = g.archive(tree_ish,nil,{:path=>path,:format=>'tar'})
-    extract_path = File.join(ENV["temp"].gsub(/\\/){|s| s="/"},"#{File.basename(path)}.#{tree_ish}.#{Time.now.strftime('%M%S')}")
+    extract_path = File.join(ENV["TMP"].gsub(/\\/){|s| s="/"},"#{File.basename(path)}.#{tree_ish}.#{Time.now.strftime('%M%S')}")
     FileUtils.mkdir_p(extract_path)
     err_out = File.join(ENV["TMP"],"#{Time.now.strftime('%s')}.tar.out")
     system("tar -xf #{arch_out} -C #{extract_path} 2>#{err_out}")
