@@ -23,7 +23,7 @@ v8.3](http://v8.1c.ru/)
 
 * Клонируем
 ```
-$ git clone https://github/leoniv/ones_devtool.git && cd ones_devtool
+$ git clone https://github.com/leoniv/ones-devtool.git && cd ones-devtool
 ```
 * Переключаемся на релиз 0.6.0
 ```
