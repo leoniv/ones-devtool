@@ -1,3 +1,4 @@
+#encoding: utf-8
 module Ones_devtool
  raise "Не установлена переменная окружения $TMP" if not ENV.has_key?("TMP") or ENV["TMP"].length == 0
  begin
