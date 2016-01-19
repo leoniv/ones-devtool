@@ -25,9 +25,9 @@ v8.3](http://v8.1c.ru/)
 ```
 $ git clone https://github.com/leoniv/ones-devtool.git && cd ones-devtool
 ```
-* Переключаемся на релиз 0.6.0
+* Переключаемся на последний релиз 0.6.x
 ```
-$ git checkout r.0.6.0
+$ git checkout r.0.6.x
 ```
 * Устанавливаем зависимости
 ```
