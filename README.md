@@ -6,9 +6,9 @@
 
 ## Данный проект закрыт !!! 
 
-## Добро пожаловать в : [Ruby Powered Workflow ](https://github.com/leoniv/ruby_powered_workflow)
-
 > Он начинался на коленке и был первым опытом программирования на Ruby. По мере приобретения опыта стало понятно, что код этого проекта не выдерживает ни какой критики и его надо закрывать. 
+
+## Добро пожаловать в : [Ruby Powered Workflow ](https://github.com/leoniv/ruby_powered_workflow)
 
 ## Требования к окружению
 
